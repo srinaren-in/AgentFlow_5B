@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight,
@@ -8,6 +8,9 @@ import {
   ChevronRight,
   ShieldCheck,
   CheckCircle2,
+  Play,
+  Pause,
+  RotateCcw,
 } from 'lucide-react'
 
 interface CaseStudyTab {
@@ -82,6 +85,27 @@ const integrationIcons = [
 
 export const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0)
+  const [heroMode, setHeroMode] = useState<'simulation' | 'blueprint'>('simulation')
+  const [isPlaying, setIsPlaying] = useState<boolean>(true)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const togglePlayback = () => {
+    if (!videoRef.current) return
+    if (isPlaying) {
+      videoRef.current.pause()
+      setIsPlaying(false)
+    } else {
+      videoRef.current.play()
+      setIsPlaying(true)
+    }
+  }
+
+  const restartVideo = () => {
+    if (!videoRef.current) return
+    videoRef.current.currentTime = 0
+    videoRef.current.play()
+    setIsPlaying(true)
+  }
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-[#161616] font-sans antialiased selection:bg-[#FFBCCA] selection:text-[#212121]">
@@ -148,29 +172,125 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        {/* Hero Visual: Authentic SVG Architecture Canvas Diagram */}
-        <div className="w-full max-w-[1240px] card-agentflow p-3 md:p-6 bg-white border border-[#E5E5E5] shadow-xl overflow-hidden relative">
-          <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#F0F0F0] text-xs font-mono text-[#8F8F8F]">
+        {/* Hero Visual: Authentic Animated Canvas & DAG Simulation */}
+        <div className="w-full max-w-[1240px] card-agentflow p-3 md:p-6 bg-white border border-[#E5E5E5] shadow-2xl overflow-hidden relative">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-[#F0F0F0] gap-3 text-xs font-mono text-[#8F8F8F]">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-              <span className="font-semibold text-[#161616]">LIVE AGENT WORKFLOW CANVAS</span>
+              <span className="font-semibold text-[#161616]">
+                LIVE AGENT WORKFLOW SIMULATION
+              </span>
             </div>
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="px-2 py-0.5 rounded-full bg-[#F0F0F0] text-[#161616] text-[10px] sm:text-xs">
-                MULTI-STEP COGNITIVE PIPELINE
-              </span>
-              <span className="px-2 py-0.5 rounded-full bg-[#FFBCCA] text-[#212121] font-bold text-[10px] sm:text-xs">
-                LANGGRAPH + OLLAMA + GEMINI
-              </span>
+
+            {/* View Mode Switcher */}
+            <div className="flex items-center gap-2">
+              <div className="flex bg-[#F0F0F0] p-0.5 rounded-full text-[11px]">
+                <button
+                  onClick={() => setHeroMode('simulation')}
+                  className={`px-3 py-1 rounded-full transition-all ${
+                    heroMode === 'simulation'
+                      ? 'bg-[#212121] text-white shadow-xs font-bold'
+                      : 'text-[#303030] hover:text-[#161616]'
+                  }`}
+                >
+                  ▶ Live Simulation
+                </button>
+                <button
+                  onClick={() => setHeroMode('blueprint')}
+                  className={`px-3 py-1 rounded-full transition-all ${
+                    heroMode === 'blueprint'
+                      ? 'bg-[#212121] text-white shadow-xs font-bold'
+                      : 'text-[#303030] hover:text-[#161616]'
+                  }`}
+                >
+                  ❖ DAG Blueprint
+                </button>
+              </div>
+
+              <Link
+                to="/editor"
+                className="hidden md:inline-flex items-center gap-1 px-3 py-1 bg-[#FFBCCA] text-[#212121] font-bold rounded-full text-[11px] hover:bg-[#FF91AC] transition-colors"
+              >
+                Open in Editor
+                <ArrowRight className="w-3 h-3" />
+              </Link>
             </div>
           </div>
 
-          <div className="relative rounded-[16px] overflow-hidden bg-[#FAFAFA] border border-[#F0F0F0]">
-            <img
-              src="/assets/n8n/asset-083.svg"
-              alt="Visual Agent Workflow Canvas"
-              className="w-full h-auto object-contain mx-auto max-h-[580px]"
-            />
+          {/* Canvas Display */}
+          <div className="relative rounded-[20px] overflow-hidden canvas-dot-grid border border-[#2b2b2b] shadow-inner group">
+            {heroMode === 'simulation' ? (
+              <div className="relative aspect-[1750/1184] max-h-[620px] flex items-center justify-center">
+                <video
+                  ref={videoRef}
+                  src="/assets/n8n/hero-workflow-animation.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-contain"
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                />
+
+                {/* Floating On-Canvas Telemetry HUD Bar */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+                  <div className="bg-[#161616]/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2 text-[11px] font-mono text-slate-200">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span>FLOW: Invoice Screening & Multi-Tool Payment</span>
+                  </div>
+
+                  <div className="hidden sm:flex items-center gap-2 bg-[#161616]/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full text-[10px] font-mono text-slate-300">
+                    <span className="text-[#FFBCCA]">Claude 3.5 Sonnet</span>
+                    <span>•</span>
+                    <span className="text-emerald-400">4 Tools Bound</span>
+                    <span>•</span>
+                    <span className="text-sky-300">Slack & Wise API</span>
+                  </div>
+                </div>
+
+                {/* Floating Bottom Control Deck */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-auto z-10 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-2 bg-[#161616]/90 backdrop-blur-md border border-white/15 px-3 py-1.5 rounded-full shadow-lg">
+                    <button
+                      onClick={togglePlayback}
+                      className="p-1.5 rounded-full bg-white/10 hover:bg-[#FFBCCA] hover:text-[#212121] text-white transition-colors"
+                      title={isPlaying ? 'Pause' : 'Play'}
+                    >
+                      {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+                    </button>
+                    <button
+                      onClick={restartVideo}
+                      className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                      title="Restart Animation"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                    </button>
+                    <span className="text-[11px] font-mono text-slate-300 px-1">
+                      {isPlaying ? 'Simulation Running' : 'Paused'}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Link
+                      to="/editor"
+                      className="px-3 py-1.5 rounded-full bg-[#FFBCCA] text-[#212121] font-mono text-[11px] font-bold uppercase tracking-wider hover:bg-[#FF91AC] transition-all shadow-md flex items-center gap-1.5"
+                    >
+                      Build On Canvas
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="relative p-2 md:p-4 bg-[#FAFAFA] flex items-center justify-center max-h-[620px]">
+                <img
+                  src="/assets/n8n/asset-083.svg"
+                  alt="Visual Agent Workflow Canvas Blueprint"
+                  className="w-full h-auto object-contain mx-auto max-h-[580px]"
+                />
+              </div>
+            )}
           </div>
         </div>
       </section>

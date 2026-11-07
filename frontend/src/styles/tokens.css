@@ -224,3 +224,29 @@
   border: 1px solid #333333;
 }
 
+/* Canvas Dot Grid Background Effect from Home Page Showcase */
+.canvas-dot-grid {
+  background-color: #161616;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+.canvas-light-grid {
+  background-color: #FAFAFA;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 145, 172, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 188, 202, 0.6);
+  }
+}
+
+.glow-pill {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
