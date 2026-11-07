@@ -74,3 +74,4 @@ async def test_flow_solver_execution():
     assert "final_output" in result
     assert "trajectory" in result
     assert len(logs) > 0
+

@@ -6,11 +6,16 @@ import { ProjectsPage } from '@/pages/ProjectsPage'
 import { TemplatesPage } from '@/pages/TemplatesPage'
 import { ModelProvidersPage } from '@/pages/ModelProvidersPage'
 import { SettingsPage } from '@/pages/SettingsPage'
+import { N8nLandingPage } from '@/pages/N8nLandingPage'
 
 export function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* n8n-style standalone landing page */}
+        <Route path="/n8n" element={<N8nLandingPage />} />
+
+        {/* Core application shell */}
         <Route path="/" element={<AppLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="editor" element={<WorkflowEditorPage />} />

@@ -61,3 +61,4 @@ class WikipediaSearchTool(BaseTool):
                 }
         except Exception as e:
             return {"query": query, "error": f"Failed to retrieve Wikipedia information: {str(e)}", "results": []}
+

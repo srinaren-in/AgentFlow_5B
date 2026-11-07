@@ -135,3 +135,4 @@ class FlowSolver:
             "trajectory": trajectory,
             "duration_ms": total_duration_ms,
         }
+

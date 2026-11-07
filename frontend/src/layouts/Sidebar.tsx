@@ -21,6 +21,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const navItems = [
     { label: 'Dashboard', path: '/', icon: LayoutDashboard },
     { label: 'Workflow Editor', path: '/editor', icon: Workflow },
+    { label: 'n8n Showcase', path: '/n8n', icon: Sparkles },
     { label: 'Projects', path: '/projects', icon: FolderKanban },
     { label: 'Templates', path: '/templates', icon: Sparkles },
     { label: 'Model Providers', path: '/providers', icon: Cpu },

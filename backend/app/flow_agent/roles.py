@@ -255,3 +255,4 @@ class GeneratorRole:
             return resp.get("content", "").strip() or "Task completed based on verified trajectory."
         except Exception as e:
             return f"Solution synthesized from verified trajectory: {trajectory_text} (Generator notice: {str(e)})"
+
