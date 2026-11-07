@@ -1,38 +1,414 @@
-{
-  "source": "https://n8n.io/?ps_partner_key=ZGY4YmIwMzgzNzg4&ps_xid=Y6vU43ffjCNMmT&gsxid=Y6vU43ffjCNMmT&gspk=ZGY4YmIwMzgzNzg4&gad_source=1&gad_campaignid=24333017263&gbraid=0AAAABE6e_nS5cE0IHDvNzUo8f2NeDZO-8",
-  "saved": "2026-11-07T04:16:37.174Z",
-  "assets": [
-    {
-      "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/see_and_understand_expand_4dfab97fb9.mp4",
-      "category": "Videos",
-      "type": "video",
-      "format": "mp4",
-      "name": "see_and_understand_expand_4dfab97fb9.mp4",
-      "kind": "Video",
-      "width": 1750,
-      "height": 1184,
-      "label": "see_and_understand_expand_4dfab97fb9.mp4",
-      "hidden": true,
-      "family": "",
-      "stream": false,
-      "mime": ""
-    },
-    {
-      "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/home_placeholder_3_1999b77b0e.svg",
-      "category": "SVGs",
-      "type": "svg",
-      "format": "svg",
-      "name": "home_placeholder_3_1999b77b0e.svg",
-      "kind": "Image",
-      "width": 875,
-      "height": 592,
-      "label": "home_placeholder_3_1999b77b0e.svg",
-      "hidden": true,
-      "family": "",
-      "stream": false,
-      "mime": ""
-    }
-  ],
-  "downloadedSeparately": [],
-  "unavailable": []
-}
+[
+  {
+    "url": "https://n8n.io/images/hero/logos/nyt.svg",
+    "path": "assets/asset-001.svg"
+  },
+  {
+    "url": "https://n8n.io/images/hero/logos/nyt--dark.svg",
+    "path": "assets/asset-002.svg"
+  },
+  {
+    "url": "https://n8n.io/images/hero/logos/cnn.svg",
+    "path": "assets/asset-003.svg"
+  },
+  {
+    "url": "https://n8n.io/images/hero/logos/cnn--dark.svg",
+    "path": "assets/asset-004.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/openai.svg",
+    "path": "assets/asset-005.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/openai--dark.svg",
+    "path": "assets/asset-006.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/gmail.svg",
+    "path": "assets/asset-007.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/telegram.svg",
+    "path": "assets/asset-008.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/notion.svg",
+    "path": "assets/asset-009.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/notion--dark.svg",
+    "path": "assets/asset-010.svg"
+  },
+  {
+    "url": "https://n8n.io/images/hero/logos/gemini.svg",
+    "path": "assets/asset-011.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/anthropic.svg",
+    "path": "assets/asset-012.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/google-drive.svg",
+    "path": "assets/asset-013.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/linkedin.svg",
+    "path": "assets/asset-014.svg"
+  },
+  {
+    "url": "https://n8n.io/images/hero/logos/x.svg",
+    "path": "assets/asset-015.svg"
+  },
+  {
+    "url": "https://n8n.io/images/hero/logos/x--dark.svg",
+    "path": "assets/asset-016.svg"
+  },
+  {
+    "url": "https://n8n.io/nodes/slack.svg",
+    "path": "assets/asset-017.svg"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/uniwidth/n8n-baumer-uniwidth-regular.woff2",
+    "path": "assets/asset-018.woff2"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/uniwidth/n8n-baumer-uniwidth-regular.woff",
+    "path": "assets/asset-019.woff"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/uniwidth/n8n-baumer-uniwidth-medium.woff2",
+    "path": "assets/asset-020.woff2"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/uniwidth/n8n-baumer-uniwidth-medium.woff",
+    "path": "assets/asset-021.woff"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/uniwidth/n8n-baumer-mono-regular.woff2",
+    "path": "assets/asset-022.woff2"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/uniwidth/n8n-baumer-mono-regular.woff",
+    "path": "assets/asset-023.woff"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/variable/n8n-baumer-variable.woff2",
+    "path": "assets/asset-024.woff2"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/variable/n8n-baumer-mono-variable.woff2",
+    "path": "assets/asset-025.woff2"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/ek-baumer-grotesk-regular.woff",
+    "path": "assets/asset-026.woff"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/ek-baumer-grotesk-medium.woff",
+    "path": "assets/asset-027.woff"
+  },
+  {
+    "url": "https://n8n.io/assets/fonts/baumer/ek-baumer-mono-pre-regular.woff",
+    "path": "assets/asset-028.woff"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/meta_fa5a666447.svg",
+    "path": "assets/asset-029.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/zendesk_1f10c3ee8f.svg",
+    "path": "assets/asset-030.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/mistral_ai_4e48eee704.svg",
+    "path": "assets/asset-031.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/vodafone_4b9f42f778.svg",
+    "path": "assets/asset-032.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/microsoft_03ea586edc.svg",
+    "path": "assets/asset-033.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/deutsche_telekom_dark_4a9fe710bc.svg",
+    "path": "assets/asset-034.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/mercedes_benz_f86d868c7b.svg",
+    "path": "assets/asset-035.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/meta_logo_3356ebbd99.svg",
+    "path": "assets/asset-036.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/delivery_logo_8041f8863a.svg",
+    "path": "assets/asset-037.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/mercedes_logo_176794b4a8.svg",
+    "path": "assets/asset-038.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/Prototype_Mark_Intro_36d2b66513.mp4",
+    "path": "assets/asset-039.mp4"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/dell_logo_4d873978bd.svg",
+    "path": "assets/asset-040.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/use_case_logo_969f204298.svg",
+    "path": "assets/asset-041.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/liberty_logo_7e28f8e6c7.svg",
+    "path": "assets/asset-042.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/vodafone_logo_b26a264edd.svg",
+    "path": "assets/asset-043.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/Prototype_Deborah_Intro_cd1fbc8a46.mp4",
+    "path": "assets/asset-044.mp4"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/telecom_logo_4abc7cbf40.svg",
+    "path": "assets/asset-045.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/use_case_logo_2_17c778c6ce.svg",
+    "path": "assets/asset-046.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/use_case_logo_3_c7950a4233.svg",
+    "path": "assets/asset-047.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/sixt_logo_d1b8d40fe3.svg",
+    "path": "assets/asset-048.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/Prototype_Olu_Intro_1b56fc34e7.mp4",
+    "path": "assets/asset-049.mp4"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/use_case_logo_4_e2c406fd33.svg",
+    "path": "assets/asset-050.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/use_case_logo_5_e220c62e40.svg",
+    "path": "assets/asset-051.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/use_case_logo_6_bd66ddb670.svg",
+    "path": "assets/asset-052.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/use_case_logo_7_82b8f71571.svg",
+    "path": "assets/asset-053.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/Prototype_Alix_Intro_a90e9587b9.mp4",
+    "path": "assets/asset-054.mp4"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/github_af6e4ef3c6.svg",
+    "path": "assets/asset-055.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/g2_ac59f9fabf.png",
+    "path": "assets/asset-056.png"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/community_e47f56b9f3.webp",
+    "path": "assets/asset-057.webp"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_21_02a1829358.svg",
+    "path": "assets/asset-058.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_18_1fc383c5d1.svg",
+    "path": "assets/asset-059.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_17_55cc3454fb.svg",
+    "path": "assets/asset-060.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_29_6d81aca988.svg",
+    "path": "assets/asset-061.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_16_9c0f7c6e53.svg",
+    "path": "assets/asset-062.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_22_efceea22ad.svg",
+    "path": "assets/asset-063.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_23_95d19b4191.svg",
+    "path": "assets/asset-064.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_4_cf3a9415a1.svg",
+    "path": "assets/asset-065.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_30_880c95bae8.svg",
+    "path": "assets/asset-066.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_25_f3164a2781.svg",
+    "path": "assets/asset-067.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_3_45e95d4ff9.svg",
+    "path": "assets/asset-068.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_31_c58e2e3913.svg",
+    "path": "assets/asset-069.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_12_ff7e22b6e3.svg",
+    "path": "assets/asset-070.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_19_d498d4d167.svg",
+    "path": "assets/asset-071.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_15_6c95309bf4.svg",
+    "path": "assets/asset-072.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_11_fec2aaf918.svg",
+    "path": "assets/asset-073.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_7_305f55ecdd.svg",
+    "path": "assets/asset-074.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_1_1810b997f4.svg",
+    "path": "assets/asset-075.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_10_97876f19e6.svg",
+    "path": "assets/asset-076.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_9_d6b190e0b8.svg",
+    "path": "assets/asset-077.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_32_dee543ff9e.svg",
+    "path": "assets/asset-078.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_14_1ce4b20f0b.svg",
+    "path": "assets/asset-079.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_20_2f391c2e94.svg",
+    "path": "assets/asset-080.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_6_3178149e74.svg",
+    "path": "assets/asset-081.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/integration_13_ddd94c6f29.svg",
+    "path": "assets/asset-082.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/home_placeholder_1_7f817c9089.svg",
+    "path": "assets/asset-083.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/see_and_understand_expand_4dfab97fb9.mp4",
+    "path": "assets/asset-084.mp4"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/home_placeholder_3_1999b77b0e.svg",
+    "path": "assets/asset-085.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/built_by_you_notes_highlight_99535a2f94.mp4",
+    "path": "assets/asset-086.mp4"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/home_placeholder_5_4ffde770fc.svg",
+    "path": "assets/asset-087.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/home_placeholder_6_8361901318.svg",
+    "path": "assets/asset-088.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/home_move_fast_799951b47a.webp",
+    "path": "assets/asset-089.webp"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/security_and_control_386_dark_59aee818de.svg",
+    "path": "assets/asset-090.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/observability_and_transparency_386_dark_e8ef89d5b7.svg",
+    "path": "assets/asset-091.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/developer_experience_386_dark_a4997e09b5.svg",
+    "path": "assets/asset-092.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/ai_governance_386_dark_6388e32875.svg",
+    "path": "assets/asset-093.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/aicpa_soc_1bf6d9e96f.svg",
+    "path": "assets/asset-094.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/gdpr_4fcfb032dc.svg",
+    "path": "assets/asset-095.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/security_a2653e43a2.svg",
+    "path": "assets/asset-096.svg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/Oliver_Zoom_d4152b86d2.PNG",
+    "path": "assets/asset-097.png"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/Claire_Van_Hinsberg_86ce62b0cf.jpeg",
+    "path": "assets/asset-098.jpg"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/luisa_vidal_af681b00ca.webp",
+    "path": "assets/asset-099.webp"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/felix_bbe74bcc59.webp",
+    "path": "assets/asset-100.webp"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/robyn_tindall_df55490fdd.webp",
+    "path": "assets/asset-101.webp"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/charley_mann_1459ba5b75.webp",
+    "path": "assets/asset-102.webp"
+  },
+  {
+    "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/woman_lamptop_fee7703230.webp",
+    "path": "assets/asset-103.webp"
+  }
+]

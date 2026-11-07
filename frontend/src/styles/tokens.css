@@ -1,3 +1,31 @@
+/* AgentFlow Fonts - Authentic Baumer Fonts extracted from n8n package */
+@font-face {
+  font-family: "n8n Baumer Uniwidth";
+  src: url("/assets/n8n/asset-018.woff2") format("woff2"),
+       url("/assets/n8n/asset-019.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "n8n Baumer Uniwidth";
+  src: url("/assets/n8n/asset-020.woff2") format("woff2"),
+       url("/assets/n8n/asset-021.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "n8n Baumer Mono";
+  src: url("/assets/n8n/asset-022.woff2") format("woff2"),
+       url("/assets/n8n/asset-023.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* AgentFlow Permanent Design System Tokens */
 :root {
   /* Exact Foundational Colors */

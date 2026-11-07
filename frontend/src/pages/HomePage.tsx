@@ -1,43 +1,118 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   Bot,
-  Cpu,
-  Workflow,
   Sparkles,
-  Database,
-  Terminal,
+  ExternalLink,
+  ChevronRight,
+  ShieldCheck,
   CheckCircle2,
 } from 'lucide-react'
 
+interface CaseStudyTab {
+  id: string
+  title: string
+  subtitle: string
+  logo: string
+  video: string
+  ctaText: string
+  description: string
+}
+
+const caseStudyTabs: CaseStudyTab[] = [
+  {
+    id: 'mark',
+    title: 'How Mark automated new user onboarding',
+    subtitle: 'New hires get instant access to Slack, Jira, Notion, and more, all in one workflow.',
+    logo: '/assets/n8n/asset-040.svg',
+    video: '/assets/n8n/asset-039.mp4',
+    ctaText: 'See how Mark did it',
+    description: 'Automated identity provisioning and multi-system onboarding pipeline.',
+  },
+  {
+    id: 'deborah',
+    title: 'How Deborah automated threat investigation',
+    subtitle: 'Suspicious indicators are checked against multiple security tools, combined into one report, and summarized by AI, all in one workflow.',
+    logo: '/assets/n8n/asset-045.svg',
+    video: '/assets/n8n/asset-044.mp4',
+    ctaText: 'See how Deborah did it',
+    description: 'Automated threat hunting, SIEM log correlation, and AI synthesis.',
+  },
+  {
+    id: 'olu',
+    title: 'How Olu automated alert triage',
+    subtitle: 'When an alert comes in, an AI agent investigates it, then routes it by severity to the right people and tools, all in one workflow.',
+    logo: '/assets/n8n/asset-048.svg',
+    video: '/assets/n8n/asset-049.mp4',
+    ctaText: 'See how Olu did it',
+    description: 'High-throughput anomaly triage with automated incident escalation.',
+  },
+  {
+    id: 'alix',
+    title: 'How Alix automated lead qualification',
+    subtitle: 'New messages are answered and qualified by an AI agent, the lead record is kept up to date, and a reply goes out, all in one workflow.',
+    logo: '/assets/n8n/asset-053.svg',
+    video: '/assets/n8n/asset-054.mp4',
+    ctaText: 'See how Alix did it',
+    description: 'Inbound CRM lead enrichment and intelligent multi-turn agent response.',
+  },
+]
+
+const integrationIcons = [
+  { name: 'OpenAI', icon: '/assets/n8n/asset-005.svg' },
+  { name: 'Gemini', icon: '/assets/n8n/asset-011.svg' },
+  { name: 'Anthropic', icon: '/assets/n8n/asset-012.svg' },
+  { name: 'Notion', icon: '/assets/n8n/asset-009.svg' },
+  { name: 'Slack', icon: '/assets/n8n/asset-017.svg' },
+  { name: 'Gmail', icon: '/assets/n8n/asset-007.svg' },
+  { name: 'Telegram', icon: '/assets/n8n/asset-008.svg' },
+  { name: 'Google Drive', icon: '/assets/n8n/asset-013.svg' },
+  { name: 'LinkedIn', icon: '/assets/n8n/asset-014.svg' },
+  { name: 'X / Twitter', icon: '/assets/n8n/asset-015.svg' },
+  { name: 'PostgreSQL', icon: '/assets/n8n/asset-068.svg' },
+  { name: 'GitHub', icon: '/assets/n8n/asset-071.svg' },
+  { name: 'HubSpot', icon: '/assets/n8n/asset-075.svg' },
+  { name: 'Jira', icon: '/assets/n8n/asset-076.svg' },
+  { name: 'Airtable', icon: '/assets/n8n/asset-077.svg' },
+  { name: 'Zendesk', icon: '/assets/n8n/asset-030.svg' },
+  { name: 'Webhook', icon: '/assets/n8n/asset-080.svg' },
+  { name: 'Python Sandbox', icon: '/assets/n8n/asset-082.svg' },
+]
+
 export const HomePage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<number>(0)
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-[#161616] font-sans antialiased selection:bg-[#FFBCCA] selection:text-[#212121]">
-      {/* Top Navigation Header */}
-      <header className="sticky top-0 z-50 bg-[#FAFAFA]/90 backdrop-blur-md border-b border-[#E5E5E5] px-6 py-4 transition-colors">
+      {/* 1. TOP NAVIGATION HEADER */}
+      <header className="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-[#E5E5E5] px-6 py-4 transition-colors">
         <div className="max-w-[1392px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2.5 group">
               <div className="w-8 h-8 rounded-full bg-[#FFBCCA] text-[#212121] flex items-center justify-center font-bold shadow-xs group-hover:bg-[#FF91AC] transition-colors">
                 <Bot className="w-5 h-5" />
               </div>
-              <span className="font-semibold text-xl tracking-tight text-[#161616]">
+              <span className="font-semibold text-xl tracking-tight text-[#161616] font-display">
                 AgentFlow
               </span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#303030]">
-              <a href="#features" className="hover:text-[#161616] transition-colors">Features</a>
-              <a href="#models" className="hover:text-[#161616] transition-colors">Models</a>
-              <a href="#tools" className="hover:text-[#161616] transition-colors">Tools & Memory</a>
-              <a href="#observability" className="hover:text-[#161616] transition-colors">Observability</a>
+            <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-[#303030]">
+              <a href="#how-it-works" className="hover:text-[#161616] transition-colors">How it works</a>
+              <a href="#integrations" className="hover:text-[#161616] transition-colors">Integrations</a>
+              <a href="#visibility" className="hover:text-[#161616] transition-colors">Visibility</a>
+              <a href="#enterprise" className="hover:text-[#161616] transition-colors">Enterprise</a>
+              <a href="#stories" className="hover:text-[#161616] transition-colors">Customer Stories</a>
               <Link to="/templates" className="hover:text-[#161616] transition-colors">Templates</Link>
             </nav>
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/dashboard" className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#303030] hover:text-[#161616] px-3.5 py-2 rounded-full hover:bg-[#F0F0F0] transition-colors">
+            <Link
+              to="/dashboard"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#303030] hover:text-[#161616] px-3.5 py-2 rounded-full hover:bg-[#F0F0F0] transition-colors"
+            >
               Dashboard
             </Link>
             <Link to="/editor" className="btn-primary text-xs md:text-sm">
@@ -48,19 +123,19 @@ export const HomePage: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="w-full px-6 pt-20 pb-16 max-w-[1392px] mx-auto text-center flex flex-col items-center">
+      {/* 2. HERO SECTION */}
+      <section className="w-full px-6 pt-16 md:pt-24 pb-16 max-w-[1392px] mx-auto text-center flex flex-col items-center">
         <div className="badge-token mb-6">
           <Sparkles className="w-3.5 h-3.5 text-[#FF91AC]" />
-          Visual AI Agent Builder & Cognitive Orchestrator
+          Visual AI Agent Platform & Workflow Orchestrator
         </div>
 
-        <h1 className="hero-headline max-w-[1190px] mb-6">
-          Build AI agents. Visually.
+        <h1 className="hero-headline max-w-[1100px] mb-6">
+          Build the agent. Understand its workflow.
         </h1>
 
         <p className="text-lg md:text-[18px] leading-[28px] text-[#303030] max-w-[800px] mb-10 font-normal">
-          Design, connect, and execute intelligent AI workflows through one visual workspace. Combine local Ollama models, cloud LLMs, sandboxed Python tools, and self-correcting cognitive loops.
+          A visual platform for building, connecting, testing, and executing intelligent AI agents through a node-based workflow interface. Drop into code whenever you need it.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
@@ -73,320 +148,325 @@ export const HomePage: React.FC = () => {
           </Link>
         </div>
 
-        {/* Sophisticated Connected AI Workflow Graph Preview */}
-        <div className="w-full max-w-[1240px] card-agentflow p-6 md:p-8 bg-white border border-[#E5E5E5] shadow-xl overflow-hidden relative">
-          <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#F0F0F0] text-xs font-mono text-[#8F8F8F]">
+        {/* Hero Visual: Authentic SVG Architecture Canvas Diagram */}
+        <div className="w-full max-w-[1240px] card-agentflow p-3 md:p-6 bg-white border border-[#E5E5E5] shadow-xl overflow-hidden relative">
+          <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#F0F0F0] text-xs font-mono text-[#8F8F8F]">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-              <span className="font-semibold text-[#161616]">LIVE CANVASTRACE: MULTI-STEP REASONING PIPELINE</span>
+              <span className="font-semibold text-[#161616]">LIVE AGENT WORKFLOW CANVAS</span>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="px-2 py-0.5 rounded-full bg-[#F0F0F0] text-[#161616]">6 NODES CONNECTED</span>
-              <span className="px-2 py-0.5 rounded-full bg-[#FFBCCA] text-[#212121] font-bold">TOPOLOGICAL DAG</span>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="px-2 py-0.5 rounded-full bg-[#F0F0F0] text-[#161616] text-[10px] sm:text-xs">
+                MULTI-STEP COGNITIVE PIPELINE
+              </span>
+              <span className="px-2 py-0.5 rounded-full bg-[#FFBCCA] text-[#212121] font-bold text-[10px] sm:text-xs">
+                LANGGRAPH + OLLAMA + GEMINI
+              </span>
             </div>
           </div>
 
-          {/* Interactive Visual Graph Nodes Representation */}
-          <div className="relative w-full overflow-x-auto py-8">
-            <div className="min-w-[980px] grid grid-cols-6 gap-6 items-center relative">
-              {/* Connecting background SVG lines */}
-              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
-                <defs>
-                  <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#D9D9D9" />
-                    <stop offset="50%" stopColor="#FF91AC" />
-                    <stop offset="100%" stopColor="#D9D9D9" />
-                  </linearGradient>
-                </defs>
-                <path d="M 140 100 C 180 100, 180 100, 220 100" stroke="#FF91AC" strokeWidth="2.5" fill="none" strokeDasharray="4 2" />
-                <path d="M 360 100 C 400 100, 400 100, 440 100" stroke="#FF91AC" strokeWidth="2.5" fill="none" />
-                <path d="M 580 100 C 620 100, 620 100, 660 100" stroke="#FF91AC" strokeWidth="2.5" fill="none" />
-                <path d="M 800 100 C 840 100, 840 100, 880 100" stroke="#FF91AC" strokeWidth="2.5" fill="none" />
-              </svg>
+          <div className="relative rounded-[16px] overflow-hidden bg-[#FAFAFA] border border-[#F0F0F0]">
+            <img
+              src="/assets/n8n/asset-083.svg"
+              alt="Visual Agent Workflow Canvas"
+              className="w-full h-auto object-contain mx-auto max-h-[580px]"
+            />
+          </div>
+        </div>
+      </section>
 
-              {/* Node 1: Input */}
-              <div className="relative z-10 bg-white rounded-[20px] p-4 border border-[#E5E5E5] shadow-sm hover:border-[#FF91AC] hover:shadow-md transition-all text-left">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge-token text-[9px]">Input</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                </div>
-                <h4 className="text-xs font-semibold text-[#161616]">User Query</h4>
-                <p className="text-[11px] text-[#8F8F8F] font-mono mt-1 truncate">Analyze finance table</p>
-                <div className="mt-3 pt-2 border-t border-[#F0F0F0] text-[9px] font-mono text-[#161616] flex justify-between">
-                  <span>OUT</span>
-                  <span className="text-[#FF91AC]">prompt_str</span>
-                </div>
+      {/* 3. TRUSTED BY LOGO CAROUSEL */}
+      <section className="w-full px-6 py-12 border-t border-[#E5E5E5] bg-white">
+        <div className="max-w-[1392px] mx-auto text-center space-y-6">
+          <p className="text-xs font-mono uppercase tracking-widest text-[#8F8F8F]">
+            Trusted by 250,000+ developers and teams worldwide
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 opacity-75 grayscale hover:grayscale-0 transition-all duration-300">
+            <img src="/assets/n8n/asset-029.svg" alt="Meta" className="h-6 object-contain" />
+            <img src="/assets/n8n/asset-030.svg" alt="Zendesk" className="h-6 object-contain" />
+            <img src="/assets/n8n/asset-031.svg" alt="Mistral AI" className="h-6 object-contain" />
+            <img src="/assets/n8n/asset-032.svg" alt="Vodafone" className="h-6 object-contain" />
+            <img src="/assets/n8n/asset-033.svg" alt="Microsoft" className="h-6 object-contain" />
+            <img src="/assets/n8n/asset-034.svg" alt="Deutsche Telekom" className="h-6 object-contain" />
+            <img src="/assets/n8n/asset-035.svg" alt="Mercedes-Benz" className="h-6 object-contain" />
+          </div>
+        </div>
+      </section>
+
+      {/* 4. INTERACTIVE CASE STUDY TABS (VIDEO DEMOS) */}
+      <section id="how-it-works" className="w-full px-6 py-24 max-w-[1392px] mx-auto border-t border-[#E5E5E5]">
+        <div className="text-center max-w-[800px] mx-auto mb-14 space-y-4">
+          <span className="badge-token">Interactive Walkthrough</span>
+          <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616] font-display">
+            Real workflows. Zero guesswork.
+          </h2>
+          <p className="text-[#303030] text-[16px] leading-[26px]">
+            Inspect how teams automate mission-critical operations by combining intelligent AI models, deterministic logic, and real tools.
+          </p>
+        </div>
+
+        {/* Tab Navigation Pill Headers */}
+        <div className="flex items-center justify-center gap-2 md:gap-3 flex-wrap mb-10">
+          {caseStudyTabs.map((tab, idx) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(idx)}
+              className={`px-4 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all ${
+                activeTab === idx
+                  ? 'bg-[#212121] text-white shadow-sm'
+                  : 'bg-white border border-[#E5E5E5] text-[#303030] hover:border-[#FF91AC]'
+              }`}
+            >
+              {tab.title.replace('How ', '').split(' automated')[0]}
+            </button>
+          ))}
+        </div>
+
+        {/* Active Tab Content Card */}
+        <div className="card-agentflow bg-white border border-[#E5E5E5] p-6 md:p-10 shadow-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 space-y-5">
+              <div className="flex items-center gap-3">
+                <img
+                  src={caseStudyTabs[activeTab].logo}
+                  alt="Company Logo"
+                  className="h-8 object-contain"
+                />
+                <span className="badge-token text-[11px]">Production Workflow</span>
               </div>
 
-              {/* Node 2: Memory */}
-              <div className="relative z-10 bg-white rounded-[20px] p-4 border border-[#E5E5E5] shadow-sm hover:border-[#FF91AC] hover:shadow-md transition-all text-left">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge-token text-[9px]">Memory</span>
-                  <Database className="w-3.5 h-3.5 text-[#8F8F8F]" />
-                </div>
-                <h4 className="text-xs font-semibold text-[#161616]">Session Buffer</h4>
-                <p className="text-[11px] text-[#8F8F8F] font-mono mt-1 truncate">Sliding Window (K=5)</p>
-                <div className="mt-3 pt-2 border-t border-[#F0F0F0] text-[9px] font-mono text-[#161616] flex justify-between">
-                  <span>STATE</span>
-                  <span className="text-emerald-600">Active</span>
-                </div>
-              </div>
+              <h3 className="text-2xl md:text-3xl font-medium text-[#161616] font-display leading-tight">
+                {caseStudyTabs[activeTab].title}
+              </h3>
 
-              {/* Node 3: LLM Reasoning */}
-              <div className="relative z-10 bg-white rounded-[20px] p-4 border-2 border-[#FF91AC] shadow-md hover:shadow-lg transition-all text-left ring-2 ring-[#FFBCCA]/30">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge-token-highlight text-[9px]">LLM Core</span>
-                  <Cpu className="w-3.5 h-3.5 text-[#212121]" />
-                </div>
-                <h4 className="text-xs font-semibold text-[#161616]">Qwen 2.5 / Gemini</h4>
-                <p className="text-[11px] text-[#8F8F8F] font-mono mt-1 truncate">Temp: 0.2 | JSON</p>
-                <div className="mt-3 pt-2 border-t border-[#F0F0F0] text-[9px] font-mono text-[#161616] flex justify-between">
-                  <span>ACTION</span>
-                  <span className="text-[#FF91AC]">tool_call</span>
-                </div>
-              </div>
+              <p className="text-[#303030] text-base leading-relaxed">
+                {caseStudyTabs[activeTab].subtitle}
+              </p>
 
-              {/* Node 4: Tool Sandbox */}
-              <div className="relative z-10 bg-white rounded-[20px] p-4 border border-[#E5E5E5] shadow-sm hover:border-[#FF91AC] hover:shadow-md transition-all text-left">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge-token text-[9px]">Tool Node</span>
-                  <Terminal className="w-3.5 h-3.5 text-[#8F8F8F]" />
-                </div>
-                <h4 className="text-xs font-semibold text-[#161616]">Python Sandbox</h4>
-                <p className="text-[11px] text-[#8F8F8F] font-mono mt-1 truncate">Subprocess (8s max)</p>
-                <div className="mt-3 pt-2 border-t border-[#F0F0F0] text-[9px] font-mono text-[#161616] flex justify-between">
-                  <span>EXEC</span>
-                  <span className="text-emerald-600">Success (12ms)</span>
-                </div>
+              <div className="pt-2">
+                <Link
+                  to="/editor"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-[#161616] hover:text-[#FF91AC] transition-colors"
+                >
+                  <span>{caseStudyTabs[activeTab].ctaText} in AgentFlow</span>
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
               </div>
+            </div>
 
-              {/* Node 5: Conditional Logic */}
-              <div className="relative z-10 bg-white rounded-[20px] p-4 border border-[#E5E5E5] shadow-sm hover:border-[#FF91AC] hover:shadow-md transition-all text-left">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge-token text-[9px]">Logic</span>
-                  <Workflow className="w-3.5 h-3.5 text-[#8F8F8F]" />
-                </div>
-                <h4 className="text-xs font-semibold text-[#161616]">Verifier Check</h4>
-                <p className="text-[11px] text-[#8F8F8F] font-mono mt-1 truncate">Confidence &gt; 0.9</p>
-                <div className="mt-3 pt-2 border-t border-[#F0F0F0] text-[9px] font-mono text-[#161616] flex justify-between">
-                  <span>BRANCH</span>
-                  <span className="text-emerald-600">True</span>
-                </div>
+            <div className="lg:col-span-7">
+              <div className="rounded-[20px] overflow-hidden border border-[#E5E5E5] bg-black shadow-md aspect-video relative">
+                <video
+                  key={caseStudyTabs[activeTab].video}
+                  src={caseStudyTabs[activeTab].video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
               </div>
+            </div>
+          </div>
+        </div>
 
-              {/* Node 6: Output */}
-              <div className="relative z-10 bg-[#212121] text-white rounded-[20px] p-4 border border-[#333333] shadow-md hover:shadow-lg transition-all text-left">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge-token bg-[#303030] text-[#FFBCCA] text-[9px]">Terminal</span>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#FFBCCA]" />
-                </div>
-                <h4 className="text-xs font-semibold text-white">Final Output</h4>
-                <p className="text-[11px] text-slate-400 font-mono mt-1 truncate">Markdown Response</p>
-                <div className="mt-3 pt-2 border-t border-white/10 text-[9px] font-mono text-slate-300 flex justify-between">
-                  <span>STATUS</span>
-                  <span className="text-[#FFBCCA]">Completed</span>
-                </div>
-              </div>
+        {/* Community Proof Metrics Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          <div className="card-agentflow bg-[#F0F0F0]/60 p-5 flex items-center gap-4 border border-[#E5E5E5]">
+            <img src="/assets/n8n/asset-055.svg" alt="GitHub" className="w-7 h-7" />
+            <div>
+              <div className="font-semibold text-sm text-[#161616]">Top 50 GitHub Project</div>
+              <div className="text-xs text-[#8F8F8F]">With 209k+ GitHub stars</div>
+            </div>
+          </div>
+          <div className="card-agentflow bg-[#F0F0F0]/60 p-5 flex items-center gap-4 border border-[#E5E5E5]">
+            <img src="/assets/n8n/asset-056.png" alt="G2" className="w-7 h-7 rounded" />
+            <div>
+              <div className="font-semibold text-sm text-[#161616]">Rated 4.7/5 on G2</div>
+              <div className="text-xs text-[#8F8F8F]">From thousands of verified engineers</div>
+            </div>
+          </div>
+          <div className="card-agentflow bg-[#F0F0F0]/60 p-5 flex items-center gap-4 border border-[#E5E5E5]">
+            <img src="/assets/n8n/asset-057.webp" alt="Community" className="w-7 h-7 rounded-full" />
+            <div>
+              <div className="font-semibold text-sm text-[#161616]">250,000+ Developers</div>
+              <div className="text-xs text-[#8F8F8F]">Active builder community</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 1: Build without complexity */}
-      <section id="features" className="w-full px-6 py-24 max-w-[1392px] mx-auto border-t border-[#E5E5E5]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5 space-y-6">
-            <span className="badge-token">Visual Orchestration</span>
-            <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616]">
-              Build without complexity
+      {/* 5. THE USB-C FOR YOUR AI STACK (INTEGRATIONS GRID) */}
+      <section id="integrations" className="w-full px-6 py-24 bg-white border-y border-[#E5E5E5]">
+        <div className="max-w-[1392px] mx-auto">
+          <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
+            <span className="badge-token">Universal Connectivity</span>
+            <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616] font-display">
+              The USB-C for your AI stack
             </h2>
             <p className="text-[#303030] text-[16px] leading-[26px]">
-              Tired of brittle Python glue code and nested callbacks? AgentFlow provides a visual canvas where AI agents, prompts, conditionals, and tools are wired visually using directed acyclic graphs (DAGs).
+              Connect any model, database, API, and tool without wrestling custom SDKs. Over 400+ native connectors ready out-of-the-box.
             </p>
-            <ul className="space-y-3 text-sm text-[#303030] pt-2">
-              <li className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#FF91AC]" />
-                <span>Zero boilerplate: Drag nodes, connect handles, and execute instantly.</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#FF91AC]" />
-                <span>Kahn's topological sort with cycle and self-loop detection.</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#FF91AC]" />
-                <span>Export and import production workflow JSON templates anytime.</span>
-              </li>
-            </ul>
           </div>
 
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            {integrationIcons.map((item, idx) => (
+              <div
+                key={idx}
+                className="card-agentflow p-4 flex flex-col items-center justify-center gap-3 text-center bg-[#FAFAFA] border border-[#E5E5E5] hover:border-[#FF91AC] hover:bg-white transition-all group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-white border border-[#E5E5E5] flex items-center justify-center p-2.5 shadow-xs group-hover:scale-105 transition-transform">
+                  <img src={item.icon} alt={item.name} className="w-full h-full object-contain" />
+                </div>
+                <span className="text-xs font-medium text-[#161616]">{item.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link to="/editor" className="btn-secondary text-xs font-mono uppercase tracking-wider">
+              Browse All 400+ Connectors & Models
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. SEE + UNDERSTAND + TRUST YOUR AGENTS */}
+      <section id="visibility" className="w-full px-6 py-24 max-w-[1392px] mx-auto">
+        <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
+          <span className="badge-token">Transparent Execution</span>
+          <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616] font-display">
+            See + understand + trust your agents
+          </h2>
+          <p className="text-[#303030] text-[16px] leading-[26px]">
+            Connect any model, see every decision, and add human approval when needed.
+          </p>
+        </div>
+
+        {/* 3 Value Pillars */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+            <div className="w-10 h-10 rounded-full bg-[#FFBCCA] flex items-center justify-center font-bold text-xs">
+              01
+            </div>
+            <h3 className="text-xl font-medium text-[#161616]">Full visibility across agents</h3>
+            <p className="text-sm text-[#303030] leading-relaxed">
+              Watch agents work live, inspect intermediate thoughts, or open any past run — all inside the same workflow canvas.
+            </p>
+          </div>
+
+          <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+            <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+              02
+            </div>
+            <h3 className="text-xl font-medium text-[#161616]">Put rules around AI actions</h3>
+            <p className="text-sm text-[#303030] leading-relaxed">
+              Use structured JSON schemas for AI actions. Add human-in-the-loop approvals and deterministic safety fallback rules.
+            </p>
+          </div>
+
+          <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+            <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+              03
+            </div>
+            <h3 className="text-xl font-medium text-[#161616]">Self-host your AI stack</h3>
+            <p className="text-sm text-[#303030] leading-relaxed">
+              Deploy on-prem or with Docker to keep your data strictly in your private VPC. Pair with local Ollama Qwen 2.5 for offline privacy.
+            </p>
+          </div>
+        </div>
+
+        {/* Large Video & Diagram Split Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
-            <div className="card-agentflow overflow-hidden border border-[#E5E5E5] bg-white p-2 md:p-3 shadow-lg">
+            <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-black shadow-xl aspect-video">
+              <video
+                src="/assets/n8n/asset-084.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-white p-4 shadow-lg">
               <img
-                src="/assets/n8n/home_placeholder_3.svg"
-                alt="Visual workflow builder node canvas"
-                className="w-full h-auto object-cover rounded-[18px] bg-[#FAFAFA]"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/n8n/images/image-2.svg'
-                }}
+                src="/assets/n8n/asset-085.svg"
+                alt="Observability Trace"
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 2: Bring your own models */}
-      <section id="models" className="w-full px-6 py-24 bg-white border-y border-[#E5E5E5]">
-        <div className="max-w-[1392px] mx-auto text-center space-y-6">
-          <span className="badge-token">Model Freedom</span>
-          <h2 className="text-3xl md:text-[40px] font-medium leading-tight text-[#161616]">
-            Bring your own models
-          </h2>
-          <p className="text-[#303030] text-[16px] max-w-[760px] mx-auto leading-[26px]">
-            No vendor lock-in. Run local privacy-preserving open-weight LLMs via Ollama, or harness frontier multimodal reasoning with Google Gemini API.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 text-left">
-            <div className="card-agentflow p-8 space-y-4">
-              <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-sm">
-                <Cpu className="w-5 h-5 text-[#161616]" />
-              </div>
-              <h3 className="text-2xl font-medium text-[#161616]">Local Ollama & Qwen 2.5</h3>
-              <p className="text-sm text-[#303030] leading-relaxed">
-                Connect directly to your local workstation or server running Ollama. Zero latency costs, complete data privacy, and full offline execution capabilities.
-              </p>
-              <div className="pt-2 flex items-center gap-2 text-xs font-mono text-[#8F8F8F]">
-                <span>Default Endpoint:</span>
-                <span className="bg-[#F0F0F0] px-2 py-0.5 rounded text-[#161616]">http://localhost:11434</span>
-              </div>
-            </div>
-
-            <div className="card-agentflow p-8 space-y-4">
-              <div className="w-10 h-10 rounded-full bg-[#FFBCCA] flex items-center justify-center font-bold text-sm">
-                <Sparkles className="w-5 h-5 text-[#212121]" />
-              </div>
-              <h3 className="text-2xl font-medium text-[#161616]">Google Gemini API</h3>
-              <p className="text-sm text-[#303030] leading-relaxed">
-                Plug in Gemini 2.0 Flash or 1.5 Pro for multimodal analysis, long-context reasoning, and fast cloud execution. Server-side API key encryption ensures zero frontend exposure.
-              </p>
-              <div className="pt-2 flex items-center gap-2 text-xs font-mono text-[#8F8F8F]">
-                <span>Security:</span>
-                <span className="bg-[#F0F0F0] px-2 py-0.5 rounded text-emerald-600">Server-Side Encrypted (.env)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Connect tools and memory */}
-      <section id="tools" className="w-full px-6 py-24 max-w-[1392px] mx-auto">
-        <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
-          <span className="badge-token">Extensible Ecosystem</span>
-          <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616]">
-            Connect tools and memory
-          </h2>
-          <p className="text-[#303030] text-[16px] leading-[26px]">
-            Equip your visual agents with real-world execution superpowers. From mathematical precision to sandboxed code interpreters and database-backed session memory.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="card-agentflow p-6 space-y-3">
-            <div className="w-8 h-8 rounded-full bg-[#FFBCCA] flex items-center justify-center text-xs font-mono font-bold">
-              AST
-            </div>
-            <h4 className="font-semibold text-base text-[#161616]">Safe Math Calculator</h4>
-            <p className="text-xs text-[#303030] leading-relaxed">
-              Eliminates LLM arithmetic hallucinations using an AST expression visitor. No dangerous `eval()`.
-            </p>
-          </div>
-
-          <div className="card-agentflow p-6 space-y-3">
-            <div className="w-8 h-8 rounded-full bg-[#F0F0F0] flex items-center justify-center text-xs font-mono font-bold">
-              PY
-            </div>
-            <h4 className="font-semibold text-base text-[#161616]">Subprocess Python Sandbox</h4>
-            <p className="text-xs text-[#303030] leading-relaxed">
-              Runs dynamic Python scripts in isolated OS subprocesses with strict 8.0-second execution ceilings.
-            </p>
-          </div>
-
-          <div className="card-agentflow p-6 space-y-3">
-            <div className="w-8 h-8 rounded-full bg-[#F0F0F0] flex items-center justify-center text-xs font-mono font-bold">
-              NET
-            </div>
-            <h4 className="font-semibold text-base text-[#161616]">SSRF-Guarded HTTP</h4>
-            <p className="text-xs text-[#303030] leading-relaxed">
-              Query external web APIs with automated DNS filtering that blocks private RFC 1918 subnets and cloud metadata.
-            </p>
-          </div>
-
-          <div className="card-agentflow p-6 space-y-3">
-            <div className="w-8 h-8 rounded-full bg-[#FFBCCA] flex items-center justify-center text-xs font-mono font-bold">
-              DB
-            </div>
-            <h4 className="font-semibold text-base text-[#161616]">Persistent Memory</h4>
-            <p className="text-xs text-[#303030] leading-relaxed">
-              Database-backed multi-turn memory buffers and sliding windows persisted directly in PostgreSQL/SQLite.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: Execute and observe */}
-      <section id="observability" className="w-full px-6 py-24 bg-[#212121] text-white">
+      {/* 7. BUILT BY YOU + READABLE BY ANYONE */}
+      <section className="w-full px-6 py-24 bg-[#F0F0F0]/50 border-t border-[#E5E5E5]">
         <div className="max-w-[1392px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-              <span className="badge-token bg-[#303030] text-[#FFBCCA] border-white/10">
-                Cognitive Architecture & Telemetry
-              </span>
-              <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#FAFAFA]">
-                Execute and observe
-              </h2>
-              <p className="text-slate-300 text-[16px] leading-[26px]">
-                Watch your agents think in real-time. AgentFlow features a 4-Role Cognitive Loop (inspired by lupantech/AgentFlow research) that decomposes problem solving into four collaborative stages:
-              </p>
+          <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
+            <span className="badge-token">Visual Clarity</span>
+            <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616] font-display">
+              Built by you + readable by anyone
+            </h2>
+            <p className="text-[#303030] text-[16px] leading-[26px]">
+              Create workflows anyone can follow with a visual builder and drop into Python or TypeScript whenever you need it.
+            </p>
+          </div>
 
-              <div className="space-y-4 pt-2">
-                <div className="p-4 rounded-[16px] bg-[#303030]/60 border border-white/5 space-y-1">
-                  <div className="flex items-center justify-between font-mono text-xs text-[#FFBCCA]">
-                    <span>1. 🧭 PLANNER</span>
-                    <span>Decomposes task & chooses tool</span>
-                  </div>
-                </div>
-                <div className="p-4 rounded-[16px] bg-[#303030]/60 border border-white/5 space-y-1">
-                  <div className="flex items-center justify-between font-mono text-xs text-slate-300">
-                    <span>2. 🛠 EXECUTOR</span>
-                    <span>Runs tool & collects observations</span>
-                  </div>
-                </div>
-                <div className="p-4 rounded-[16px] bg-[#303030]/60 border border-white/5 space-y-1">
-                  <div className="flex items-center justify-between font-mono text-xs text-amber-300">
-                    <span>3. ✓ VERIFIER</span>
-                    <span>Scores accuracy & triggers revisions</span>
-                  </div>
-                </div>
-                <div className="p-4 rounded-[16px] bg-[#303030]/60 border border-white/5 space-y-1">
-                  <div className="flex items-center justify-between font-mono text-xs text-emerald-300">
-                    <span>4. ✍️ GENERATOR</span>
-                    <span>Synthesizes final verified answer</span>
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+              <div className="w-10 h-10 rounded-full bg-[#FFBCCA] flex items-center justify-center font-bold text-xs">
+                DOC
               </div>
+              <h3 className="text-xl font-medium text-[#161616]">Documentation, built in</h3>
+              <p className="text-sm text-[#303030] leading-relaxed">
+                The visual DAG is the documentation. No separate wikis. No stale handover write-ups.
+              </p>
             </div>
 
-            <div className="lg:col-span-6">
-              <div className="rounded-[24px] overflow-hidden border border-[#444444] bg-black shadow-2xl relative aspect-video">
+            <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+              <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+                FIX
+              </div>
+              <h3 className="text-xl font-medium text-[#161616]">Recover in one step</h3>
+              <p className="text-sm text-[#303030] leading-relaxed">
+                Spot errors at a glance. Re-run just the individual node that broke without restarting the whole sequence.
+              </p>
+            </div>
+
+            <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+              <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+                GIT
+              </div>
+              <h3 className="text-xl font-medium text-[#161616]">Every change, tracked</h3>
+              <p className="text-sm text-[#303030] leading-relaxed">
+                Complete execution history and version audit logs show who changed what, when, and with what LLM parameters.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-white p-4 shadow-lg">
+                <img
+                  src="/assets/n8n/asset-087.svg"
+                  alt="Workflow Flowchart"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-black shadow-xl aspect-video">
                 <video
-                  src="/assets/n8n/see_and_understand.mp4"
+                  src="/assets/n8n/asset-086.mp4"
                   autoPlay
                   loop
                   muted
                   playsInline
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLVideoElement).src = '/assets/n8n/videos/video-1.mp4'
-                  }}
                 />
               </div>
             </div>
@@ -394,44 +474,357 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Section 5: Final CTA */}
-      <section className="w-full px-6 py-28 max-w-[1392px] mx-auto text-center flex flex-col items-center space-y-8">
-        <div className="badge-token">Get Started Today</div>
-        <h2 className="text-4xl md:text-[52px] font-medium leading-tight text-[#161616] max-w-2xl">
-          Your next AI agent starts here.
-        </h2>
-        <p className="text-base text-[#303030] max-w-lg leading-relaxed font-normal">
-          Build, connect, test, and execute production AI agent workflows with zero friction. Open the visual canvas or start from a pre-built template.
-        </p>
+      {/* 8. MOVE FAST + BREAK NOTHING */}
+      <section className="w-full px-6 py-24 max-w-[1392px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5 space-y-6">
+            <span className="badge-token">Engineering Reliability</span>
+            <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616] font-display">
+              Move fast + break nothing
+            </h2>
+            <p className="text-lg text-[#161616] font-medium">
+              Shipped months ago. Still in control. Feels good, doesn't it?
+            </p>
+            <div className="space-y-4 text-sm text-[#303030]">
+              <div className="p-4 rounded-[16px] bg-white border border-[#E5E5E5] space-y-1">
+                <h4 className="font-semibold text-[#161616]">Move Fast</h4>
+                <p>Replay a past run or mock the data. Skip waiting on slow third-party staging systems.</p>
+              </div>
+              <div className="p-4 rounded-[16px] bg-white border border-[#E5E5E5] space-y-1">
+                <h4 className="font-semibold text-[#161616]">Break Nothing</h4>
+                <p>See exactly what happened in the execution traces. No grep excavation required.</p>
+              </div>
+            </div>
+            <div className="pt-2">
+              <Link to="/editor" className="btn-primary text-xs">
+                Test In Canvas Now
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-          <Link to="/editor" className="btn-primary text-sm px-8 py-4">
-            START BUILDING
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link to="/templates" className="btn-secondary text-sm px-8 py-4">
-            EXPLORE WORKFLOWS
-          </Link>
+          <div className="lg:col-span-7">
+            <div className="card-agentflow bg-white border border-[#E5E5E5] p-4 shadow-xl space-y-4">
+              <img
+                src="/assets/n8n/asset-088.svg"
+                alt="Multi-step execution graph"
+                className="w-full h-auto object-contain rounded-xl"
+              />
+              <img
+                src="/assets/n8n/asset-089.webp"
+                alt="Run trace preview"
+                className="w-full h-auto object-contain rounded-xl"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-[#E5E5E5] bg-white px-6 py-12 text-xs text-[#8F8F8F]">
-        <div className="max-w-[1392px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-6 h-6 rounded-full bg-[#FFBCCA] text-[#212121] flex items-center justify-center font-bold text-[10px]">
-              AF
-            </div>
-            <span className="font-semibold text-[#161616] text-sm">AgentFlow</span>
-            <span>— Visual AI Agent Builder & Cognitive Pipeline Orchestrator.</span>
+      {/* 9. ENTERPRISE-READY FOR TEAMS OF ANY SIZE (DARK SECTION) */}
+      <section id="enterprise" className="w-full px-6 py-24 bg-[#212121] text-white">
+        <div className="max-w-[1392px] mx-auto">
+          <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
+            <span className="badge-token bg-[#303030] text-[#FFBCCA] border-white/10">
+              Enterprise Grade
+            </span>
+            <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#FAFAFA] font-display">
+              Enterprise-ready for teams of any size
+            </h2>
+            <p className="text-slate-300 text-[16px] leading-[26px]">
+              Deploy with strict compliance, SOC 2 certification, SSO/SAML, and granular role-based access controls.
+            </p>
           </div>
 
-          <div className="flex items-center gap-6 font-mono text-[11px] uppercase">
-            <Link to="/editor" className="hover:text-[#161616] transition-colors">Canvas</Link>
-            <Link to="/dashboard" className="hover:text-[#161616] transition-colors">Dashboard</Link>
-            <Link to="/templates" className="hover:text-[#161616] transition-colors">Templates</Link>
-            <Link to="/providers" className="hover:text-[#161616] transition-colors">Providers</Link>
-            <Link to="/settings" className="hover:text-[#161616] transition-colors">Settings</Link>
+          {/* 4 Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="p-6 rounded-[20px] bg-[#303030]/60 border border-white/10 space-y-4">
+              <img src="/assets/n8n/asset-090.svg" alt="Security" className="w-10 h-10" />
+              <h3 className="text-lg font-semibold text-white">Security + control</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Granular RBAC, audit logging, encrypted credentials, and on-prem air-gapped deployment options.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-[20px] bg-[#303030]/60 border border-white/10 space-y-4">
+              <img src="/assets/n8n/asset-091.svg" alt="Observability" className="w-10 h-10" />
+              <h3 className="text-lg font-semibold text-white">Observability + transparency</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Full execution traces, token telemetry, latency tracking, and LangGraph state checkpoints.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-[20px] bg-[#303030]/60 border border-white/10 space-y-4">
+              <img src="/assets/n8n/asset-092.svg" alt="Dev Experience" className="w-10 h-10" />
+              <h3 className="text-lg font-semibold text-white">Developer experience</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Version control with Git, isolated Python sandboxing, CI/CD webhooks, and REST APIs.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-[20px] bg-[#303030]/60 border border-white/10 space-y-4">
+              <img src="/assets/n8n/asset-093.svg" alt="AI Governance" className="w-10 h-10" />
+              <h3 className="text-lg font-semibold text-white">AI governance</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">
+                Guardrails, rate limits, PII sanitization, and human-in-the-loop review approvals.
+              </p>
+            </div>
+          </div>
+
+          {/* Compliance Badges Row */}
+          <div className="p-8 rounded-[24px] bg-[#2A2A2A] border border-white/10 flex flex-wrap items-center justify-between gap-8">
+            <div className="flex items-center gap-4">
+              <ShieldCheck className="w-8 h-8 text-[#FFBCCA]" />
+              <div>
+                <h4 className="font-semibold text-white text-base">Continuous Security Audits</h4>
+                <p className="text-xs text-slate-400">Validated against modern penetration testing standards.</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-8">
+              <img src="/assets/n8n/asset-094.svg" alt="AICPA SOC" className="h-12 object-contain" />
+              <img src="/assets/n8n/asset-095.svg" alt="GDPR" className="h-12 object-contain" />
+              <img src="/assets/n8n/asset-096.svg" alt="Security" className="h-12 object-contain" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 10. CASE STUDIES SPOTLIGHT (HUEL & VODAFONE) */}
+      <section id="stories" className="w-full px-6 py-24 max-w-[1392px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Card 1: Huel */}
+          <div className="card-agentflow bg-white border border-[#E5E5E5] p-8 md:p-10 shadow-lg flex flex-col justify-between space-y-8">
+            <div className="space-y-4">
+              <span className="badge-token">Case Study</span>
+              <h3 className="text-2xl md:text-3xl font-medium text-[#161616] font-display">
+                Huel saved 1,000 hours with an AI-first culture
+              </h3>
+              <blockquote className="text-base text-[#303030] leading-relaxed italic border-l-2 border-[#FFBCCA] pl-4">
+                "AgentFlow was the big unlock. Tools like ChatGPT and Claude are great, but AgentFlow is the thing that allows you to integrate AI into your work and your processes in a safe and controlled way."
+              </blockquote>
+            </div>
+
+            <div className="flex items-center gap-4 pt-4 border-t border-[#F0F0F0]">
+              <img
+                src="/assets/n8n/asset-097.png"
+                alt="Oliver Scheers"
+                className="w-12 h-12 rounded-full object-cover border border-[#E5E5E5]"
+              />
+              <div>
+                <div className="font-semibold text-sm text-[#161616]">Oliver Scheers</div>
+                <div className="text-xs text-[#8F8F8F]">Chief Technology Officer, Huel</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Vodafone */}
+          <div className="card-agentflow bg-white border border-[#E5E5E5] p-8 md:p-10 shadow-lg flex flex-col justify-between space-y-8">
+            <div className="space-y-4">
+              <span className="badge-token">Case Study</span>
+              <h3 className="text-2xl md:text-3xl font-medium text-[#161616] font-display">
+                Vodafone delivers £2.2M security operations win
+              </h3>
+              <blockquote className="text-base text-[#303030] leading-relaxed italic border-l-2 border-[#FFBCCA] pl-4">
+                "AgentFlow provides SOAR capability and workflows in a low-code model, as well as the ability to code for more complex workflows and integrations. It did everything that we wanted, all in one tool."
+              </blockquote>
+            </div>
+
+            <div className="flex items-center gap-4 pt-4 border-t border-[#F0F0F0]">
+              <img
+                src="/assets/n8n/asset-098.jpg"
+                alt="Claire Van Hinsbergh"
+                className="w-12 h-12 rounded-full object-cover border border-[#E5E5E5]"
+              />
+              <div>
+                <div className="font-semibold text-sm text-[#161616]">Claire Van Hinsbergh</div>
+                <div className="text-xs text-[#8F8F8F]">Cyber Operations Engineering Manager, Vodafone</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 11. WALL OF LOVE / TESTIMONIALS */}
+      <section className="w-full px-6 py-20 bg-[#F0F0F0]/50 border-y border-[#E5E5E5]">
+        <div className="max-w-[1392px] mx-auto">
+          <div className="text-center max-w-[700px] mx-auto mb-14 space-y-3">
+            <span className="badge-token">Community Voices</span>
+            <h2 className="text-2xl md:text-3xl font-medium text-[#161616] font-display">
+              Loved by automation engineers everywhere
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+              <p className="text-sm text-[#303030] italic">
+                "I have found the holy grail of automation. Visual flow plus Python scripts whenever needed."
+              </p>
+              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+                <img src="/assets/n8n/asset-099.webp" alt="Luisa" className="w-9 h-9 rounded-full object-cover" />
+                <div>
+                  <div className="text-xs font-semibold text-[#161616]">Luisa Vidal</div>
+                  <div className="text-[11px] text-[#8F8F8F]">AI Operations Lead</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+              <p className="text-sm text-[#303030] italic">
+                "AgentFlow's integration with third-party services is absolutely mind-blowing. Swiss army knife for AI."
+              </p>
+              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+                <img src="/assets/n8n/asset-100.webp" alt="Felix" className="w-9 h-9 rounded-full object-cover" />
+                <div>
+                  <div className="text-xs font-semibold text-[#161616]">Felix Leber</div>
+                  <div className="text-[11px] text-[#8F8F8F]">Full Stack Architect</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+              <p className="text-sm text-[#303030] italic">
+                "Anything is possible with AgentFlow. The local Ollama integration paired with cloud models is unparalleled."
+              </p>
+              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+                <img src="/assets/n8n/asset-101.webp" alt="Robyn" className="w-9 h-9 rounded-full object-cover" />
+                <div>
+                  <div className="text-xs font-semibold text-[#161616]">Robyn Tindall</div>
+                  <div className="text-[11px] text-[#8F8F8F]">DevOps Engineer</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+              <p className="text-sm text-[#303030] italic">
+                "Thank you to the community. I did the beginner tutorial and promptly built an automation way beyond my skill level."
+              </p>
+              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+                <img src="/assets/n8n/asset-102.webp" alt="Charley" className="w-9 h-9 rounded-full object-cover" />
+                <div>
+                  <div className="text-xs font-semibold text-[#161616]">Charley Mann</div>
+                  <div className="text-[11px] text-[#8F8F8F]">Product Developer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 12. FINAL CALL TO ACTION (WITH WOMAN LAPTOP ASSET) */}
+      <section className="w-full px-6 py-28 max-w-[1392px] mx-auto">
+        <div className="card-agentflow bg-white border border-[#E5E5E5] p-8 md:p-14 shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="badge-token">Get Started Today</div>
+              <h2 className="text-4xl md:text-[52px] font-medium leading-[1.1] text-[#161616] font-display">
+                Build workflows the way you actually think
+              </h2>
+              <p className="text-base text-[#303030] max-w-lg leading-relaxed font-normal">
+                Join over 250,000 developers building resilient, multi-turn AI agents, RAG pipelines, and automated integrations.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <Link to="/editor" className="btn-primary text-sm px-8 py-4">
+                  Start Building
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/templates" className="btn-secondary text-sm px-8 py-4">
+                  Explore Workflows
+                </Link>
+              </div>
+
+              <div className="flex items-center gap-6 pt-4 text-xs font-mono text-[#8F8F8F]">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  Self-hostable & Open Source
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  No Credit Card Required
+                </span>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative rounded-[24px] overflow-hidden border border-[#E5E5E5] shadow-lg max-w-[420px]">
+                <img
+                  src="/assets/n8n/asset-103.webp"
+                  alt="Engineer building with AgentFlow"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 13. COMPREHENSIVE FOOTER */}
+      <footer className="border-t border-[#E5E5E5] bg-white px-6 py-16 text-xs text-[#8F8F8F]">
+        <div className="max-w-[1392px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-10 pb-12 border-b border-[#F0F0F0]">
+          {/* Brand Info */}
+          <div className="col-span-2 space-y-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-full bg-[#FFBCCA] text-[#212121] flex items-center justify-center font-bold text-xs">
+                AF
+              </div>
+              <span className="font-semibold text-lg text-[#161616] tracking-tight font-display">
+                AgentFlow
+              </span>
+            </div>
+            <p className="text-xs text-[#303030] leading-relaxed max-w-sm">
+              The visual workflow builder for AI agents. Connect local Ollama models, cloud LLMs, sandboxed Python tools, and self-correcting cognitive loops.
+            </p>
+            <div className="font-mono text-[11px] text-[#8F8F8F]">
+              v1.0.0-production • Dual SQLite/PostgreSQL
+            </div>
+          </div>
+
+          {/* Column: Platform */}
+          <div className="space-y-3">
+            <div className="font-semibold text-[#161616] font-mono uppercase tracking-wider text-[11px]">
+              Platform
+            </div>
+            <ul className="space-y-2 font-mono text-[11px]">
+              <li><Link to="/editor" className="hover:text-[#161616] transition-colors">Visual Canvas</Link></li>
+              <li><Link to="/dashboard" className="hover:text-[#161616] transition-colors">Dashboard</Link></li>
+              <li><Link to="/templates" className="hover:text-[#161616] transition-colors">Templates</Link></li>
+              <li><Link to="/providers" className="hover:text-[#161616] transition-colors">Model Providers</Link></li>
+            </ul>
+          </div>
+
+          {/* Column: Resources */}
+          <div className="space-y-3">
+            <div className="font-semibold text-[#161616] font-mono uppercase tracking-wider text-[11px]">
+              Resources
+            </div>
+            <ul className="space-y-2 font-mono text-[11px]">
+              <li><a href="#integrations" className="hover:text-[#161616] transition-colors">Integrations</a></li>
+              <li><a href="#how-it-works" className="hover:text-[#161616] transition-colors">Use Cases</a></li>
+              <li><Link to="/settings" className="hover:text-[#161616] transition-colors">Settings & APIs</Link></li>
+              <li><a href="https://github.com/lupantech/AgentFlow" target="_blank" rel="noreferrer" className="hover:text-[#161616] transition-colors inline-flex items-center gap-1">GitHub <ExternalLink className="w-3 h-3" /></a></li>
+            </ul>
+          </div>
+
+          {/* Column: Company / Security */}
+          <div className="space-y-3">
+            <div className="font-semibold text-[#161616] font-mono uppercase tracking-wider text-[11px]">
+              Security
+            </div>
+            <ul className="space-y-2 font-mono text-[11px]">
+              <li><a href="#enterprise" className="hover:text-[#161616] transition-colors">SOC 2 Type II</a></li>
+              <li><a href="#enterprise" className="hover:text-[#161616] transition-colors">GDPR Compliance</a></li>
+              <li><a href="#visibility" className="hover:text-[#161616] transition-colors">Self-Hosting</a></li>
+              <li><a href="#enterprise" className="hover:text-[#161616] transition-colors">Python Sandboxing</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="max-w-[1392px] mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>© 2026 AgentFlow Inc. Built with love for AI engineers & automation creators.</p>
+          <div className="flex items-center gap-6 font-mono text-[11px]">
+            <Link to="/editor" className="hover:text-[#161616]">Launch Editor</Link>
+            <Link to="/dashboard" className="hover:text-[#161616]">Projects</Link>
+            <Link to="/templates" className="hover:text-[#161616]">Gallery</Link>
           </div>
         </div>
       </footer>
