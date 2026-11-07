@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Workflow, WorkflowDefinition } from '@/types'
 import { workflowService } from '@/services/workflowService'
+import { apiService, ExecutionResponse } from '@/services/api'
 import { WorkflowCanvas } from '@/components/canvas/WorkflowCanvas'
+import { RunPipelineModal } from '@/components/canvas/RunPipelineModal'
 import { NODE_TEMPLATES } from '@/components/canvas/nodeLibrary'
 import { Button } from '@/components/common/Button'
 import { Badge } from '@/components/common/Badge'
@@ -13,6 +15,7 @@ import {
   Search,
   Sparkles,
   HelpCircle,
+  Activity,
 } from 'lucide-react'
 
 export const WorkflowEditorPage: React.FC = () => {
@@ -24,6 +27,13 @@ export const WorkflowEditorPage: React.FC = () => {
   const [nodeSearch, setNodeSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
   const [saveBanner, setSaveBanner] = useState(false)
+
+  // Execution States
+  const [isRunModalOpen, setIsRunModalOpen] = useState(false)
+  const [isRunning, setIsRunning] = useState(false)
+  const [latestExecution, setLatestExecution] = useState<ExecutionResponse | null>(null)
+  const [activeDrawerTab, setActiveDrawerTab] = useState<'config' | 'logs'>('config')
+  const [backendStatus, setBackendStatus] = useState<string>('checking')
 
   useEffect(() => {
     const workflows = workflowService.getWorkflows()
@@ -37,6 +47,11 @@ export const WorkflowEditorPage: React.FC = () => {
       const def = workflowService.getWorkflowDefinition(current.id, current.name)
       setFlowDefinition(def)
     }
+
+    // Ping backend engine health
+    apiService.checkHealth().then((res) => {
+      setBackendStatus(res ? 'online' : 'offline')
+    })
   }, [id])
 
   const handleSaveFlow = (updatedDef: WorkflowDefinition) => {
@@ -45,6 +60,39 @@ export const WorkflowEditorPage: React.FC = () => {
     setFlowDefinition(updatedDef)
     setSaveBanner(true)
     setTimeout(() => setSaveBanner(false), 2000)
+  }
+
+  const handleExecutePipeline = async (inputs: Record<string, any>) => {
+    if (!flowDefinition) return
+
+    setIsRunModalOpen(false)
+    setIsRunning(true)
+    setActiveDrawerTab('logs')
+
+    try {
+      const response = await apiService.executeWorkflow(flowDefinition, inputs)
+      setLatestExecution(response)
+    } catch (err: any) {
+      // Capture error in fallback response format
+      setLatestExecution({
+        execution_id: `err_${Date.now()}`,
+        workflow_id: flowDefinition.id,
+        status: 'failed',
+        result: {},
+        node_states: {},
+        logs: [
+          {
+            timestamp: new Date().toISOString(),
+            level: 'ERROR',
+            message: `Execution failed to reach FastAPI backend: ${err.message || 'Network error'}`,
+          },
+        ],
+        error: err.message || 'Backend execution failure',
+        start_time: new Date().toISOString(),
+      })
+    } finally {
+      setIsRunning(false)
+    }
   }
 
   const filteredTemplates = NODE_TEMPLATES.filter((t) => {
@@ -97,7 +145,27 @@ export const WorkflowEditorPage: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2.5">
-          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500 mr-2">
+          {/* Backend Status Indicator */}
+          <div className="hidden md:flex items-center gap-1.5 text-xs text-slate-500 mr-2 border-r border-slate-200 pr-3">
+            <Activity className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-[11px]">Engine:</span>
+            <span
+              className={`inline-flex items-center gap-1 font-mono text-[10px] px-1.5 py-0.5 rounded ${
+                backendStatus === 'online'
+                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                  : 'bg-amber-50 text-amber-700 border border-amber-200'
+              }`}
+            >
+              <span
+                className={`w-1.5 h-1.5 rounded-full ${
+                  backendStatus === 'online' ? 'bg-emerald-500' : 'bg-amber-500'
+                }`}
+              />
+              {backendStatus.toUpperCase()}
+            </span>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500 mr-1">
             <span className="flex items-center gap-1 font-mono">
               <Layers className="w-3.5 h-3.5 text-slate-400" />
               {flowDefinition.nodes.length} Nodes
@@ -107,12 +175,9 @@ export const WorkflowEditorPage: React.FC = () => {
           <Button
             variant="primary"
             size="sm"
+            isLoading={isRunning}
             leftIcon={<Play className="w-3.5 h-3.5 fill-current" />}
-            onClick={() =>
-              alert(
-                'Visual canvas graph verified! LangGraph execution engine connects in Phase 6/7.'
-              )
-            }
+            onClick={() => setIsRunModalOpen(true)}
           >
             Run Pipeline
           </Button>
@@ -218,8 +283,21 @@ export const WorkflowEditorPage: React.FC = () => {
         <WorkflowCanvas
           initialWorkflow={flowDefinition}
           onSaveWorkflow={handleSaveFlow}
+          execution={latestExecution}
+          isRunning={isRunning}
+          activeTab={activeDrawerTab}
+          onTabChange={setActiveDrawerTab}
         />
       </div>
+
+      {/* Run Pipeline Modal Dialog */}
+      <RunPipelineModal
+        isOpen={isRunModalOpen}
+        onClose={() => setIsRunModalOpen(false)}
+        workflow={flowDefinition}
+        onExecute={handleExecutePipeline}
+        isRunning={isRunning}
+      />
     </div>
   )
 }

@@ -17,6 +17,8 @@ import {
 import { nodeTypes } from './nodes'
 import { createNewNode, isValidConnection } from './nodeLibrary'
 import { NodeConfigPanel } from './NodeConfigPanel'
+import { ExecutionPanel } from './ExecutionPanel'
+import { ExecutionResponse } from '@/services/api'
 import { AgentFlowNode, CustomNodeType, WorkflowDefinition } from '@/types'
 import {
   Save,
@@ -27,12 +29,18 @@ import {
   Maximize2,
   AlertTriangle,
   CheckCircle,
+  Sliders,
+  Terminal,
 } from 'lucide-react'
 import { Button } from '@/components/common/Button'
 
 interface WorkflowCanvasProps {
   initialWorkflow: WorkflowDefinition
   onSaveWorkflow: (workflow: WorkflowDefinition) => void
+  execution?: ExecutionResponse | null
+  isRunning?: boolean
+  activeTab?: 'config' | 'logs'
+  onTabChange?: (tab: 'config' | 'logs') => void
 }
 
 interface HistorySnapshot {
@@ -43,6 +51,10 @@ interface HistorySnapshot {
 export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
   initialWorkflow,
   onSaveWorkflow,
+  execution = null,
+  isRunning = false,
+  activeTab = 'config',
+  onTabChange,
 }) => {
   const reactFlowWrapper = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -428,14 +440,54 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
         </ReactFlow>
       </div>
 
-      {/* Right Drawer Inspector Panel */}
+      {/* Right Drawer: Inspector & Execution Monitoring Panel */}
       <aside className="w-80 bg-white border-l border-slate-200 flex flex-col shrink-0 z-20 shadow-xs">
-        <NodeConfigPanel
-          selectedNode={selectedNode}
-          onClose={() => setSelectedNodeId(null)}
-          onUpdateNode={handleUpdateNode}
-          onDeleteNode={handleDeleteNode}
-        />
+        {/* Drawer Tabs */}
+        <div className="flex border-b border-slate-200 shrink-0">
+          <button
+            onClick={() => onTabChange?.('config')}
+            className={`flex-1 py-2 text-xs font-medium flex items-center justify-center gap-1.5 border-b-2 transition-colors ${
+              activeTab === 'config'
+                ? 'border-indigo-600 text-indigo-600 font-semibold'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <Sliders className="w-3.5 h-3.5" />
+            <span>Inspector</span>
+          </button>
+          <button
+            onClick={() => onTabChange?.('logs')}
+            className={`flex-1 py-2 text-xs font-medium flex items-center justify-center gap-1.5 border-b-2 transition-colors ${
+              activeTab === 'logs'
+                ? 'border-indigo-600 text-indigo-600 font-semibold'
+                : 'border-transparent text-slate-500 hover:text-slate-800'
+            }`}
+          >
+            <Terminal className="w-3.5 h-3.5" />
+            <span>Execution Logs</span>
+            {execution && (
+              <span
+                className={`w-1.5 h-1.5 rounded-full ${
+                  execution.status === 'completed' ? 'bg-emerald-500' : 'bg-rose-500'
+                }`}
+              />
+            )}
+          </button>
+        </div>
+
+        {/* Tab Content */}
+        <div className="flex-1 overflow-hidden">
+          {activeTab === 'config' ? (
+            <NodeConfigPanel
+              selectedNode={selectedNode}
+              onClose={() => setSelectedNodeId(null)}
+              onUpdateNode={handleUpdateNode}
+              onDeleteNode={handleDeleteNode}
+            />
+          ) : (
+            <ExecutionPanel execution={execution} isRunning={isRunning} />
+          )}
+        </div>
       </aside>
     </div>
   )
