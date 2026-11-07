@@ -55,7 +55,7 @@ export const HomePage: React.FC = () => {
           Visual AI Agent Builder & Cognitive Orchestrator
         </div>
 
-        <h1 className="text-4xl sm:text-6xl lg:text-[64px] font-medium leading-[1.08] tracking-tight text-[#161616] max-w-[1190px] mb-6">
+        <h1 className="hero-headline max-w-[1190px] mb-6">
           Build AI agents. Visually.
         </h1>
 
