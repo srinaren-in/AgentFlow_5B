@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AppLayout } from '@/layouts/AppLayout'
+import { HomePage } from '@/pages/HomePage'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { WorkflowEditorPage } from '@/pages/WorkflowEditorPage'
 import { ProjectsPage } from '@/pages/ProjectsPage'
@@ -12,12 +13,15 @@ export function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* n8n-style standalone landing page */}
+        {/* Permanent AgentFlow Home Page Entry Point */}
+        <Route path="/" element={<HomePage />} />
+
+        {/* n8n Design Reference Showcase */}
         <Route path="/n8n" element={<N8nLandingPage />} />
 
-        {/* Core application shell */}
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<DashboardPage />} />
+        {/* Core Application Workspace Shell */}
+        <Route element={<AppLayout />}>
+          <Route path="dashboard" element={<DashboardPage />} />
           <Route path="editor" element={<WorkflowEditorPage />} />
           <Route path="editor/:id" element={<WorkflowEditorPage />} />
           <Route path="projects" element={<ProjectsPage />} />

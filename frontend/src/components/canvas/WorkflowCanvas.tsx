@@ -109,9 +109,9 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
           type: MarkerType.ArrowClosed,
           width: 14,
           height: 14,
-          color: '#4f46e5',
+          color: '#FF91AC',
         },
-        style: { stroke: '#4f46e5', strokeWidth: 2 },
+        style: { stroke: '#FF91AC', strokeWidth: 2 },
       }
 
       setEdges((eds) => {
@@ -399,13 +399,13 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
             type: 'smoothstep',
             animated: true,
           }}
-          className="bg-slate-50"
+          className="bg-[#FAFAFA]"
         >
           <Background
             variant={BackgroundVariant.Dots}
             gap={18}
             size={1.5}
-            color="#cbd5e1"
+            color="#D9D9D9"
             className="opacity-75"
           />
           <Controls position="bottom-left" showInteractive={false} />
@@ -418,9 +418,9 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
                 case 'outputNode':
                   return '#059669'
                 case 'llmNode':
-                  return '#4f46e5'
+                  return '#FF91AC'
                 case 'agentNode':
-                  return '#e11d48'
+                  return '#FFBCCA'
                 case 'pythonToolNode':
                   return '#10b981'
                 case 'conditionalNode':
@@ -441,15 +441,15 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
       </div>
 
       {/* Right Drawer: Inspector & Execution Monitoring Panel */}
-      <aside className="w-80 bg-white border-l border-slate-200 flex flex-col shrink-0 z-20 shadow-xs">
+      <aside className="w-80 bg-white border-l border-[#E5E5E5] flex flex-col shrink-0 z-20 shadow-xs">
         {/* Drawer Tabs */}
-        <div className="flex border-b border-slate-200 shrink-0">
+        <div className="flex border-b border-[#E5E5E5] shrink-0 font-mono uppercase text-xs">
           <button
             onClick={() => onTabChange?.('config')}
-            className={`flex-1 py-2 text-xs font-medium flex items-center justify-center gap-1.5 border-b-2 transition-colors ${
+            className={`flex-1 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 border-b-2 transition-colors cursor-pointer ${
               activeTab === 'config'
-                ? 'border-indigo-600 text-indigo-600 font-semibold'
-                : 'border-transparent text-slate-500 hover:text-slate-800'
+                ? 'border-[#FF91AC] text-[#161616] bg-[#FAFAFA]'
+                : 'border-transparent text-[#8F8F8F] hover:text-[#161616]'
             }`}
           >
             <Sliders className="w-3.5 h-3.5" />
@@ -457,14 +457,14 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
           </button>
           <button
             onClick={() => onTabChange?.('logs')}
-            className={`flex-1 py-2 text-xs font-medium flex items-center justify-center gap-1.5 border-b-2 transition-colors ${
+            className={`flex-1 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 border-b-2 transition-colors cursor-pointer ${
               activeTab === 'logs'
-                ? 'border-indigo-600 text-indigo-600 font-semibold'
-                : 'border-transparent text-slate-500 hover:text-slate-800'
+                ? 'border-[#FF91AC] text-[#161616] bg-[#FAFAFA]'
+                : 'border-transparent text-[#8F8F8F] hover:text-[#161616]'
             }`}
           >
             <Terminal className="w-3.5 h-3.5" />
-            <span>Execution Logs</span>
+            <span>Logs</span>
             {execution && (
               <span
                 className={`w-1.5 h-1.5 rounded-full ${

@@ -73,7 +73,6 @@ export const WorkflowEditorPage: React.FC = () => {
       const response = await apiService.executeWorkflow(flowDefinition, inputs)
       setLatestExecution(response)
     } catch (err: any) {
-      // Capture error in fallback response format
       setLatestExecution({
         execution_id: `err_${Date.now()}`,
         workflow_id: flowDefinition.id,
@@ -107,9 +106,9 @@ export const WorkflowEditorPage: React.FC = () => {
 
   if (!workflow || !flowDefinition) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-slate-50">
-        <div className="flex items-center gap-2 text-slate-500 text-xs font-mono">
-          <Sparkles className="w-4 h-4 animate-spin text-indigo-600" />
+      <div className="flex-1 flex items-center justify-center bg-[#FAFAFA]">
+        <div className="flex items-center gap-2 text-[#8F8F8F] text-xs font-mono">
+          <Sparkles className="w-4 h-4 animate-spin text-[#FF91AC]" />
           Loading workflow canvas...
         </div>
       </div>
@@ -117,28 +116,28 @@ export const WorkflowEditorPage: React.FC = () => {
   }
 
   return (
-    <div className="flex-1 flex flex-col h-[calc(100vh-3.5rem)] overflow-hidden bg-slate-100">
+    <div className="flex-1 flex flex-col h-[calc(100vh-3.5rem)] overflow-hidden bg-[#FAFAFA]">
       {/* Editor Sub-Header Toolbar */}
-      <div className="h-12 bg-white border-b border-slate-200 px-4 flex items-center justify-between shrink-0 z-20">
+      <div className="h-12 bg-white border-b border-[#E5E5E5] px-4 flex items-center justify-between shrink-0 z-20">
         <div className="flex items-center gap-3">
           <button
-            onClick={() => navigate('/')}
-            className="p-1.5 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+            onClick={() => navigate('/dashboard')}
+            className="p-1.5 rounded-full text-[#8F8F8F] hover:text-[#161616] hover:bg-[#F0F0F0] transition-colors"
             title="Back to Dashboard"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
 
           <div className="flex items-center gap-2">
-            <h2 className="text-sm font-semibold text-slate-900 truncate max-w-xs">
+            <h2 className="text-sm font-semibold text-[#161616] truncate max-w-xs">
               {workflow.name}
             </h2>
             <Badge variant="neutral" dot>
               {workflow.status}
             </Badge>
             {saveBanner && (
-              <span className="text-[11px] text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 animate-in fade-in">
-                Saved
+              <span className="text-[11px] text-emerald-600 font-mono bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                SAVED
               </span>
             )}
           </div>
@@ -146,11 +145,11 @@ export const WorkflowEditorPage: React.FC = () => {
 
         <div className="flex items-center gap-2.5">
           {/* Backend Status Indicator */}
-          <div className="hidden md:flex items-center gap-1.5 text-xs text-slate-500 mr-2 border-r border-slate-200 pr-3">
-            <Activity className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-[11px]">Engine:</span>
+          <div className="hidden md:flex items-center gap-1.5 text-xs text-[#8F8F8F] mr-2 border-r border-[#E5E5E5] pr-3">
+            <Activity className="w-3.5 h-3.5 text-[#8F8F8F]" />
+            <span className="text-[11px] font-mono">ENGINE:</span>
             <span
-              className={`inline-flex items-center gap-1 font-mono text-[10px] px-1.5 py-0.5 rounded ${
+              className={`inline-flex items-center gap-1 font-mono text-[10px] px-2 py-0.5 rounded-full ${
                 backendStatus === 'online'
                   ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                   : 'bg-amber-50 text-amber-700 border border-amber-200'
@@ -165,10 +164,10 @@ export const WorkflowEditorPage: React.FC = () => {
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500 mr-1">
+          <div className="hidden sm:flex items-center gap-2 text-xs text-[#8F8F8F] mr-1">
             <span className="flex items-center gap-1 font-mono">
-              <Layers className="w-3.5 h-3.5 text-slate-400" />
-              {flowDefinition.nodes.length} Nodes
+              <Layers className="w-3.5 h-3.5 text-[#8F8F8F]" />
+              {flowDefinition.nodes.length} NODES
             </span>
           </div>
 
@@ -179,7 +178,7 @@ export const WorkflowEditorPage: React.FC = () => {
             leftIcon={<Play className="w-3.5 h-3.5 fill-current" />}
             onClick={() => setIsRunModalOpen(true)}
           >
-            Run Pipeline
+            RUN PIPELINE
           </Button>
         </div>
       </div>
@@ -187,41 +186,41 @@ export const WorkflowEditorPage: React.FC = () => {
       {/* Main Visual Builder Area */}
       <div className="flex-1 flex overflow-hidden relative">
         {/* Left Interactive Node Library Palette */}
-        <aside className="w-72 bg-white border-r border-slate-200 flex flex-col shrink-0 z-10 shadow-xs">
+        <aside className="w-72 bg-white border-r border-[#E5E5E5] flex flex-col shrink-0 z-10 shadow-xs">
           {/* Palette Header */}
-          <div className="p-3 border-b border-slate-100 space-y-2">
+          <div className="p-3 border-b border-[#F0F0F0] space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                <Layers className="w-3.5 h-3.5 text-indigo-600" />
+              <span className="text-xs font-mono uppercase font-semibold text-[#161616] tracking-wider flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5 text-[#FF91AC]" />
                 Node Library
               </span>
-              <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono">
+              <span className="text-[10px] bg-[#F0F0F0] text-[#161616] px-2 py-0.5 rounded-full font-mono">
                 {NODE_TEMPLATES.length} Types
               </span>
             </div>
 
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Search className="w-3.5 h-3.5 text-[#8F8F8F] absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Search nodes..."
                 value={nodeSearch}
                 onChange={(e) => setNodeSearch(e.target.value)}
-                className="w-full pl-7 pr-2 py-1 text-xs bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:bg-white transition-colors"
+                className="w-full pl-8 pr-2.5 py-1 text-xs bg-[#FAFAFA] border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-1 focus:ring-[#FF91AC] focus:bg-white transition-colors"
               />
             </div>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex items-center gap-1 px-3 py-2 border-b border-slate-100 overflow-x-auto bg-slate-50/50">
+          <div className="flex items-center gap-1 px-3 py-2 border-b border-[#F0F0F0] overflow-x-auto bg-[#FAFAFA]/70">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-2 py-0.5 text-[10px] rounded transition-colors whitespace-nowrap font-medium ${
+                className={`px-2.5 py-0.5 text-[10px] font-mono uppercase rounded-full transition-colors whitespace-nowrap font-medium cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-indigo-600 text-white font-semibold shadow-xs'
-                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-200/60'
+                    ? 'bg-[#FFBCCA] text-[#212121] font-bold shadow-xs'
+                    : 'text-[#8F8F8F] hover:text-[#161616] hover:bg-[#F0F0F0]'
                 }`}
               >
                 {cat}
@@ -231,8 +230,8 @@ export const WorkflowEditorPage: React.FC = () => {
 
           {/* Draggable Node Cards */}
           <div className="flex-1 overflow-y-auto p-3 space-y-2">
-            <p className="text-[11px] text-slate-400 mb-1 leading-snug">
-              Drag nodes directly onto the canvas to wire logic:
+            <p className="text-[11px] text-[#8F8F8F] font-mono mb-1 leading-snug">
+              Drag nodes onto canvas:
             </p>
 
             {filteredTemplates.map((node) => {
@@ -240,7 +239,7 @@ export const WorkflowEditorPage: React.FC = () => {
               return (
                 <div
                   key={node.type}
-                  className="p-2.5 rounded-lg border border-slate-200 bg-white hover:border-indigo-400 hover:shadow-xs transition-all cursor-grab active:cursor-grabbing select-none group"
+                  className="p-3 rounded-[16px] border border-[#E5E5E5] bg-white hover:border-[#FF91AC] hover:shadow-sm transition-all cursor-grab active:cursor-grabbing select-none group"
                   draggable
                   onDragStart={(e) => {
                     e.dataTransfer.setData('application/reactflow', node.type)
@@ -250,19 +249,19 @@ export const WorkflowEditorPage: React.FC = () => {
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <div
-                        className={`w-6 h-6 rounded ${node.iconBg} flex items-center justify-center ${node.iconColor} transition-colors`}
+                        className={`w-6 h-6 rounded-lg ${node.iconBg} flex items-center justify-center ${node.iconColor} border border-black/5 transition-colors`}
                       >
                         <Icon className="w-3.5 h-3.5" />
                       </div>
-                      <span className="text-xs font-semibold text-slate-800 group-hover:text-indigo-600 transition-colors">
+                      <span className="text-xs font-semibold text-[#161616] group-hover:text-[#FF91AC] transition-colors">
                         {node.label}
                       </span>
                     </div>
-                    <span className="text-[9px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded font-mono border border-slate-200/50">
+                    <span className="text-[9px] text-[#8F8F8F] bg-[#F0F0F0] px-1.5 py-0.5 rounded-full font-mono border border-black/5">
                       {node.category}
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-500 leading-tight pl-8">
+                  <p className="text-[11px] text-[#8F8F8F] leading-tight pl-8">
                     {node.description}
                   </p>
                 </div>
@@ -271,10 +270,10 @@ export const WorkflowEditorPage: React.FC = () => {
           </div>
 
           {/* Palette Footer Tip */}
-          <div className="p-2.5 border-t border-slate-100 bg-slate-50 text-[11px] text-slate-500 flex items-center gap-2">
-            <HelpCircle className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-            <span className="text-[10px] leading-tight">
-              Connect handles from left (Input) to right (Output).
+          <div className="p-3 border-t border-[#F0F0F0] bg-[#FAFAFA] text-[11px] text-[#8F8F8F] flex items-center gap-2">
+            <HelpCircle className="w-3.5 h-3.5 text-[#8F8F8F] shrink-0" />
+            <span className="text-[10px] font-mono leading-tight">
+              Connect handles: Left (In) to Right (Out).
             </span>
           </div>
         </aside>

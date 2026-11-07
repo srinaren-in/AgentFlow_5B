@@ -14,8 +14,8 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       className={cn(
-        'bg-white border border-slate-200 rounded-lg shadow-xs overflow-hidden transition-all duration-150',
-        hoverEffect && 'hover:border-slate-300 hover:shadow-sm hover:-translate-y-0.5 cursor-pointer',
+        'bg-white border border-[#E5E5E5] rounded-[24px] shadow-xs overflow-hidden transition-all duration-200',
+        hoverEffect && 'hover:border-[#D9D9D9] hover:shadow-md hover:-translate-y-0.5 cursor-pointer',
         className
       )}
       {...props}
@@ -31,7 +31,7 @@ export const CardHeader: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => {
   return (
-    <div className={cn('px-5 py-4 border-b border-slate-100 flex items-center justify-between', className)} {...props}>
+    <div className={cn('px-6 py-5 border-b border-[#F0F0F0] flex items-center justify-between', className)} {...props}>
       {children}
     </div>
   )
@@ -43,7 +43,7 @@ export const CardContent: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => {
   return (
-    <div className={cn('p-5', className)} {...props}>
+    <div className={cn('p-6', className)} {...props}>
       {children}
     </div>
   )
@@ -55,9 +55,8 @@ export const CardFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => {
   return (
-    <div className={cn('px-5 py-3 bg-slate-50 border-t border-slate-100 text-xs text-slate-500', className)} {...props}>
+    <div className={cn('px-6 py-4 bg-[#FAFAFA] border-t border-[#F0F0F0] flex items-center justify-between', className)} {...props}>
       {children}
     </div>
   )
 }
-

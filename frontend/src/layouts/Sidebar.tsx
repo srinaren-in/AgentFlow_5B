@@ -1,6 +1,7 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import {
+  Home,
   LayoutDashboard,
   Workflow,
   FolderKanban,
@@ -19,9 +20,9 @@ interface SidebarProps {
 
 export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const navItems = [
-    { label: 'Dashboard', path: '/', icon: LayoutDashboard },
+    { label: 'Home Page', path: '/', icon: Home },
+    { label: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { label: 'Workflow Editor', path: '/editor', icon: Workflow },
-    { label: 'n8n Showcase', path: '/n8n', icon: Sparkles },
     { label: 'Projects', path: '/projects', icon: FolderKanban },
     { label: 'Templates', path: '/templates', icon: Sparkles },
     { label: 'Model Providers', path: '/providers', icon: Cpu },
@@ -31,22 +32,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   return (
     <aside
       className={cn(
-        'fixed inset-y-0 left-0 z-30 flex flex-col bg-slate-900 text-slate-300 border-r border-slate-800 transition-all duration-200 ease-in-out',
+        'fixed inset-y-0 left-0 z-30 flex flex-col bg-[#212121] text-slate-300 border-r border-[#333333] transition-all duration-200 ease-in-out',
         isOpen ? 'w-60' : 'w-16'
       )}
     >
       {/* Brand Header */}
-      <div className="flex items-center gap-3 h-14 px-4 border-b border-slate-800 shrink-0">
-        <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center shrink-0 shadow-sm shadow-indigo-500/20">
+      <div className="flex items-center gap-3 h-14 px-4 border-b border-[#333333] shrink-0">
+        <Link to="/" className="w-8 h-8 rounded-full bg-[#FFBCCA] text-[#212121] flex items-center justify-center shrink-0 shadow-sm hover:bg-[#FF91AC] transition-colors">
           <Bot className="w-5 h-5" />
-        </div>
+        </Link>
         {isOpen && (
           <div className="flex items-center justify-between flex-1 overflow-hidden">
-            <span className="font-semibold text-slate-100 text-sm tracking-tight truncate">
+            <Link to="/" className="font-semibold text-[#FAFAFA] text-sm tracking-tight truncate hover:text-[#FFBCCA] transition-colors">
               AgentFlow
-            </span>
-            <span className="text-[10px] font-mono uppercase bg-slate-800 text-indigo-400 px-1.5 py-0.5 rounded border border-slate-700">
-              dev
+            </Link>
+            <span className="text-[10px] font-mono uppercase bg-[#303030] text-[#FFBCCA] px-2 py-0.5 rounded-full border border-white/5">
+              v1.0
             </span>
           </div>
         )}
@@ -60,12 +61,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
             <NavLink
               key={item.path}
               to={item.path}
+              end={item.path === '/'}
               className={({ isActive }) =>
                 cn(
-                  'flex items-center gap-3 px-3 py-2 rounded-md text-xs font-medium transition-colors group relative',
+                  'flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-all group relative',
                   isActive
-                    ? 'bg-indigo-600/15 text-indigo-400 font-semibold border border-indigo-500/20'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                    ? 'bg-[#FFBCCA]/15 text-[#FFBCCA] font-bold border border-[#FF91AC]/30'
+                    : 'text-[#8F8F8F] hover:text-[#FAFAFA] hover:bg-white/5'
                 )
               }
               title={!isOpen ? item.label : undefined}
@@ -73,8 +75,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
               <Icon className="w-4 h-4 shrink-0 transition-transform group-hover:scale-105" />
               {isOpen && <span className="truncate">{item.label}</span>}
               {isOpen && item.path === '/editor' && (
-                <span className="ml-auto text-[10px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded">
-                  Canvas
+                <span className="ml-auto text-[9px] bg-[#303030] text-[#FFBCCA] px-1.5 py-0.5 rounded-full font-mono">
+                  CANVAS
                 </span>
               )}
             </NavLink>
@@ -84,40 +86,39 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
       {/* Runtime Status Pill */}
       {isOpen ? (
-        <div className="p-3 m-2 rounded-lg bg-slate-800/70 border border-slate-800 text-xs">
+        <div className="p-3 m-2 rounded-[16px] bg-[#303030]/60 border border-[#444444] text-xs">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[11px] font-medium text-slate-400">Agent Engine</span>
-            <span className="flex items-center gap-1 text-[10px] text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Ready
+            <span className="text-[11px] font-mono uppercase text-[#8F8F8F]">Engine</span>
+            <span className="flex items-center gap-1.5 text-[10px] font-mono uppercase text-[#FFBCCA]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF91AC] animate-pulse" />
+              Active
             </span>
           </div>
-          <p className="text-[11px] text-slate-500 leading-tight">
-            FastAPI runtime & LangGraph executor bridge.
+          <p className="text-[11px] text-slate-400 leading-tight">
+            FastAPI + LangGraph + Flow 4-Role runtime.
           </p>
         </div>
       ) : (
         <div className="p-2 flex justify-center mb-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500" title="Engine Ready" />
+          <span className="w-2 h-2 rounded-full bg-[#FFBCCA]" title="Engine Ready" />
         </div>
       )}
 
-      {/* Bottom Profile / Info */}
-      <div className="p-3 border-t border-slate-800 shrink-0 flex items-center justify-between">
+      {/* User Footer Profile */}
+      <div className="p-3 border-t border-[#333333] shrink-0 flex items-center justify-between">
         <div className="flex items-center gap-2 overflow-hidden">
-          <div className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-medium text-slate-300 shrink-0">
+          <div className="w-7 h-7 rounded-full bg-[#FFBCCA] text-[#212121] flex items-center justify-center text-xs font-bold font-mono">
             AF
           </div>
           {isOpen && (
-            <div className="truncate">
-              <p className="text-xs font-medium text-slate-200 truncate">Workspace</p>
-              <p className="text-[10px] text-slate-500 truncate">Local Developer</p>
+            <div className="overflow-hidden">
+              <p className="text-xs font-medium text-[#FAFAFA] truncate">Builder Admin</p>
+              <p className="text-[10px] text-[#8F8F8F] truncate font-mono">dev@agentflow.io</p>
             </div>
           )}
         </div>
-        {isOpen && <ChevronRight className="w-3.5 h-3.5 text-slate-500" />}
+        {isOpen && <ChevronRight className="w-3.5 h-3.5 text-[#8F8F8F]" />}
       </div>
     </aside>
   )
 }
-

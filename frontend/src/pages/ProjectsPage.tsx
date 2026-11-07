@@ -12,7 +12,7 @@ export const ProjectsPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
-  const [color, setColor] = useState('#4f46e5')
+  const [color, setColor] = useState('#FF91AC')
   const [error, setError] = useState('')
 
   const loadProjects = () => {
@@ -38,18 +38,18 @@ export const ProjectsPage: React.FC = () => {
 
     setName('')
     setDescription('')
-    setColor('#4f46e5')
+    setColor('#FF91AC')
     setError('')
     setIsModalOpen(false)
     loadProjects()
   }
 
   const colorOptions = [
-    '#4f46e5', // Indigo
-    '#0891b2', // Cyan
+    '#FF91AC', // Highlight Accent
+    '#212121', // Dark Neutral
     '#059669', // Emerald
     '#d97706', // Amber
-    '#dc2626', // Red
+    '#2563eb', // Blue
     '#7c3aed', // Violet
   ]
 
@@ -57,9 +57,9 @@ export const ProjectsPage: React.FC = () => {
     <div className="p-6 md:p-8 space-y-6 max-w-7xl mx-auto w-full">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">Projects</h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Organize your AI workflows, agent pipelines, and deployment environments into projects.
+          <h1 className="text-2xl font-semibold text-[#161616] tracking-tight">Projects</h1>
+          <p className="text-xs text-[#8F8F8F] font-mono mt-0.5">
+            Organize AI workflows by department, product, or microservice.
           </p>
         </div>
         <Button
@@ -73,11 +73,11 @@ export const ProjectsPage: React.FC = () => {
       </div>
 
       {projects.length === 0 ? (
-        <div className="p-12 text-center bg-white border border-dashed border-slate-200 rounded-lg">
-          <FolderKanban className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-          <h3 className="text-sm font-semibold text-slate-800">No projects yet</h3>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
-            Group workflows together by department, client, or product capability.
+        <div className="p-12 text-center bg-white border border-dashed border-[#E5E5E5] rounded-[24px]">
+          <FolderKanban className="w-8 h-8 text-[#8F8F8F] mx-auto mb-2" />
+          <h3 className="text-sm font-semibold text-[#161616]">No projects yet</h3>
+          <p className="text-xs text-[#8F8F8F] mt-1 max-w-sm mx-auto">
+            Group workflows together to share environment contexts and credentials.
           </p>
           <div className="mt-4">
             <Button variant="primary" size="sm" onClick={() => setIsModalOpen(true)}>
@@ -86,51 +86,48 @@ export const ProjectsPage: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       )}
 
-      {/* Create Project Modal */}
+      {/* New Project Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         title="Create New Project"
-        description="Group related workflows, pipelines, and agent tools together."
+        description="Group your agent workflows into organized workspaces."
       >
         <form onSubmit={handleCreate} className="space-y-4">
           <Input
-            label="Project Name *"
-            placeholder="e.g., Financial Modeling, Support Bots"
+            label="Project Name"
+            placeholder="e.g. Autonomous Customer Support"
             value={name}
-            onChange={(e) => {
-              setName(e.target.value)
-              if (error) setError('')
-            }}
+            onChange={(e) => setName(e.target.value)}
             error={error}
             autoFocus
           />
 
           <Textarea
-            label="Description"
-            placeholder="What is the objective or scope of this project?"
+            label="Description (Optional)"
+            placeholder="Describe what these agents and pipelines accomplish..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
           />
 
           <div className="space-y-1.5">
-            <label className="block text-xs font-medium text-slate-700">Project Color</label>
+            <label className="block text-xs font-mono uppercase tracking-wider text-[#161616]">Project Accent Color</label>
             <div className="flex items-center gap-2">
               {colorOptions.map((c) => (
                 <button
                   type="button"
                   key={c}
                   onClick={() => setColor(c)}
-                  className={`w-7 h-7 rounded-full border-2 transition-all ${
-                    color === c ? 'border-slate-800 scale-110' : 'border-transparent hover:scale-105'
+                  className={`w-7 h-7 rounded-full transition-transform cursor-pointer ${
+                    color === c ? 'scale-110 ring-2 ring-offset-2 ring-black' : 'hover:scale-105'
                   }`}
                   style={{ backgroundColor: c }}
                 />
@@ -138,11 +135,11 @@ export const ProjectsPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-2.5 pt-4 border-t border-slate-100">
-            <Button type="button" variant="ghost" onClick={() => setIsModalOpen(false)}>
+          <div className="pt-3 border-t border-[#F0F0F0] flex items-center justify-end gap-2.5">
+            <Button type="button" variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>
-            <Button type="submit" variant="primary" leftIcon={<FolderPlus className="w-3.5 h-3.5" />}>
+            <Button type="submit" variant="primary" size="sm" leftIcon={<FolderPlus className="w-3.5 h-3.5" />}>
               Create Project
             </Button>
           </div>
@@ -151,4 +148,3 @@ export const ProjectsPage: React.FC = () => {
     </div>
   )
 }
-

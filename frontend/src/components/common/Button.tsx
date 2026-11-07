@@ -25,25 +25,25 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none select-none rounded-md'
+      'inline-flex items-center justify-center font-mono uppercase tracking-wider transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:opacity-50 disabled:pointer-events-none select-none rounded-full cursor-pointer'
 
     const sizeStyles = {
-      sm: 'text-xs px-2.5 py-1.5 gap-1.5 h-8',
-      md: 'text-sm px-3.5 py-2 gap-2 h-9',
-      lg: 'text-sm px-4 py-2.5 gap-2 h-10 font-semibold',
+      sm: 'text-[11px] font-semibold px-3 py-1.5 gap-1.5 h-8',
+      md: 'text-xs font-semibold px-4 py-2 gap-2 h-9',
+      lg: 'text-sm font-semibold px-6 py-2.5 gap-2.5 h-10',
     }
 
     const variantStyles = {
       primary:
-        'bg-[#ff6d5a] text-white hover:bg-[#f25844] active:bg-[#e04835] focus:ring-[#ff6d5a] shadow-xs border border-[#eb4d39]',
+        'bg-[#FFBCCA] text-[#212121] hover:bg-[#FF91AC] active:bg-[#ff809f] focus:ring-[#FF91AC] shadow-xs border border-black/5 hover:-translate-y-0.5',
       secondary:
-        'bg-white text-slate-800 hover:bg-slate-50 border border-slate-200 active:bg-slate-100 focus:ring-slate-400 shadow-xs',
+        'bg-white text-[#161616] hover:bg-[#F0F0F0] border border-[#D9D9D9] active:bg-[#e5e5e5] focus:ring-[#8F8F8F] shadow-xs',
       outline:
-        'bg-transparent text-slate-700 hover:bg-slate-100 border border-slate-300 focus:ring-slate-400',
+        'bg-transparent text-[#161616] hover:bg-[#F0F0F0] border border-[#D9D9D9] focus:ring-[#8F8F8F]',
       ghost:
-        'bg-transparent text-slate-700 hover:bg-slate-100 focus:ring-slate-300 border border-transparent',
+        'bg-transparent text-[#161616] hover:bg-[#F0F0F0] focus:ring-[#8F8F8F] border border-transparent',
       danger:
-        'bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 focus:ring-rose-500 shadow-xs border border-rose-700',
+        'bg-[#212121] text-rose-400 hover:text-rose-300 hover:bg-[#161616] active:bg-black focus:ring-rose-500 shadow-xs border border-rose-900/30',
     }
 
     return (
@@ -84,4 +84,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 )
 
 Button.displayName = 'Button'
-

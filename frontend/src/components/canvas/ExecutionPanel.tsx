@@ -28,7 +28,7 @@ export const ExecutionPanel: React.FC<ExecutionPanelProps> = ({ execution, isRun
   if (isRunning) {
     return (
       <div className="h-full flex flex-col items-center justify-center p-6 text-center text-slate-500">
-        <div className="w-10 h-10 rounded-full border-2 border-indigo-600 border-t-transparent animate-spin mb-3" />
+        <div className="w-10 h-10 rounded-full border-2 border-[#FF91AC] border-t-transparent animate-spin mb-3" />
         <h4 className="text-xs font-semibold text-slate-800">Pipeline Executing...</h4>
         <p className="text-[11px] text-slate-400 mt-1">
           FastAPI DAG & LangGraph orchestrator evaluating steps and tools.

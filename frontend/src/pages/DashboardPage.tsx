@@ -52,9 +52,9 @@ export const DashboardPage: React.FC = () => {
       {/* Header & Main Call to Action */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 tracking-tight">AI Agent Workflows</h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Design, orchestrate, and observe visual AI agent pipelines with LangGraph and local or cloud LLMs.
+          <h1 className="text-2xl font-semibold text-[#161616] tracking-tight">AI Agent Workflows</h1>
+          <p className="text-xs text-[#8F8F8F] font-mono mt-0.5">
+            Design, orchestrate, and observe visual AI agent pipelines with LangGraph & Flow-4Role.
           </p>
         </div>
         <div className="flex items-center gap-2.5">
@@ -62,7 +62,7 @@ export const DashboardPage: React.FC = () => {
             variant="outline"
             size="sm"
             onClick={() => navigate('/templates')}
-            leftIcon={<Sparkles className="w-3.5 h-3.5 text-indigo-600" />}
+            leftIcon={<Sparkles className="w-3.5 h-3.5 text-[#FF91AC]" />}
           >
             Explore Templates
           </Button>
@@ -82,30 +82,30 @@ export const DashboardPage: React.FC = () => {
 
       {/* Recent Workflows Section */}
       <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] pb-3">
           <div className="flex items-center gap-2">
-            <h2 className="text-sm font-semibold text-slate-800">Recent Workflows</h2>
-            <span className="text-xs font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">
+            <h2 className="text-sm font-semibold text-[#161616]">Recent Workflows</h2>
+            <span className="text-[10px] font-mono uppercase bg-[#F0F0F0] text-[#161616] px-2 py-0.5 rounded-full border border-black/5">
               {filteredWorkflows.length}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-3.5 h-3.5 text-[#8F8F8F] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 placeholder="Filter pipelines..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-8 pr-3 py-1 text-xs bg-white border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 w-44"
+                className="pl-8 pr-3 py-1.5 text-xs bg-white border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] w-48 transition-colors"
               />
             </div>
 
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="py-1 px-2.5 text-xs bg-white border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 text-slate-700"
+              className="py-1.5 px-3 text-xs bg-white border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] text-[#303030] cursor-pointer"
             >
               <option value="all">All Statuses</option>
               <option value="active">Active</option>
@@ -116,10 +116,10 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {filteredWorkflows.length === 0 ? (
-          <div className="p-12 text-center bg-white border border-dashed border-slate-200 rounded-lg">
-            <Layers className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-            <h3 className="text-sm font-semibold text-slate-800">No workflows found</h3>
-            <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+          <div className="p-12 text-center bg-white border border-dashed border-[#E5E5E5] rounded-[24px]">
+            <Layers className="w-8 h-8 text-[#8F8F8F] mx-auto mb-2" />
+            <h3 className="text-sm font-semibold text-[#161616]">No workflows found</h3>
+            <p className="text-xs text-[#8F8F8F] mt-1 max-w-sm mx-auto">
               {searchQuery
                 ? 'No workflows match your search query or filter.'
                 : 'Get started by creating your first AI workflow pipeline.'}
@@ -131,7 +131,7 @@ export const DashboardPage: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredWorkflows.map((workflow) => (
               <WorkflowCard
                 key={workflow.id}
@@ -145,20 +145,20 @@ export const DashboardPage: React.FC = () => {
 
       {/* Projects Overview */}
       <div className="space-y-4 pt-4">
-        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div className="flex items-center justify-between border-b border-[#E5E5E5] pb-3">
           <div className="flex items-center gap-2">
-            <FolderKanban className="w-4 h-4 text-slate-600" />
-            <h2 className="text-sm font-semibold text-slate-800">Active Projects</h2>
+            <FolderKanban className="w-4 h-4 text-[#161616]" />
+            <h2 className="text-sm font-semibold text-[#161616]">Active Projects</h2>
           </div>
           <button
             onClick={() => navigate('/projects')}
-            className="text-xs text-indigo-600 hover:text-indigo-700 font-medium hover:underline"
+            className="text-xs font-mono uppercase text-[#303030] hover:text-[#FF91AC] transition-colors"
           >
             View all projects →
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {projects.map((project) => (
             <ProjectCard
               key={project.id}
@@ -171,4 +171,3 @@ export const DashboardPage: React.FC = () => {
     </div>
   )
 }
-

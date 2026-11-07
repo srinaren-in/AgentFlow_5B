@@ -35,12 +35,12 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onDelete }
           <div className="space-y-1">
             <h3
               onClick={() => navigate(`/editor/${workflow.id}`)}
-              className="text-sm font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors cursor-pointer flex items-center gap-1.5"
+              className="text-sm font-semibold text-[#161616] group-hover:text-[#FF91AC] transition-colors cursor-pointer flex items-center gap-1.5"
             >
               {workflow.name}
             </h3>
             {workflow.projectName && (
-              <span className="text-xs text-indigo-600 font-medium bg-indigo-50/70 px-2 py-0.5 rounded">
+              <span className="text-[10px] font-mono uppercase text-[#161616] bg-[#F0F0F0] px-2 py-0.5 rounded-full border border-black/5">
                 {workflow.projectName}
               </span>
             )}
@@ -98,7 +98,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onDelete }
 
           <button
             onClick={() => navigate(`/editor/${workflow.id}`)}
-            className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 hover:text-indigo-600 px-2 py-1 rounded hover:bg-slate-100 transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-mono uppercase text-[#303030] hover:text-[#FF91AC] px-2.5 py-1 rounded-full hover:bg-[#F0F0F0] transition-colors"
           >
             <span>Open</span>
             <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />

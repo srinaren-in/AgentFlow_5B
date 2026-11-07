@@ -1,7 +1,7 @@
 import React from 'react'
 import { PanelLeft, Plus, Search, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/common/Button'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 interface TopNavProps {
   onToggleSidebar: () => void
@@ -13,7 +13,8 @@ export const TopNav: React.FC<TopNavProps> = ({ onToggleSidebar, onOpenCreateWor
 
   const getPageTitle = () => {
     const path = location.pathname
-    if (path === '/') return 'Dashboard'
+    if (path === '/') return 'Overview'
+    if (path === '/dashboard') return 'Dashboard'
     if (path.startsWith('/editor')) return 'Workflow Canvas Editor'
     if (path.startsWith('/projects')) return 'Projects'
     if (path.startsWith('/templates')) return 'Workflow Templates'
@@ -23,32 +24,36 @@ export const TopNav: React.FC<TopNavProps> = ({ onToggleSidebar, onOpenCreateWor
   }
 
   return (
-    <header className="h-14 bg-white border-b border-slate-200 px-4 flex items-center justify-between shrink-0 z-20">
+    <header className="h-14 bg-white border-b border-[#E5E5E5] px-4 flex items-center justify-between shrink-0 z-20">
       <div className="flex items-center gap-3">
         <button
           onClick={onToggleSidebar}
-          className="p-1.5 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
+          className="p-1.5 rounded-full text-[#303030] hover:text-[#161616] hover:bg-[#F0F0F0] transition-colors cursor-pointer"
           title="Toggle Navigation Menu"
         >
           <PanelLeft className="w-4 h-4" />
         </button>
 
         <div className="flex items-center gap-2 text-sm">
-          <span className="font-semibold text-slate-900">{getPageTitle()}</span>
-          <span className="text-slate-300">/</span>
-          <span className="text-xs text-slate-500">AgentFlow Engine</span>
+          <span className="font-semibold text-[#161616]">{getPageTitle()}</span>
+          <span className="text-[#D9D9D9]">/</span>
+          <span className="text-xs text-[#8F8F8F] font-mono uppercase">AgentFlow</span>
         </div>
       </div>
 
       <div className="flex items-center gap-3">
         <div className="relative hidden md:flex items-center">
-          <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none" />
+          <Search className="w-3.5 h-3.5 text-[#8F8F8F] absolute left-3 pointer-events-none" />
           <input
             type="text"
             placeholder="Search workflows, nodes, tools..."
-            className="w-64 pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 focus:bg-white transition-colors"
+            className="w-64 pl-8 pr-3 py-1.5 text-xs bg-[#FAFAFA] border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] focus:bg-white transition-colors"
           />
         </div>
+
+        <Link to="/" className="text-xs font-mono uppercase text-[#303030] hover:text-[#161616] px-2.5 py-1 rounded-full hover:bg-[#F0F0F0] hidden sm:inline-block">
+          Home
+        </Link>
 
         <Button
           onClick={onOpenCreateWorkflow}
@@ -63,7 +68,7 @@ export const TopNav: React.FC<TopNavProps> = ({ onToggleSidebar, onOpenCreateWor
           href="https://github.com"
           target="_blank"
           rel="noreferrer"
-          className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-md transition-colors hidden sm:inline-flex"
+          className="p-1.5 text-[#8F8F8F] hover:text-[#161616] hover:bg-[#F0F0F0] rounded-full transition-colors hidden sm:inline-flex"
           title="Documentation"
         >
           <ExternalLink className="w-4 h-4" />
@@ -72,4 +77,3 @@ export const TopNav: React.FC<TopNavProps> = ({ onToggleSidebar, onOpenCreateWor
     </header>
   )
 }
-

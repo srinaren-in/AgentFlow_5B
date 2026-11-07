@@ -19,15 +19,15 @@ export const StatsSummary: React.FC<StatsSummaryProps> = ({ workflows, projects,
       value: workflows.length,
       subtext: `${workflows.filter((w) => w.status === 'draft').length} draft`,
       icon: WorkflowIcon,
-      iconColor: 'text-indigo-600',
-      iconBg: 'bg-indigo-50',
+      iconColor: 'text-[#212121]',
+      iconBg: 'bg-[#FFBCCA]',
     },
     {
       label: 'Active Pipelines',
       value: activeCount,
       subtext: `${Math.round((activeCount / (workflows.length || 1)) * 100)}% deployed`,
       icon: CheckCircle2,
-      iconColor: 'text-emerald-600',
+      iconColor: 'text-emerald-700',
       iconBg: 'bg-emerald-50',
     },
     {
@@ -35,15 +35,15 @@ export const StatsSummary: React.FC<StatsSummaryProps> = ({ workflows, projects,
       value: configuredProviders,
       subtext: `${providers.length - configuredProviders} unconfigured`,
       icon: Cpu,
-      iconColor: 'text-sky-600',
-      iconBg: 'bg-sky-50',
+      iconColor: 'text-[#161616]',
+      iconBg: 'bg-[#F0F0F0]',
     },
     {
       label: 'Projects',
       value: projects.length,
       subtext: 'Grouped pipelines',
       icon: FolderGit2,
-      iconColor: 'text-amber-600',
+      iconColor: 'text-amber-700',
       iconBg: 'bg-amber-50',
     },
   ]
@@ -53,16 +53,16 @@ export const StatsSummary: React.FC<StatsSummaryProps> = ({ workflows, projects,
       {stats.map((stat, idx) => {
         const Icon = stat.icon
         return (
-          <Card key={idx} className="p-4 flex items-center justify-between">
+          <Card key={idx} className="p-5 flex items-center justify-between">
             <div className="space-y-1">
-              <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#8F8F8F]">
                 {stat.label}
               </span>
-              <div className="text-2xl font-bold text-slate-900 tracking-tight">{stat.value}</div>
-              <span className="text-xs text-slate-500">{stat.subtext}</span>
+              <p className="text-2xl font-semibold text-[#161616] tracking-tight">{stat.value}</p>
+              <p className="text-[11px] text-[#8F8F8F] font-mono">{stat.subtext}</p>
             </div>
-            <div className={`w-10 h-10 rounded-lg ${stat.iconBg} flex items-center justify-center shrink-0`}>
-              <Icon className={`w-5 h-5 ${stat.iconColor}`} />
+            <div className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 border border-black/5 ${stat.iconBg} ${stat.iconColor}`}>
+              <Icon className="w-5 h-5" />
             </div>
           </Card>
         )
@@ -70,4 +70,3 @@ export const StatsSummary: React.FC<StatsSummaryProps> = ({ workflows, projects,
     </div>
   )
 }
-

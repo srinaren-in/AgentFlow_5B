@@ -1,20 +1,21 @@
 @import "tailwindcss";
 @import "@xyflow/react/dist/style.css";
+@import "./styles/tokens.css";
 
 @layer base {
   :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #f1f5f9;
-    --border-subtle: #e2e8f0;
-    --border-strong: #cbd5e1;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --text-muted: #94a3b8;
-    --accent: #ff6d5a; /* n8n signature vibrant coral */
-    --accent-hover: #f25844;
-    --accent-subtle: #fff1ef;
-    --accent-border: #ffd5ce;
+    --bg-primary: #FAFAFA;
+    --bg-secondary: #F0F0F0;
+    --bg-tertiary: #D9D9D9;
+    --border-subtle: #E5E5E5;
+    --border-strong: #D9D9D9;
+    --text-primary: #161616;
+    --text-secondary: #303030;
+    --text-muted: #8F8F8F;
+    --accent: #FFBCCA;
+    --accent-hover: #FF91AC;
+    --accent-subtle: #FFF0F4;
+    --accent-border: #FFDDE5;
   }
 
   * {
@@ -33,7 +34,7 @@
   }
 }
 
-/* Custom scrollbars for clean developer tooling look */
+/* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -44,76 +45,76 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #D9D9D9;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #8F8F8F;
 }
 
-/* n8n-style React Flow connector handles & edges */
+/* AgentFlow Canvas: React Flow connector handles & edges */
 .react-flow__handle {
   width: 10px !important;
   height: 10px !important;
   border-radius: 50% !important;
-  background-color: #ffffff !important;
-  border: 2px solid #ff6d5a !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  background-color: #FFFFFF !important;
+  border: 2px solid #FF91AC !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
   transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
 .react-flow__handle:hover {
   transform: scale(1.35) !important;
-  background-color: #ff6d5a !important;
-  box-shadow: 0 0 0 4px rgba(255, 109, 90, 0.25) !important;
+  background-color: #FFBCCA !important;
+  box-shadow: 0 0 0 4px rgba(255, 145, 172, 0.3) !important;
 }
 
 .react-flow__handle-connecting {
-  background-color: #f59e0b !important;
-  border-color: #d97706 !important;
+  background-color: #F59E0B !important;
+  border-color: #D97706 !important;
   box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.25) !important;
 }
 
 .react-flow__handle-valid {
-  background-color: #10b981 !important;
+  background-color: #10B981 !important;
   border-color: #059669 !important;
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25) !important;
 }
 
 .react-flow__edge-path {
-  stroke: #cbd5e1 !important;
+  stroke: #D9D9D9 !important;
   stroke-width: 2 !important;
   transition: stroke 0.2s, stroke-width 0.2s !important;
 }
 
 .react-flow__edge.selected .react-flow__edge-path {
-  stroke: #ff6d5a !important;
+  stroke: #FF91AC !important;
   stroke-width: 2.75 !important;
 }
 
 .react-flow__minimap {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #E5E5E5 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
 .react-flow__controls {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 10px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid #E5E5E5 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
   overflow: hidden;
 }
 
 .react-flow__controls-button {
-  background-color: #ffffff !important;
-  border-bottom: 1px solid #f1f5f9 !important;
-  color: #475569 !important;
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #F0F0F0 !important;
+  color: #303030 !important;
 }
 
 .react-flow__controls-button:hover {
-  background-color: #fff1ef !important;
-  color: #ff6d5a !important;
+  background-color: #FFF0F4 !important;
+  color: #161616 !important;
 }

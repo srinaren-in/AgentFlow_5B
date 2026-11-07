@@ -24,13 +24,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
             <Folder className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
+            <h4 className="text-sm font-semibold text-[#161616] group-hover:text-[#FF91AC] transition-colors">
               {project.name}
             </h4>
-            <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{project.description}</p>
+            <p className="text-xs text-[#8F8F8F] mt-0.5 line-clamp-1">{project.description}</p>
           </div>
         </div>
-        <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+        <ArrowUpRight className="w-4 h-4 text-[#8F8F8F] group-hover:text-[#FF91AC] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </div>
 
       <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
