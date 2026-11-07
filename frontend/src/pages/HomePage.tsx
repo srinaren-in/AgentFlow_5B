@@ -220,18 +220,15 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-[#F0F0F0]">
-                <span className="font-mono text-xs uppercase font-semibold text-[#8F8F8F]">Visual Builder Canvas</span>
-                <span className="text-xs text-emerald-600 font-mono">DAG Validated</span>
-              </div>
-              <div className="p-6 rounded-[16px] bg-[#FAFAFA] border border-[#E5E5E5] space-y-3 font-mono text-xs">
-                <p className="text-[#8F8F8F]">// Workflow Graph Pipeline Specification</p>
-                <p className="text-[#161616]">&gt; InputNode: User question received</p>
-                <p className="text-[#161616]">&gt; PromptTemplateNode: Inject system parameters</p>
-                <p className="text-[#161616]">&gt; LLMNode: Invoking Qwen 2.5 via local Ollama engine</p>
-                <p className="text-emerald-600">&gt; OutputNode: Formatted markdown payload generated</p>
-              </div>
+            <div className="card-agentflow overflow-hidden border border-[#E5E5E5] bg-white p-2 md:p-3 shadow-lg">
+              <img
+                src="/assets/n8n/home_placeholder_3.svg"
+                alt="Visual workflow builder node canvas"
+                className="w-full h-auto object-cover rounded-[18px] bg-[#FAFAFA]"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/n8n/images/image-2.svg'
+                }}
+              />
             </div>
           </div>
         </div>
@@ -379,17 +376,18 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="rounded-[24px] bg-[#161616] border border-[#333333] p-6 shadow-2xl space-y-4 font-mono text-xs">
-                <div className="flex items-center justify-between pb-3 border-b border-[#333333] text-slate-400">
-                  <span>EXECUTION LOG STREAM</span>
-                  <span className="text-emerald-400">● 240ms</span>
-                </div>
-                <div className="space-y-2 text-slate-300">
-                  <p><span className="text-[#FFBCCA]">[PLANNER]</span> Sub-goal: Compute compounded growth rate</p>
-                  <p><span className="text-blue-400">[EXECUTOR]</span> Invoking Python Sandbox: result = 1.08 ** 5</p>
-                  <p><span className="text-amber-400">[VERIFIER]</span> Valid=True (Confidence=0.98) | Step verified</p>
-                  <p><span className="text-emerald-400">[GENERATOR]</span> Synthesis complete: Result 1.469</p>
-                </div>
+              <div className="rounded-[24px] overflow-hidden border border-[#444444] bg-black shadow-2xl relative aspect-video">
+                <video
+                  src="/assets/n8n/see_and_understand.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLVideoElement).src = '/assets/n8n/videos/video-1.mp4'
+                  }}
+                />
               </div>
             </div>
           </div>

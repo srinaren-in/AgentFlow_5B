@@ -1,0 +1,38 @@
+{
+  "source": "https://n8n.io/?ps_partner_key=ZGY4YmIwMzgzNzg4&ps_xid=Y6vU43ffjCNMmT&gsxid=Y6vU43ffjCNMmT&gspk=ZGY4YmIwMzgzNzg4&gad_source=1&gad_campaignid=24333017263&gbraid=0AAAABE6e_nS5cE0IHDvNzUo8f2NeDZO-8",
+  "saved": "2026-11-07T04:16:37.174Z",
+  "assets": [
+    {
+      "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/see_and_understand_expand_4dfab97fb9.mp4",
+      "category": "Videos",
+      "type": "video",
+      "format": "mp4",
+      "name": "see_and_understand_expand_4dfab97fb9.mp4",
+      "kind": "Video",
+      "width": 1750,
+      "height": 1184,
+      "label": "see_and_understand_expand_4dfab97fb9.mp4",
+      "hidden": true,
+      "family": "",
+      "stream": false,
+      "mime": ""
+    },
+    {
+      "url": "https://n8niostorageaccount.blob.core.windows.net/n8nio-strapi-blobs-prod/assets/home_placeholder_3_1999b77b0e.svg",
+      "category": "SVGs",
+      "type": "svg",
+      "format": "svg",
+      "name": "home_placeholder_3_1999b77b0e.svg",
+      "kind": "Image",
+      "width": 875,
+      "height": 592,
+      "label": "home_placeholder_3_1999b77b0e.svg",
+      "hidden": true,
+      "family": "",
+      "stream": false,
+      "mime": ""
+    }
+  ],
+  "downloadedSeparately": [],
+  "unavailable": []
+}
