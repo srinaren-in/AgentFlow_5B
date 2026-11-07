@@ -12,3 +12,4 @@ def get_session_history(session_id: str):
 def clear_session_history(session_id: str):
     success = memory_manager.clear_session(session_id)
     return {"session_id": session_id, "cleared": success}
+

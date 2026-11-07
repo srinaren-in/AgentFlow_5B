@@ -80,3 +80,4 @@ class CalculatorTool(BaseTool):
             return {"expression": expression, "result": result}
         except Exception as e:
             raise ValueError(f"Calculator evaluation failed for '{expression}': {str(e)}")
+

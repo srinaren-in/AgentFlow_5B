@@ -35,3 +35,4 @@ class ToolRegistry:
         return [t.to_function_declaration() for t in selected]
 
 tool_registry = ToolRegistry()
+

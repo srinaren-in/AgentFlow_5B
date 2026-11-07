@@ -46,3 +46,4 @@ def test_build_agent_graph():
     graph = build_agent_graph()
     compiled = graph.compile()
     assert compiled is not None
+

@@ -61,3 +61,4 @@ except Exception as e:
                 return payload.get("result")
 
         return {"stdout": stdout.strip()}
+

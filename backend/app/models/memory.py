@@ -14,3 +14,4 @@ class MemorySessionModel(Base):
     context_data = Column(JSON, default=dict)
     created_at = Column(DateTime, default=utc_now)
     updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
+

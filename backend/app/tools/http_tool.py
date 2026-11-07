@@ -2,6 +2,7 @@ import httpx
 from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field
 from app.tools.base import BaseTool
+from app.core.ssrf import validate_outbound_url
 
 class HTTPRequestInput(BaseModel):
     url: str = Field(..., description="The HTTP or HTTPS URL to fetch or query")
@@ -15,8 +16,8 @@ class HTTPRequestTool(BaseTool):
     args_schema = HTTPRequestInput
 
     async def execute(self, url: str, method: str = "GET", params: Dict[str, Any] = None, json_data: Dict[str, Any] = None, **kwargs) -> Any:
-        if not (url.startswith("http://") or url.startswith("https://")):
-            raise ValueError("URL must start with http:// or https://")
+        # SSRF validation check
+        validate_outbound_url(url, allow_localhost=False)
 
         async with httpx.AsyncClient(timeout=15.0, follow_redirects=True) as client:
             resp = await client.request(
@@ -30,7 +31,6 @@ class HTTPRequestTool(BaseTool):
             try:
                 data = resp.json()
             except Exception:
-                # Return truncated text response to save context window tokens
                 data = resp.text[:4000]
 
             return {

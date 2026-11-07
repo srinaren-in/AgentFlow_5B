@@ -2,6 +2,7 @@ import httpx
 import json
 from typing import Dict, Any
 from app.workflow.nodes.base import BaseNodeExecutor, ExecutionContext
+from app.core.ssrf import validate_outbound_url
 
 class HTTPRequestNodeExecutor(BaseNodeExecutor):
     async def execute(
@@ -18,6 +19,9 @@ class HTTPRequestNodeExecutor(BaseNodeExecutor):
 
         if not url:
             raise ValueError(f"HTTP Node '{node_id}' missing URL.")
+
+        # SSRF Security Validation
+        validate_outbound_url(url, allow_localhost=False)
 
         try:
             headers = json.loads(headers_raw) if headers_raw.strip() else {}

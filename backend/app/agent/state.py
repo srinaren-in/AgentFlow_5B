@@ -21,3 +21,4 @@ class AgentState(TypedDict):
     logs: List[Dict[str, Any]]
     provider_name: str
     model_name: str
+

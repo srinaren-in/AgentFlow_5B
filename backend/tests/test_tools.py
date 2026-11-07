@@ -34,3 +34,4 @@ def test_tool_registry():
     assert "calculator" in names
     assert "http_request" in names
     assert "python_interpreter" in names
+

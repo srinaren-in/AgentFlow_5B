@@ -24,3 +24,4 @@ def test_persistent_memory_session():
     # Clear
     memory_manager.clear_session(session_id)
     assert len(memory_manager.get_messages(session_id)) == 0
+
