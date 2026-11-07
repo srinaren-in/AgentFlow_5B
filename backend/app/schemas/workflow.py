@@ -48,3 +48,4 @@ class WorkflowValidationResponse(BaseModel):
     execution_order: List[str] = Field(default_factory=list)
     entry_nodes: List[str] = Field(default_factory=list)
     exit_nodes: List[str] = Field(default_factory=list)
+

@@ -36,3 +36,4 @@ export const PromptTemplateNodeComponent: React.FC<NodeProps> = ({ id: _id, data
     </BaseNode>
   )
 }
+

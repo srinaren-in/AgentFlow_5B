@@ -108,3 +108,4 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onDelete }
     </Card>
   )
 }
+

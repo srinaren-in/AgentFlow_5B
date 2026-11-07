@@ -32,3 +32,4 @@ export const PythonToolNodeComponent: React.FC<NodeProps> = ({ id: _id, data, se
     </BaseNode>
   )
 }
+

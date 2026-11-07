@@ -36,3 +36,4 @@ export const LLMNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selected 
     </BaseNode>
   )
 }
+

@@ -32,3 +32,4 @@ export const MemoryNodeComponent: React.FC<NodeProps> = ({ id: _id, data, select
     </BaseNode>
   )
 }
+

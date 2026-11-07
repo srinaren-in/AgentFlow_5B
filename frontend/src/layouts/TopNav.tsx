@@ -72,3 +72,4 @@ export const TopNav: React.FC<TopNavProps> = ({ onToggleSidebar, onOpenCreateWor
     </header>
   )
 }
+

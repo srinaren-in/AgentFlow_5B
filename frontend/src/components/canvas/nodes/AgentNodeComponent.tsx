@@ -44,3 +44,4 @@ export const AgentNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selecte
     </BaseNode>
   )
 }
+

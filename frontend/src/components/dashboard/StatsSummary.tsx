@@ -70,3 +70,4 @@ export const StatsSummary: React.FC<StatsSummaryProps> = ({ workflows, projects,
     </div>
   )
 }
+

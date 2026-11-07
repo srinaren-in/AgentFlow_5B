@@ -17,3 +17,4 @@ class NodeSchema(BaseModel):
     type: str
     position: Optional[NodePosition] = Field(default_factory=NodePosition)
     data: NodeData
+

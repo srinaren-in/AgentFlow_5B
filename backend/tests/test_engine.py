@@ -55,3 +55,4 @@ async def test_input_prompt_output_pipeline():
     assert response.node_states["prompt_1"].status == "completed"
     assert response.node_states["output_1"].status == "completed"
     assert len(response.logs) >= 3
+

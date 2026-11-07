@@ -45,3 +45,4 @@ export const HTTPRequestNodeComponent: React.FC<NodeProps> = ({ id: _id, data, s
     </BaseNode>
   )
 }
+

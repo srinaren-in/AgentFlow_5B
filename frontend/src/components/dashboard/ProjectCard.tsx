@@ -43,3 +43,4 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
     </Card>
   )
 }
+

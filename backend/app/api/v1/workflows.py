@@ -144,3 +144,4 @@ def delete_workflow(id: str, db: Session = Depends(get_db)):
 @router.post("/validate", response_model=WorkflowValidationResponse)
 def validate_workflow_endpoint(workflow: WorkflowDefinitionSchema):
     return validate_workflow(workflow)
+

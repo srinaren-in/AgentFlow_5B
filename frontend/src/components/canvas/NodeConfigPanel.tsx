@@ -435,6 +435,40 @@ export const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({
               onChange={(e) => updateConfig('maxIterations', parseInt(e.target.value, 10) || 5)}
               helperText="Safety boundary preventing infinite loops"
             />
+
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <label className="block text-xs font-semibold text-slate-800">Available Agent Tools</label>
+              {[
+                { id: 'calculator', label: 'Calculator', desc: 'Accurate safe math parser' },
+                { id: 'http_request', label: 'HTTP Request', desc: 'Query live APIs and endpoints' },
+                { id: 'python_interpreter', label: 'Python Sandbox', desc: 'Isolated subprocess execution' },
+              ].map((tool) => {
+                const tools = config.toolsEnabled || ['calculator', 'http_request', 'python_interpreter']
+                const isChecked = tools.includes(tool.id)
+                return (
+                  <label
+                    key={tool.id}
+                    className="flex items-start gap-2 p-2 rounded border border-slate-200 hover:bg-slate-50 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={(e) => {
+                        const next = e.target.checked
+                          ? [...tools, tool.id]
+                          : tools.filter((t: string) => t !== tool.id)
+                        updateConfig('toolsEnabled', next)
+                      }}
+                      className="mt-0.5 rounded text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <div>
+                      <span className="text-xs font-medium text-slate-800 block">{tool.label}</span>
+                      <span className="text-[10px] text-slate-400">{tool.desc}</span>
+                    </div>
+                  </label>
+                )
+              })}
+            </div>
           </div>
         )}
       </div>
@@ -456,3 +490,4 @@ export const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({
     </div>
   )
 }
+

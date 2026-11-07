@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from 'react'
-import { ModelProvider } from '@/types'
 import { workflowService } from '@/services/workflowService'
+import { apiService } from '@/services/api'
 import { Card, CardHeader, CardContent } from '@/components/common/Card'
 import { Badge } from '@/components/common/Badge'
 import { Button } from '@/components/common/Button'
 import { Input } from '@/components/common/Input'
-import { ShieldCheck, HardDrive, Cloud, AlertCircle, CheckCircle, ExternalLink } from 'lucide-react'
+import { ShieldCheck, HardDrive, Cloud, AlertCircle, CheckCircle, ExternalLink, RefreshCw } from 'lucide-react'
 
 export const ModelProvidersPage: React.FC = () => {
-  const [providers, setProviders] = useState<ModelProvider[]>([])
   const [ollamaEndpoint, setOllamaEndpoint] = useState('http://localhost:11434')
+  const [liveStatus, setLiveStatus] = useState<any>(null)
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState('')
 
-  const loadProviders = () => {
-    setProviders(workflowService.getModelProviders())
+  const checkLiveStatus = async () => {
+    setIsRefreshing(true)
+    const status = await apiService.getProvidersStatus()
+    setLiveStatus(status)
+    setIsRefreshing(false)
   }
 
   useEffect(() => {
-    loadProviders()
+    checkLiveStatus()
   }, [])
 
-  const ollamaProvider = providers.find((p) => p.id === 'ollama')
-  const geminiProvider = providers.find((p) => p.id === 'gemini')
+  const isOllamaOnline = liveStatus?.ollama?.status === 'available'
+  const isGeminiReady = liveStatus?.gemini?.status === 'available' || liveStatus?.gemini?.status === 'configured'
+  const discoveredOllamaModels = liveStatus?.ollama?.models || ['qwen2.5:7b', 'llama3.2:3b', 'mistral:7b', 'deepseek-r1:8b']
 
   const handleSaveOllama = () => {
     workflowService.updateModelProvider('ollama', {
@@ -29,17 +34,28 @@ export const ModelProvidersPage: React.FC = () => {
       isConfigured: true,
     })
     setSaveSuccess('Ollama configuration saved.')
-    loadProviders()
+    checkLiveStatus()
     setTimeout(() => setSaveSuccess(''), 3000)
   }
 
   return (
     <div className="p-6 md:p-8 space-y-6 max-w-5xl mx-auto w-full">
-      <div>
-        <h1 className="text-xl font-bold text-slate-900 tracking-tight">AI Model Providers</h1>
-        <p className="text-xs text-slate-500 mt-0.5">
-          Configure local runtimes (Ollama) and cloud APIs (Google Gemini) for workflow nodes.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-xl font-bold text-slate-900 tracking-tight">AI Model Providers</h1>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Configure local runtimes (Ollama) and cloud APIs (Google Gemini) for workflow nodes.
+          </p>
+        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={checkLiveStatus}
+          isLoading={isRefreshing}
+          leftIcon={<RefreshCw className="w-3.5 h-3.5" />}
+        >
+          Check Connectivity
+        </Button>
       </div>
 
       {/* Security Architecture Notice */}
@@ -73,8 +89,8 @@ export const ModelProvidersPage: React.FC = () => {
                 <span className="text-[11px] text-slate-500">Private on-premise execution</span>
               </div>
             </div>
-            <Badge variant={ollamaProvider?.isConfigured ? 'success' : 'neutral'} dot>
-              {ollamaProvider?.isConfigured ? 'Connected' : 'Offline'}
+            <Badge variant={isOllamaOnline ? 'success' : 'neutral'} dot>
+              {isOllamaOnline ? 'Live & Available' : 'Offline'}
             </Badge>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -91,10 +107,10 @@ export const ModelProvidersPage: React.FC = () => {
 
             <div>
               <label className="block text-xs font-medium text-slate-700 mb-1.5">
-                Installed Models
+                Installed Models ({discoveredOllamaModels.length})
               </label>
               <div className="flex flex-wrap gap-1.5">
-                {['qwen2.5:7b', 'llama3.2:3b', 'mistral:7b', 'deepseek-r1:8b'].map((m) => (
+                {discoveredOllamaModels.map((m: string) => (
                   <span
                     key={m}
                     className="text-xs bg-slate-100 text-slate-700 border border-slate-200 px-2 py-0.5 rounded font-mono"
@@ -134,8 +150,8 @@ export const ModelProvidersPage: React.FC = () => {
                 <span className="text-[11px] text-slate-500">Cloud AI Reasoning Models</span>
               </div>
             </div>
-            <Badge variant={geminiProvider?.isConfigured ? 'success' : 'warning'} dot>
-              {geminiProvider?.isConfigured ? 'Active' : 'Backend Managed'}
+            <Badge variant={isGeminiReady ? 'success' : 'warning'} dot>
+              {isGeminiReady ? 'Active Key' : 'Backend Managed'}
             </Badge>
           </CardHeader>
           <CardContent className="space-y-4">

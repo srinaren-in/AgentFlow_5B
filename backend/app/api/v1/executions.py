@@ -108,3 +108,4 @@ def get_execution_detail(id: str, db: Session = Depends(get_db)):
         "end_time": ex.end_time.isoformat() if ex.end_time else "",
         "duration_ms": ex.duration_ms,
     }
+

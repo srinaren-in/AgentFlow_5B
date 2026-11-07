@@ -35,3 +35,4 @@ class PromptTemplateNodeExecutor(BaseNodeExecutor):
             "formatted_prompt": formatted,
             "prompt": formatted,
         }
+

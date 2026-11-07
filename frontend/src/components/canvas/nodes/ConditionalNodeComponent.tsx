@@ -36,3 +36,4 @@ export const ConditionalNodeComponent: React.FC<NodeProps> = ({ id: _id, data, s
     </BaseNode>
   )
 }
+

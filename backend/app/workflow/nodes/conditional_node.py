@@ -51,3 +51,4 @@ class ConditionalNodeExecutor(BaseNodeExecutor):
             "true_branch": val if result_bool else None,
             "false_branch": val if not result_bool else None,
         }
+

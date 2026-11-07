@@ -58,3 +58,4 @@ def test_workflow_execution_endpoint():
     assert data["status"] == "completed"
     assert data["result"]["echo"] == "Hello AgentFlow!"
     assert "execution_id" in data
+

@@ -2,6 +2,14 @@ import { WorkflowDefinition } from '@/types'
 
 const API_BASE = 'http://localhost:8000/api'
 
+export interface IntermediateStep {
+  step: number
+  action: string
+  args: Record<string, any>
+  observation: any
+  duration_ms?: number
+}
+
 export interface NodeExecutionState {
   node_id: string
   node_type: string
@@ -10,6 +18,7 @@ export interface NodeExecutionState {
   outputs: Record<string, any>
   error?: string
   duration_ms?: number
+  intermediate_steps?: IntermediateStep[]
 }
 
 export interface ExecutionLogEntry {
@@ -88,17 +97,33 @@ export const apiService = {
     return await res.json()
   },
 
-  async getExecutionDetail(id: string): Promise<ExecutionResponse> {
-    const res = await fetch(`${API_BASE}/executions/${id}`)
-    if (!res.ok) {
-      throw new Error(`Failed to load execution detail: ${res.statusText}`)
+  async listTools(): Promise<any[]> {
+    try {
+      const res = await fetch(`${API_BASE}/tools`)
+      if (!res.ok) return []
+      return await res.json()
+    } catch {
+      return []
     }
-    return await res.json()
   },
 
   async getProvidersStatus(): Promise<any> {
-    const res = await fetch(`${API_BASE}/providers/status`)
-    if (!res.ok) return null
-    return await res.json()
+    try {
+      const res = await fetch(`${API_BASE}/providers/status`)
+      if (!res.ok) return null
+      return await res.json()
+    } catch {
+      return null
+    }
+  },
+
+  async getSessionMemory(sessionId: string): Promise<any[]> {
+    try {
+      const res = await fetch(`${API_BASE}/memory/${sessionId}`)
+      if (!res.ok) return []
+      return await res.json()
+    } catch {
+      return []
+    }
   },
 }

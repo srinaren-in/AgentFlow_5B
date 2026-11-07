@@ -60,3 +60,4 @@ def test_self_loop():
     result = validate_workflow(workflow)
     assert result.is_valid is False
     assert any("Self-loop" in err for err in result.errors)
+

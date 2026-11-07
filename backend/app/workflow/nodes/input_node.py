@@ -20,3 +20,4 @@ class InputNodeExecutor(BaseNodeExecutor):
             "output": val,
             var_name: val,
         }
+

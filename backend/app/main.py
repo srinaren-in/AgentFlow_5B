@@ -10,10 +10,13 @@ from app.database.base import Base
 # Import models to ensure they register on Base.metadata
 from app.models.workflow import WorkflowModel
 from app.models.execution import ExecutionModel
+from app.models.memory import MemorySessionModel
 
 from app.api.v1.workflows import router as workflows_router
 from app.api.v1.executions import router as executions_router
 from app.api.v1.providers import router as providers_router
+from app.api.v1.tools import router as tools_router
+from app.api.v1.memory import router as memory_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -55,6 +58,8 @@ app.include_router(workflows_router, prefix="/api/workflows", tags=["Workflows"]
 app.include_router(executions_router, prefix="/api/workflows", tags=["Workflow Executions"])
 app.include_router(executions_router, prefix="/api/executions", tags=["Executions"])
 app.include_router(providers_router, prefix="/api/providers", tags=["Providers"])
+app.include_router(tools_router, prefix="/api/tools", tags=["Tools"])
+app.include_router(memory_router, prefix="/api/memory", tags=["Memory"])
 
 @app.get("/api/health", tags=["Health"])
 def health_check():
@@ -62,7 +67,7 @@ def health_check():
         "status": "healthy",
         "service": "AgentFlow Engine",
         "version": settings.VERSION,
-        "engine": "DAG Topological Orchestrator",
+        "engine": "DAG Topological Orchestrator & LangGraph Agent Runtime",
     }
 
 if __name__ == "__main__":

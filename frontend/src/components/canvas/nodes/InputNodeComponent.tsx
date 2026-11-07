@@ -31,3 +31,4 @@ export const InputNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selecte
     </BaseNode>
   )
 }
+

@@ -8,6 +8,7 @@ from .conditional_node import ConditionalNodeExecutor
 from .tool_node import PythonToolNodeExecutor
 from .http_node import HTTPRequestNodeExecutor
 from .memory_node import MemoryNodeExecutor
+from .agent_node import AgentNodeExecutor
 
 NODE_EXECUTORS: Dict[str, BaseNodeExecutor] = {
     "inputNode": InputNodeExecutor(),
@@ -18,5 +19,5 @@ NODE_EXECUTORS: Dict[str, BaseNodeExecutor] = {
     "pythonToolNode": PythonToolNodeExecutor(),
     "httpRequestNode": HTTPRequestNodeExecutor(),
     "memoryNode": MemoryNodeExecutor(),
-    "agentNode": LLMNodeExecutor(),  # Agent executes LLM loop in Phase 10
+    "agentNode": AgentNodeExecutor(),
 }
