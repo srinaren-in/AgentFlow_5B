@@ -119,7 +119,7 @@ export const NODE_TEMPLATES: NodeTemplate[] = [
     type: 'agentNode',
     label: 'Autonomous Agent',
     category: 'Agents',
-    description: 'Multi-step LangGraph agent with tool execution loop and self-correction.',
+    description: '4-Role cognitive agent (Planner -> Executor -> Verifier -> Generator) or ReAct loop.',
     icon: Bot,
     iconColor: 'text-rose-600',
     iconBg: 'bg-rose-50',
@@ -129,6 +129,8 @@ export const NODE_TEMPLATES: NodeTemplate[] = [
       maxIterations: 5,
       model: 'gemini-2.0-flash',
       allowDelegation: false,
+      architecture: 'flow',
+      toolsEnabled: ['calculator', 'wikipedia_search', 'http_request', 'python_interpreter'],
     },
   },
   {

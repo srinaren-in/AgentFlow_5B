@@ -11,6 +11,7 @@ export const AgentNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selecte
   const role = config.role || 'Autonomous Researcher'
   const model = config.model || 'gemini-2.0-flash'
   const maxIters = config.maxIterations || 5
+  const isFlow = config.architecture === 'flow' || !config.architecture
 
   return (
     <BaseNode
@@ -20,7 +21,7 @@ export const AgentNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selecte
       icon={Bot}
       iconColor="text-rose-600"
       iconBg="bg-rose-50"
-      badge={`MAX ${maxIters}`}
+      badge={isFlow ? 'Flow 4-Role' : `ReAct (${maxIters})`}
       isValid={nodeData.isValid}
       validationMessage={nodeData.validationError}
       inputs={[
@@ -36,6 +37,10 @@ export const AgentNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selecte
         <div className="flex items-center justify-between">
           <span>Engine Model:</span>
           <span className="font-mono text-rose-700 font-semibold">{model}</span>
+        </div>
+        <div className="flex items-center justify-between text-[10px] text-slate-500">
+          <span>Mode:</span>
+          <span className="font-medium text-indigo-600">{isFlow ? 'Planner-Verifier Loop' : 'ReAct Single-Loop'}</span>
         </div>
         <p className="text-[10px] text-slate-400 italic truncate">
           Goal: {config.goal || 'Synthesize research and format action plan'}

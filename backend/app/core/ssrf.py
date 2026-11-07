@@ -53,3 +53,4 @@ def validate_outbound_url(url: str, allow_localhost: bool = False) -> Tuple[bool
                     )
 
     return True, hostname
+

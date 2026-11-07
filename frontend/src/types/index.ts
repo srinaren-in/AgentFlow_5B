@@ -73,6 +73,8 @@ export interface AgentNodeConfig extends BaseNodeConfig {
   maxIterations: number
   model: string
   allowDelegation: boolean
+  architecture?: 'flow' | 'react'
+  toolsEnabled?: string[]
 }
 
 export interface CustomNodeData {

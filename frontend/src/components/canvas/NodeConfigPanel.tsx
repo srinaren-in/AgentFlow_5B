@@ -404,6 +404,20 @@ export const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({
         {/* 9. Agent Node Form */}
         {nodeType === 'agentNode' && (
           <div className="space-y-3">
+            <div className="space-y-1.5">
+              <label className="block text-xs font-medium text-slate-700">Agent Cognitive Architecture</label>
+              <select
+                value={config.architecture || 'flow'}
+                onChange={(e) => updateConfig('architecture', e.target.value)}
+                className="w-full px-3 py-2 text-xs bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 font-sans"
+              >
+                <option value="flow">Flow 4-Role (Planner → Executor → Verifier → Generator)</option>
+                <option value="react">ReAct (Single-Loop LangGraph)</option>
+              </select>
+              <p className="text-[10px] text-slate-400">
+                Flow 4-Role provides self-correcting intermediate validation based on lupantech/AgentFlow research.
+              </p>
+            </div>
             <Input
               label="Agent Role Title"
               value={config.role || 'Autonomous Researcher'}
@@ -440,10 +454,11 @@ export const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({
               <label className="block text-xs font-semibold text-slate-800">Available Agent Tools</label>
               {[
                 { id: 'calculator', label: 'Calculator', desc: 'Accurate safe math parser' },
+                { id: 'wikipedia_search', label: 'Wikipedia Search', desc: 'RAG search for concepts & facts' },
                 { id: 'http_request', label: 'HTTP Request', desc: 'Query live APIs and endpoints' },
                 { id: 'python_interpreter', label: 'Python Sandbox', desc: 'Isolated subprocess execution' },
               ].map((tool) => {
-                const tools = config.toolsEnabled || ['calculator', 'http_request', 'python_interpreter']
+                const tools = config.toolsEnabled || ['calculator', 'wikipedia_search', 'http_request', 'python_interpreter']
                 const isChecked = tools.includes(tool.id)
                 return (
                   <label

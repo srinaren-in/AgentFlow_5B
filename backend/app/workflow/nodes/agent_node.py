@@ -2,6 +2,7 @@ from typing import Dict, Any
 from app.workflow.nodes.base import BaseNodeExecutor, ExecutionContext
 from app.agent.graph import agent_workflow
 from app.agent.state import AgentState
+from app.flow_agent.solver import FlowSolver
 
 class AgentNodeExecutor(BaseNodeExecutor):
     async def execute(
@@ -15,7 +16,8 @@ class AgentNodeExecutor(BaseNodeExecutor):
         model = config.get("model", "gemini-2.0-flash")
         provider = config.get("provider", "gemini" if "gemini" in model else "ollama")
         max_steps = int(config.get("maxIterations", 5))
-        tool_names = config.get("toolsEnabled", ["calculator", "http_request", "python_interpreter"])
+        tool_names = config.get("toolsEnabled", ["calculator", "wikipedia_search", "http_request", "python_interpreter"])
+        architecture = config.get("architecture", "flow" if "4-role" in role.lower() or "flow" in role.lower() else "react")
 
         # Determine goal from inputs
         goal = inputs.get("goal") or inputs.get("input") or config.get("goal")
@@ -25,7 +27,43 @@ class AgentNodeExecutor(BaseNodeExecutor):
         if not goal:
             goal = "Solve user task using appropriate tools."
 
-        context.log("INFO", f"Initializing LangGraph Agent (Role: {role}, Model: {model}, Max steps: {max_steps})", node_id)
+        # If architecture is 4-role Flow (inspired by lupantech/AgentFlow)
+        if architecture in ["flow", "flow_4role", "planner_verifier"]:
+            context.log("INFO", f"Initializing AgentFlow 4-Role Cognitive Engine (Planner->Executor->Verifier->Generator)", node_id)
+            context.log("INFO", f"Model: {model} ({provider}) | Tools: {', '.join(tool_names)} | Max turns: {max_steps}", node_id)
+            context.log("INFO", f"Agent Objective: '{goal}'", node_id)
+
+            solver = FlowSolver(
+                provider_name=provider,
+                model_name=model,
+                max_turns=max_steps,
+                available_tools=tool_names,
+                system_role=role,
+            )
+
+            result = await solver.solve(
+                query=str(goal),
+                log_callback=lambda level, msg: context.log(level, msg, node_id),
+            )
+
+            final_answer = result.get("final_output", "Task completed.")
+            trajectory = result.get("trajectory", [])
+
+            return {
+                "result": final_answer,
+                "final_output": final_answer,
+                "architecture": "flow_4role",
+                "trajectory": trajectory,
+                "turns_executed": result.get("turns_executed", 0),
+                "duration_ms": result.get("duration_ms", 0),
+                "thought_steps": [
+                    f"Turn {t['turn']} [{t['subgoal']}]: {t['action']}({t['args']}) -> Valid: {t['is_valid']}"
+                    for t in trajectory
+                ],
+            }
+
+        # Otherwise execute standard LangGraph ReAct loop
+        context.log("INFO", f"Initializing LangGraph ReAct Agent (Role: {role}, Model: {model}, Max steps: {max_steps})", node_id)
         context.log("INFO", f"Agent Goal: '{goal}'", node_id)
 
         initial_state: AgentState = {
@@ -61,10 +99,10 @@ class AgentNodeExecutor(BaseNodeExecutor):
         return {
             "result": final_answer,
             "final_output": final_answer,
+            "architecture": "react",
             "intermediate_steps": final_state.get("intermediate_steps", []),
             "thought_steps": [
                 f"Step {s['step']}: {s['action']}({s['args']}) -> {s['observation']}"
                 for s in final_state.get("intermediate_steps", [])
             ],
         }
-

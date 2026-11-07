@@ -15,3 +15,4 @@ class ProjectModel(Base):
     user_id = Column(String(64), nullable=True, index=True)
     created_at = Column(DateTime, default=utc_now)
     updated_at = Column(DateTime, default=utc_now, onupdate=utc_now)
+

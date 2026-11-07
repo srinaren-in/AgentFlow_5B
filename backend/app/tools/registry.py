@@ -3,6 +3,7 @@ from app.tools.base import BaseTool
 from app.tools.calculator import CalculatorTool
 from app.tools.http_tool import HTTPRequestTool
 from app.tools.python_sandbox import PythonSandboxTool
+from app.tools.wikipedia_tool import WikipediaSearchTool
 
 class ToolRegistry:
     def __init__(self):
@@ -11,6 +12,7 @@ class ToolRegistry:
         self.register(CalculatorTool())
         self.register(HTTPRequestTool())
         self.register(PythonSandboxTool())
+        self.register(WikipediaSearchTool())
 
     def register(self, tool: BaseTool):
         self._tools[tool.name] = tool
