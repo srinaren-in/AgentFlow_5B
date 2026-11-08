@@ -37,11 +37,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         'bg-[#FFBCCA] text-[#212121] hover:bg-[#FF91AC] active:bg-[#ff809f] focus:ring-[#FF91AC] shadow-xs border border-black/5 hover:-translate-y-0.5',
       secondary:
-        'bg-white text-[#161616] hover:bg-[#F0F0F0] border border-[#D9D9D9] active:bg-[#e5e5e5] focus:ring-[#8F8F8F] shadow-xs',
+        'bg-white text-[#161616] hover:bg-[#FFE4E9] border border-[#F0AEC0] active:bg-[#e5e5e5] focus:ring-[#8F8F8F] shadow-xs',
       outline:
-        'bg-transparent text-[#161616] hover:bg-[#F0F0F0] border border-[#D9D9D9] focus:ring-[#8F8F8F]',
+        'bg-transparent text-[#161616] hover:bg-[#FFE4E9] border border-[#F0AEC0] focus:ring-[#8F8F8F]',
       ghost:
-        'bg-transparent text-[#161616] hover:bg-[#F0F0F0] focus:ring-[#8F8F8F] border border-transparent',
+        'bg-transparent text-[#161616] hover:bg-[#FFE4E9] focus:ring-[#8F8F8F] border border-transparent',
       danger:
         'bg-[#212121] text-rose-400 hover:text-rose-300 hover:bg-[#161616] active:bg-black focus:ring-rose-500 shadow-xs border border-rose-900/30',
     }

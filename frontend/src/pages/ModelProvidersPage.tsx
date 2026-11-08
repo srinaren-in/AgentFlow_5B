@@ -69,10 +69,10 @@ export const ModelProvidersPage: React.FC = () => {
       </div>
 
       {/* Security Architecture Notice */}
-      <div className="p-6 bg-[#212121] text-[#FAFAFA] rounded-[24px] flex items-start gap-4 text-xs leading-relaxed border border-[#333333]">
+      <div className="p-6 bg-[#212121] text-[#FFF0F3] rounded-[24px] flex items-start gap-4 text-xs leading-relaxed border border-[#333333]">
         <ShieldCheck className="w-6 h-6 text-[#FFBCCA] shrink-0 mt-0.5" />
         <div>
-          <span className="font-semibold text-base text-[#FAFAFA]">Zero-Leakage Security Policy</span>
+          <span className="font-semibold text-base text-[#FFF0F3]">Zero-Leakage Security Policy</span>
           <p className="text-slate-300 mt-1">
             Cloud API keys (e.g. <code className="text-[#FFBCCA] font-mono bg-[#303030] px-1.5 py-0.5 rounded">GEMINI_API_KEY</code>) are strictly read from the backend server environment (<code className="text-[#FFBCCA] font-mono bg-[#303030] px-1.5 py-0.5 rounded">backend/.env</code>) and are never transmitted to or cached within client-side browser bundles.
           </p>
@@ -91,7 +91,7 @@ export const ModelProvidersPage: React.FC = () => {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#F0F0F0] flex items-center justify-center text-[#161616] border border-black/5">
+              <div className="w-9 h-9 rounded-full bg-[#FFE4E9] flex items-center justify-center text-[#161616] border border-black/5">
                 <HardDrive className="w-4 h-4" />
               </div>
               <div>
@@ -123,7 +123,7 @@ export const ModelProvidersPage: React.FC = () => {
                 {discoveredOllamaModels.map((m: string) => (
                   <span
                     key={m}
-                    className="text-xs bg-[#F0F0F0] text-[#161616] border border-[#E5E5E5] px-2.5 py-0.5 rounded-full font-mono"
+                    className="text-xs bg-[#FFE4E9] text-[#161616] border border-[#F8CDD6] px-2.5 py-0.5 rounded-full font-mono"
                   >
                     {m}
                   </span>
@@ -187,7 +187,7 @@ export const ModelProvidersPage: React.FC = () => {
                 {['gemini-2.0-flash', 'gemini-1.5-pro', 'gemini-1.5-flash'].map((m) => (
                   <span
                     key={m}
-                    className="text-xs bg-[#F0F0F0] text-[#161616] border border-[#E5E5E5] px-2.5 py-0.5 rounded-full font-mono"
+                    className="text-xs bg-[#FFE4E9] text-[#161616] border border-[#F8CDD6] px-2.5 py-0.5 rounded-full font-mono"
                   >
                     {m}
                   </span>

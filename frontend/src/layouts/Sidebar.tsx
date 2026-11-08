@@ -43,7 +43,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
         </Link>
         {isOpen && (
           <div className="flex items-center justify-between flex-1 overflow-hidden">
-            <Link to="/" className="font-semibold text-[#FAFAFA] text-sm tracking-tight truncate hover:text-[#FFBCCA] transition-colors">
+            <Link to="/" className="font-semibold text-[#FFF0F3] text-sm tracking-tight truncate hover:text-[#FFBCCA] transition-colors">
               AgentFlow
             </Link>
             <span className="text-[10px] font-mono uppercase bg-[#303030] text-[#FFBCCA] px-2 py-0.5 rounded-full border border-white/5">
@@ -67,7 +67,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                   'flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-mono uppercase tracking-wider transition-all group relative',
                   isActive
                     ? 'bg-[#FFBCCA]/15 text-[#FFBCCA] font-bold border border-[#FF91AC]/30'
-                    : 'text-[#8F8F8F] hover:text-[#FAFAFA] hover:bg-white/5'
+                    : 'text-[#8F8F8F] hover:text-[#FFF0F3] hover:bg-white/5'
                 )
               }
               title={!isOpen ? item.label : undefined}
@@ -112,7 +112,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
           </div>
           {isOpen && (
             <div className="overflow-hidden">
-              <p className="text-xs font-medium text-[#FAFAFA] truncate">Builder Admin</p>
+              <p className="text-xs font-medium text-[#FFF0F3] truncate">Builder Admin</p>
               <p className="text-[10px] text-[#8F8F8F] truncate font-mono">dev@agentflow.io</p>
             </div>
           )}

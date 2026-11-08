@@ -399,13 +399,13 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
             type: 'smoothstep',
             animated: true,
           }}
-          className="bg-[#FAFAFA]"
+          className="bg-[#FFF0F3]"
         >
           <Background
             variant={BackgroundVariant.Dots}
             gap={18}
             size={1.5}
-            color="#D9D9D9"
+            color="#F0AEC0"
             className="opacity-75"
           />
           <Controls position="bottom-left" showInteractive={false} />
@@ -441,14 +441,14 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
       </div>
 
       {/* Right Drawer: Inspector & Execution Monitoring Panel */}
-      <aside className="w-80 bg-white border-l border-[#E5E5E5] flex flex-col shrink-0 z-20 shadow-xs">
+      <aside className="w-80 bg-white border-l border-[#F8CDD6] flex flex-col shrink-0 z-20 shadow-xs">
         {/* Drawer Tabs */}
-        <div className="flex border-b border-[#E5E5E5] shrink-0 font-mono uppercase text-xs">
+        <div className="flex border-b border-[#F8CDD6] shrink-0 font-mono uppercase text-xs">
           <button
             onClick={() => onTabChange?.('config')}
             className={`flex-1 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 border-b-2 transition-colors cursor-pointer ${
               activeTab === 'config'
-                ? 'border-[#FF91AC] text-[#161616] bg-[#FAFAFA]'
+                ? 'border-[#FF91AC] text-[#161616] bg-[#FFF0F3]'
                 : 'border-transparent text-[#8F8F8F] hover:text-[#161616]'
             }`}
           >
@@ -459,7 +459,7 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
             onClick={() => onTabChange?.('logs')}
             className={`flex-1 py-2.5 text-xs font-semibold flex items-center justify-center gap-1.5 border-b-2 transition-colors cursor-pointer ${
               activeTab === 'logs'
-                ? 'border-[#FF91AC] text-[#161616] bg-[#FAFAFA]'
+                ? 'border-[#FF91AC] text-[#161616] bg-[#FFF0F3]'
                 : 'border-transparent text-[#8F8F8F] hover:text-[#161616]'
             }`}
           >

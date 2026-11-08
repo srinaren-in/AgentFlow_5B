@@ -69,7 +69,7 @@ export const SettingsPage: React.FC = () => {
                 <select
                   value={logLevel}
                   onChange={(e) => setLogLevel(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-white border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] text-[#303030]"
+                  className="w-full px-3 py-2 text-xs bg-white border border-[#F8CDD6] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] text-[#303030]"
                 >
                   <option value="debug">DEBUG (Verbose Trace)</option>
                   <option value="info">INFO (Standard Production)</option>

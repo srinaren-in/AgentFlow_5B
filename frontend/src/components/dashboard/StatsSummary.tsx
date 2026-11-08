@@ -36,7 +36,7 @@ export const StatsSummary: React.FC<StatsSummaryProps> = ({ workflows, projects,
       subtext: `${providers.length - configuredProviders} unconfigured`,
       icon: Cpu,
       iconColor: 'text-[#161616]',
-      iconBg: 'bg-[#F0F0F0]',
+      iconBg: 'bg-[#FFE4E9]',
     },
     {
       label: 'Projects',

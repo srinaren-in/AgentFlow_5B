@@ -40,7 +40,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onDelete }
               {workflow.name}
             </h3>
             {workflow.projectName && (
-              <span className="text-[10px] font-mono uppercase text-[#161616] bg-[#F0F0F0] px-2 py-0.5 rounded-full border border-black/5">
+              <span className="text-[10px] font-mono uppercase text-[#161616] bg-[#FFE4E9] px-2 py-0.5 rounded-full border border-black/5">
                 {workflow.projectName}
               </span>
             )}
@@ -98,7 +98,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({ workflow, onDelete }
 
           <button
             onClick={() => navigate(`/editor/${workflow.id}`)}
-            className="inline-flex items-center gap-1 text-xs font-mono uppercase text-[#303030] hover:text-[#FF91AC] px-2.5 py-1 rounded-full hover:bg-[#F0F0F0] transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-mono uppercase text-[#303030] hover:text-[#FF91AC] px-2.5 py-1 rounded-full hover:bg-[#FFE4E9] transition-colors"
           >
             <span>Open</span>
             <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />

@@ -73,7 +73,7 @@ export const ProjectsPage: React.FC = () => {
       </div>
 
       {projects.length === 0 ? (
-        <div className="p-12 text-center bg-white border border-dashed border-[#E5E5E5] rounded-[24px]">
+        <div className="p-12 text-center bg-white border border-dashed border-[#F8CDD6] rounded-[24px]">
           <FolderKanban className="w-8 h-8 text-[#8F8F8F] mx-auto mb-2" />
           <h3 className="text-sm font-semibold text-[#161616]">No projects yet</h3>
           <p className="text-xs text-[#8F8F8F] mt-1 max-w-sm mx-auto">
@@ -135,7 +135,7 @@ export const ProjectsPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="pt-3 border-t border-[#F0F0F0] flex items-center justify-end gap-2.5">
+          <div className="pt-3 border-t border-[#FFE4E9] flex items-center justify-end gap-2.5">
             <Button type="button" variant="ghost" size="sm" onClick={() => setIsModalOpen(false)}>
               Cancel
             </Button>

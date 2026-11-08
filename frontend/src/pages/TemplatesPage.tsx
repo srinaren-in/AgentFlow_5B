@@ -39,7 +39,7 @@ export const TemplatesPage: React.FC = () => {
       </div>
 
       {/* Category Filter Pills */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 border-b border-[#E5E5E5]">
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 border-b border-[#F8CDD6]">
         {categories.map((cat) => (
           <button
             key={cat}
@@ -47,7 +47,7 @@ export const TemplatesPage: React.FC = () => {
             className={`px-3 py-1.5 text-xs font-mono uppercase rounded-full transition-colors whitespace-nowrap font-medium cursor-pointer ${
               selectedCategory === cat
                 ? 'bg-[#FFBCCA] text-[#212121] font-bold shadow-xs'
-                : 'text-[#8F8F8F] hover:text-[#161616] hover:bg-[#F0F0F0]'
+                : 'text-[#8F8F8F] hover:text-[#161616] hover:bg-[#FFE4E9]'
             }`}
           >
             {cat}
@@ -58,10 +58,10 @@ export const TemplatesPage: React.FC = () => {
       {/* Templates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredTemplates.map((template) => (
-          <Card key={template.id} className="flex flex-col justify-between hover:border-[#D9D9D9]">
+          <Card key={template.id} className="flex flex-col justify-between hover:border-[#F0AEC0]">
             <div className="p-6">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-mono uppercase font-bold text-[#161616] bg-[#F0F0F0] px-2.5 py-0.5 rounded-full border border-black/5">
+                <span className="text-[10px] font-mono uppercase font-bold text-[#161616] bg-[#FFE4E9] px-2.5 py-0.5 rounded-full border border-black/5">
                   {template.category}
                 </span>
                 <Badge
@@ -88,7 +88,7 @@ export const TemplatesPage: React.FC = () => {
                 {template.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] font-mono uppercase text-[#303030] bg-[#FAFAFA] border border-[#E5E5E5] px-2 py-0.5 rounded-full"
+                    className="text-[10px] font-mono uppercase text-[#303030] bg-[#FFF0F3] border border-[#F8CDD6] px-2 py-0.5 rounded-full"
                   >
                     #{tag}
                   </span>
@@ -96,7 +96,7 @@ export const TemplatesPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="px-6 py-3.5 bg-[#FAFAFA] border-t border-[#F0F0F0] flex items-center justify-between">
+            <div className="px-6 py-3.5 bg-[#FFF0F3] border-t border-[#FFE4E9] flex items-center justify-between">
               <span className="text-xs font-mono text-[#8F8F8F] flex items-center gap-1.5">
                 <Layers className="w-3.5 h-3.5" />
                 {template.nodesCount} NODES

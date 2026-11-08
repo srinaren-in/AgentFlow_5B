@@ -26,21 +26,21 @@
   font-display: swap;
 }
 
-/* AgentFlow Permanent Design System Tokens */
+/* AgentFlow Permanent Design System Tokens - Light Pinkish Theme */
 :root {
-  /* Exact Foundational Colors */
-  --color-bg: #FAFAFA;
-  --color-text-primary: #161616;
-  --color-text-secondary: #303030;
-  --color-text-muted: #8F8F8F;
-  --color-surface-secondary: #F0F0F0;
-  --color-surface-elevated: #D9D9D9;
+  /* Foundational Colors - Light Pinkish Palette */
+  --color-bg: #FFF0F3;
+  --color-text-primary: #1A1114;
+  --color-text-secondary: #423035;
+  --color-text-muted: #8E7A81;
+  --color-surface-secondary: #FFE4E9;
+  --color-surface-elevated: #FDD3DC;
   --color-surface-dark: #212121;
   --color-highlight-primary: #FFBCCA;
   --color-highlight-accent: #FF91AC;
   --color-white: #FFFFFF;
-  --color-border-subtle: #E5E5E5;
-  --color-border-strong: #D9D9D9;
+  --color-border-subtle: #F8CDD6;
+  --color-border-strong: #F0AEC0;
 
   /* Radii */
   --radius-sm: 4px;
@@ -232,8 +232,8 @@
 }
 
 .canvas-light-grid {
-  background-color: #FAFAFA;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px);
+  background-color: #FFF0F3;
+  background-image: radial-gradient(rgba(255, 145, 172, 0.22) 1.2px, transparent 1.2px);
   background-size: 24px 24px;
 }
 

@@ -31,7 +31,7 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
   subtitle,
   icon: Icon,
   iconColor = 'text-[#212121]',
-  iconBg = 'bg-[#F0F0F0]',
+  iconBg = 'bg-[#FFE4E9]',
   badge,
   isValid = true,
   validationMessage,
@@ -45,7 +45,7 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
         'w-64 bg-white rounded-[20px] border text-left shadow-xs transition-all duration-150 relative select-none font-sans',
         selected
           ? 'border-[#FF91AC] ring-2 ring-[#FFBCCA]/50 shadow-md'
-          : 'border-[#E5E5E5] hover:border-[#D9D9D9] hover:shadow-sm'
+          : 'border-[#F8CDD6] hover:border-[#F0AEC0] hover:shadow-sm'
       )}
     >
       {/* Target (Input) Handles */}
@@ -73,7 +73,7 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
       })}
 
       {/* Node Header */}
-      <div className="px-3.5 py-3 border-b border-[#F0F0F0] flex items-center justify-between gap-2 bg-[#FAFAFA] rounded-t-[20px]">
+      <div className="px-3.5 py-3 border-b border-[#FFE4E9] flex items-center justify-between gap-2 bg-[#FFF0F3] rounded-t-[20px]">
         <div className="flex items-center gap-2.5 overflow-hidden">
           <div className={cn('w-7 h-7 rounded-lg flex items-center justify-center shrink-0 border border-black/5', iconBg, iconColor)}>
             <Icon className="w-4 h-4" />
@@ -91,7 +91,7 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
             </span>
           )}
           {badge && (
-            <span className="text-[9px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-[#F0F0F0] text-[#161616] border border-black/5">
+            <span className="text-[9px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-[#FFE4E9] text-[#161616] border border-black/5">
               {badge}
             </span>
           )}

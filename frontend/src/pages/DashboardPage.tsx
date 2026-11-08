@@ -82,10 +82,10 @@ export const DashboardPage: React.FC = () => {
 
       {/* Recent Workflows Section */}
       <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E5E5] pb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#F8CDD6] pb-3">
           <div className="flex items-center gap-2">
             <h2 className="text-sm font-semibold text-[#161616]">Recent Workflows</h2>
-            <span className="text-[10px] font-mono uppercase bg-[#F0F0F0] text-[#161616] px-2 py-0.5 rounded-full border border-black/5">
+            <span className="text-[10px] font-mono uppercase bg-[#FFE4E9] text-[#161616] px-2 py-0.5 rounded-full border border-black/5">
               {filteredWorkflows.length}
             </span>
           </div>
@@ -98,14 +98,14 @@ export const DashboardPage: React.FC = () => {
                 placeholder="Filter pipelines..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-8 pr-3 py-1.5 text-xs bg-white border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] w-48 transition-colors"
+                className="pl-8 pr-3 py-1.5 text-xs bg-white border border-[#F8CDD6] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] w-48 transition-colors"
               />
             </div>
 
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="py-1.5 px-3 text-xs bg-white border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] text-[#303030] cursor-pointer"
+              className="py-1.5 px-3 text-xs bg-white border border-[#F8CDD6] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] text-[#303030] cursor-pointer"
             >
               <option value="all">All Statuses</option>
               <option value="active">Active</option>
@@ -116,7 +116,7 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {filteredWorkflows.length === 0 ? (
-          <div className="p-12 text-center bg-white border border-dashed border-[#E5E5E5] rounded-[24px]">
+          <div className="p-12 text-center bg-white border border-dashed border-[#F8CDD6] rounded-[24px]">
             <Layers className="w-8 h-8 text-[#8F8F8F] mx-auto mb-2" />
             <h3 className="text-sm font-semibold text-[#161616]">No workflows found</h3>
             <p className="text-xs text-[#8F8F8F] mt-1 max-w-sm mx-auto">
@@ -145,7 +145,7 @@ export const DashboardPage: React.FC = () => {
 
       {/* Projects Overview */}
       <div className="space-y-4 pt-4">
-        <div className="flex items-center justify-between border-b border-[#E5E5E5] pb-3">
+        <div className="flex items-center justify-between border-b border-[#F8CDD6] pb-3">
           <div className="flex items-center gap-2">
             <FolderKanban className="w-4 h-4 text-[#161616]" />
             <h2 className="text-sm font-semibold text-[#161616]">Active Projects</h2>

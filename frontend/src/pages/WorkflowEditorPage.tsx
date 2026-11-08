@@ -106,7 +106,7 @@ export const WorkflowEditorPage: React.FC = () => {
 
   if (!workflow || !flowDefinition) {
     return (
-      <div className="flex-1 flex items-center justify-center bg-[#FAFAFA]">
+      <div className="flex-1 flex items-center justify-center bg-[#FFF0F3]">
         <div className="flex items-center gap-2 text-[#8F8F8F] text-xs font-mono">
           <Sparkles className="w-4 h-4 animate-spin text-[#FF91AC]" />
           Loading workflow canvas...
@@ -116,13 +116,13 @@ export const WorkflowEditorPage: React.FC = () => {
   }
 
   return (
-    <div className="flex-1 flex flex-col h-[calc(100vh-3.5rem)] overflow-hidden bg-[#FAFAFA]">
+    <div className="flex-1 flex flex-col h-[calc(100vh-3.5rem)] overflow-hidden bg-[#FFF0F3]">
       {/* Editor Sub-Header Toolbar */}
-      <div className="h-12 bg-white border-b border-[#E5E5E5] px-4 flex items-center justify-between shrink-0 z-20">
+      <div className="h-12 bg-white border-b border-[#F8CDD6] px-4 flex items-center justify-between shrink-0 z-20">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/dashboard')}
-            className="p-1.5 rounded-full text-[#8F8F8F] hover:text-[#161616] hover:bg-[#F0F0F0] transition-colors"
+            className="p-1.5 rounded-full text-[#8F8F8F] hover:text-[#161616] hover:bg-[#FFE4E9] transition-colors"
             title="Back to Dashboard"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -145,7 +145,7 @@ export const WorkflowEditorPage: React.FC = () => {
 
         <div className="flex items-center gap-2.5">
           {/* Backend Status Indicator */}
-          <div className="hidden md:flex items-center gap-1.5 text-xs text-[#8F8F8F] mr-2 border-r border-[#E5E5E5] pr-3">
+          <div className="hidden md:flex items-center gap-1.5 text-xs text-[#8F8F8F] mr-2 border-r border-[#F8CDD6] pr-3">
             <Activity className="w-3.5 h-3.5 text-[#8F8F8F]" />
             <span className="text-[11px] font-mono">ENGINE:</span>
             <span
@@ -186,15 +186,15 @@ export const WorkflowEditorPage: React.FC = () => {
       {/* Main Visual Builder Area */}
       <div className="flex-1 flex overflow-hidden relative">
         {/* Left Interactive Node Library Palette */}
-        <aside className="w-72 bg-white border-r border-[#E5E5E5] flex flex-col shrink-0 z-10 shadow-xs">
+        <aside className="w-72 bg-white border-r border-[#F8CDD6] flex flex-col shrink-0 z-10 shadow-xs">
           {/* Palette Header */}
-          <div className="p-3 border-b border-[#F0F0F0] space-y-2">
+          <div className="p-3 border-b border-[#FFE4E9] space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono uppercase font-semibold text-[#161616] tracking-wider flex items-center gap-1.5">
                 <Layers className="w-3.5 h-3.5 text-[#FF91AC]" />
                 Node Library
               </span>
-              <span className="text-[10px] bg-[#F0F0F0] text-[#161616] px-2 py-0.5 rounded-full font-mono">
+              <span className="text-[10px] bg-[#FFE4E9] text-[#161616] px-2 py-0.5 rounded-full font-mono">
                 {NODE_TEMPLATES.length} Types
               </span>
             </div>
@@ -206,13 +206,13 @@ export const WorkflowEditorPage: React.FC = () => {
                 placeholder="Search nodes..."
                 value={nodeSearch}
                 onChange={(e) => setNodeSearch(e.target.value)}
-                className="w-full pl-8 pr-2.5 py-1 text-xs bg-[#FAFAFA] border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-1 focus:ring-[#FF91AC] focus:bg-white transition-colors"
+                className="w-full pl-8 pr-2.5 py-1 text-xs bg-[#FFF0F3] border border-[#F8CDD6] rounded-full focus:outline-none focus:ring-1 focus:ring-[#FF91AC] focus:bg-white transition-colors"
               />
             </div>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex items-center gap-1 px-3 py-2 border-b border-[#F0F0F0] overflow-x-auto bg-[#FAFAFA]/70">
+          <div className="flex items-center gap-1 px-3 py-2 border-b border-[#FFE4E9] overflow-x-auto bg-[#FFF0F3]/70">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -220,7 +220,7 @@ export const WorkflowEditorPage: React.FC = () => {
                 className={`px-2.5 py-0.5 text-[10px] font-mono uppercase rounded-full transition-colors whitespace-nowrap font-medium cursor-pointer ${
                   selectedCategory === cat
                     ? 'bg-[#FFBCCA] text-[#212121] font-bold shadow-xs'
-                    : 'text-[#8F8F8F] hover:text-[#161616] hover:bg-[#F0F0F0]'
+                    : 'text-[#8F8F8F] hover:text-[#161616] hover:bg-[#FFE4E9]'
                 }`}
               >
                 {cat}
@@ -239,7 +239,7 @@ export const WorkflowEditorPage: React.FC = () => {
               return (
                 <div
                   key={node.type}
-                  className="p-3 rounded-[16px] border border-[#E5E5E5] bg-white hover:border-[#FF91AC] hover:shadow-sm transition-all cursor-grab active:cursor-grabbing select-none group"
+                  className="p-3 rounded-[16px] border border-[#F8CDD6] bg-white hover:border-[#FF91AC] hover:shadow-sm transition-all cursor-grab active:cursor-grabbing select-none group"
                   draggable
                   onDragStart={(e) => {
                     e.dataTransfer.setData('application/reactflow', node.type)
@@ -257,7 +257,7 @@ export const WorkflowEditorPage: React.FC = () => {
                         {node.label}
                       </span>
                     </div>
-                    <span className="text-[9px] text-[#8F8F8F] bg-[#F0F0F0] px-1.5 py-0.5 rounded-full font-mono border border-black/5">
+                    <span className="text-[9px] text-[#8F8F8F] bg-[#FFE4E9] px-1.5 py-0.5 rounded-full font-mono border border-black/5">
                       {node.category}
                     </span>
                   </div>
@@ -270,7 +270,7 @@ export const WorkflowEditorPage: React.FC = () => {
           </div>
 
           {/* Palette Footer Tip */}
-          <div className="p-3 border-t border-[#F0F0F0] bg-[#FAFAFA] text-[11px] text-[#8F8F8F] flex items-center gap-2">
+          <div className="p-3 border-t border-[#FFE4E9] bg-[#FFF0F3] text-[11px] text-[#8F8F8F] flex items-center gap-2">
             <HelpCircle className="w-3.5 h-3.5 text-[#8F8F8F] shrink-0" />
             <span className="text-[10px] font-mono leading-tight">
               Connect handles: Left (In) to Right (Out).

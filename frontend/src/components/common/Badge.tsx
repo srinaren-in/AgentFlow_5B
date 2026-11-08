@@ -14,7 +14,7 @@ export const Badge: React.FC<BadgeProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    neutral: 'bg-[#F0F0F0] text-[#161616] border-black/5',
+    neutral: 'bg-[#FFE4E9] text-[#161616] border-black/5',
     accent: 'bg-[#FFBCCA] text-[#212121] border-[#FF91AC]/40 font-bold',
     success: 'bg-[#e6f7ef] text-[#059669] border-[#10b981]/20',
     warning: 'bg-[#fef3c7] text-[#d97706] border-[#f59e0b]/20',

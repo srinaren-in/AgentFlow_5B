@@ -108,9 +108,9 @@ export const HomePage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-[#161616] font-sans antialiased selection:bg-[#FFBCCA] selection:text-[#212121]">
+    <div className="min-h-screen bg-[#FFF0F3] text-[#161616] font-sans antialiased selection:bg-[#FFBCCA] selection:text-[#212121]">
       {/* 1. TOP NAVIGATION HEADER */}
-      <header className="sticky top-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-md border-b border-[#E5E5E5] px-6 py-4 transition-colors">
+      <header className="sticky top-0 z-50 bg-[#FFF0F3]/95 backdrop-blur-md border-b border-[#F8CDD6] px-6 py-4 transition-colors">
         <div className="max-w-[1392px] mx-auto flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2.5 group">
@@ -135,7 +135,7 @@ export const HomePage: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/dashboard"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#303030] hover:text-[#161616] px-3.5 py-2 rounded-full hover:bg-[#F0F0F0] transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#303030] hover:text-[#161616] px-3.5 py-2 rounded-full hover:bg-[#FFE4E9] transition-colors"
             >
               Dashboard
             </Link>
@@ -148,7 +148,10 @@ export const HomePage: React.FC = () => {
       </header>
 
       {/* 2. HERO SECTION */}
-      <section className="w-full px-6 pt-16 md:pt-24 pb-16 max-w-[1392px] mx-auto text-center flex flex-col items-center">
+      <section className="w-full px-6 pt-16 md:pt-24 pb-16 max-w-[1392px] mx-auto text-center flex flex-col items-center relative">
+        {/* Soft Ambient Pink Halo Glow */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-[#FFBCCA]/40 via-[#FF91AC]/20 to-transparent blur-3xl pointer-events-none -z-10" />
+
         <div className="badge-token mb-6">
           <Sparkles className="w-3.5 h-3.5 text-[#FF91AC]" />
           Visual AI Agent Platform & Workflow Orchestrator
@@ -173,8 +176,8 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Hero Visual: Authentic Animated Canvas & DAG Simulation */}
-        <div className="w-full max-w-[1240px] card-agentflow p-3 md:p-6 bg-white border border-[#E5E5E5] shadow-2xl overflow-hidden relative">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-[#F0F0F0] gap-3 text-xs font-mono text-[#8F8F8F]">
+        <div className="w-full max-w-[1240px] card-agentflow p-3 md:p-6 bg-white border border-[#F8CDD6] shadow-2xl overflow-hidden relative">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-[#FFE4E9] gap-3 text-xs font-mono text-[#8F8F8F]">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
               <span className="font-semibold text-[#161616]">
@@ -184,7 +187,7 @@ export const HomePage: React.FC = () => {
 
             {/* View Mode Switcher */}
             <div className="flex items-center gap-2">
-              <div className="flex bg-[#F0F0F0] p-0.5 rounded-full text-[11px]">
+              <div className="flex bg-[#FFE4E9] p-0.5 rounded-full text-[11px]">
                 <button
                   onClick={() => setHeroMode('simulation')}
                   className={`px-3 py-1 rounded-full transition-all ${
@@ -283,7 +286,7 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="relative p-2 md:p-4 bg-[#FAFAFA] flex items-center justify-center max-h-[620px]">
+              <div className="relative p-2 md:p-4 bg-[#FFF0F3] flex items-center justify-center max-h-[620px]">
                 <img
                   src="/assets/n8n/asset-083.svg"
                   alt="Visual Agent Workflow Canvas Blueprint"
@@ -296,7 +299,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 3. TRUSTED BY LOGO CAROUSEL */}
-      <section className="w-full px-6 py-12 border-t border-[#E5E5E5] bg-white">
+      <section className="w-full px-6 py-12 border-t border-[#F8CDD6] bg-white">
         <div className="max-w-[1392px] mx-auto text-center space-y-6">
           <p className="text-xs font-mono uppercase tracking-widest text-[#8F8F8F]">
             Trusted by 250,000+ developers and teams worldwide
@@ -314,7 +317,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 4. INTERACTIVE CASE STUDY TABS (VIDEO DEMOS) */}
-      <section id="how-it-works" className="w-full px-6 py-24 max-w-[1392px] mx-auto border-t border-[#E5E5E5]">
+      <section id="how-it-works" className="w-full px-6 py-24 max-w-[1392px] mx-auto border-t border-[#F8CDD6]">
         <div className="text-center max-w-[800px] mx-auto mb-14 space-y-4">
           <span className="badge-token">Interactive Walkthrough</span>
           <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#161616] font-display">
@@ -334,7 +337,7 @@ export const HomePage: React.FC = () => {
               className={`px-4 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all ${
                 activeTab === idx
                   ? 'bg-[#212121] text-white shadow-sm'
-                  : 'bg-white border border-[#E5E5E5] text-[#303030] hover:border-[#FF91AC]'
+                  : 'bg-white border border-[#F8CDD6] text-[#303030] hover:border-[#FF91AC]'
               }`}
             >
               {tab.title.replace('How ', '').split(' automated')[0]}
@@ -343,7 +346,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         {/* Active Tab Content Card */}
-        <div className="card-agentflow bg-white border border-[#E5E5E5] p-6 md:p-10 shadow-lg">
+        <div className="card-agentflow bg-white border border-[#F8CDD6] p-6 md:p-10 shadow-lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 space-y-5">
               <div className="flex items-center gap-3">
@@ -375,7 +378,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-7">
-              <div className="rounded-[20px] overflow-hidden border border-[#E5E5E5] bg-black shadow-md aspect-video relative">
+              <div className="rounded-[20px] overflow-hidden border border-[#F8CDD6] bg-black shadow-md aspect-video relative">
                 <video
                   key={caseStudyTabs[activeTab].video}
                   src={caseStudyTabs[activeTab].video}
@@ -392,21 +395,21 @@ export const HomePage: React.FC = () => {
 
         {/* Community Proof Metrics Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-          <div className="card-agentflow bg-[#F0F0F0]/60 p-5 flex items-center gap-4 border border-[#E5E5E5]">
+          <div className="card-agentflow bg-[#FFE4E9]/60 p-5 flex items-center gap-4 border border-[#F8CDD6]">
             <img src="/assets/n8n/asset-055.svg" alt="GitHub" className="w-7 h-7" />
             <div>
               <div className="font-semibold text-sm text-[#161616]">Top 50 GitHub Project</div>
               <div className="text-xs text-[#8F8F8F]">With 209k+ GitHub stars</div>
             </div>
           </div>
-          <div className="card-agentflow bg-[#F0F0F0]/60 p-5 flex items-center gap-4 border border-[#E5E5E5]">
+          <div className="card-agentflow bg-[#FFE4E9]/60 p-5 flex items-center gap-4 border border-[#F8CDD6]">
             <img src="/assets/n8n/asset-056.png" alt="G2" className="w-7 h-7 rounded" />
             <div>
               <div className="font-semibold text-sm text-[#161616]">Rated 4.7/5 on G2</div>
               <div className="text-xs text-[#8F8F8F]">From thousands of verified engineers</div>
             </div>
           </div>
-          <div className="card-agentflow bg-[#F0F0F0]/60 p-5 flex items-center gap-4 border border-[#E5E5E5]">
+          <div className="card-agentflow bg-[#FFE4E9]/60 p-5 flex items-center gap-4 border border-[#F8CDD6]">
             <img src="/assets/n8n/asset-057.webp" alt="Community" className="w-7 h-7 rounded-full" />
             <div>
               <div className="font-semibold text-sm text-[#161616]">250,000+ Developers</div>
@@ -417,7 +420,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 5. THE USB-C FOR YOUR AI STACK (INTEGRATIONS GRID) */}
-      <section id="integrations" className="w-full px-6 py-24 bg-white border-y border-[#E5E5E5]">
+      <section id="integrations" className="w-full px-6 py-24 bg-white border-y border-[#F8CDD6]">
         <div className="max-w-[1392px] mx-auto">
           <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
             <span className="badge-token">Universal Connectivity</span>
@@ -433,9 +436,9 @@ export const HomePage: React.FC = () => {
             {integrationIcons.map((item, idx) => (
               <div
                 key={idx}
-                className="card-agentflow p-4 flex flex-col items-center justify-center gap-3 text-center bg-[#FAFAFA] border border-[#E5E5E5] hover:border-[#FF91AC] hover:bg-white transition-all group"
+                className="card-agentflow p-4 flex flex-col items-center justify-center gap-3 text-center bg-[#FFF0F3] border border-[#F8CDD6] hover:border-[#FF91AC] hover:bg-white transition-all group"
               >
-                <div className="w-12 h-12 rounded-xl bg-white border border-[#E5E5E5] flex items-center justify-center p-2.5 shadow-xs group-hover:scale-105 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-white border border-[#F8CDD6] flex items-center justify-center p-2.5 shadow-xs group-hover:scale-105 transition-transform">
                   <img src={item.icon} alt={item.name} className="w-full h-full object-contain" />
                 </div>
                 <span className="text-xs font-medium text-[#161616]">{item.name}</span>
@@ -466,7 +469,7 @@ export const HomePage: React.FC = () => {
 
         {/* 3 Value Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+          <div className="card-agentflow p-8 bg-white border border-[#F8CDD6] space-y-4">
             <div className="w-10 h-10 rounded-full bg-[#FFBCCA] flex items-center justify-center font-bold text-xs">
               01
             </div>
@@ -476,8 +479,8 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
-            <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+          <div className="card-agentflow p-8 bg-white border border-[#F8CDD6] space-y-4">
+            <div className="w-10 h-10 rounded-full bg-[#FFE4E9] flex items-center justify-center font-bold text-xs">
               02
             </div>
             <h3 className="text-xl font-medium text-[#161616]">Put rules around AI actions</h3>
@@ -486,8 +489,8 @@ export const HomePage: React.FC = () => {
             </p>
           </div>
 
-          <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
-            <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+          <div className="card-agentflow p-8 bg-white border border-[#F8CDD6] space-y-4">
+            <div className="w-10 h-10 rounded-full bg-[#FFE4E9] flex items-center justify-center font-bold text-xs">
               03
             </div>
             <h3 className="text-xl font-medium text-[#161616]">Self-host your AI stack</h3>
@@ -500,7 +503,7 @@ export const HomePage: React.FC = () => {
         {/* Large Video & Diagram Split Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
-            <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-black shadow-xl aspect-video">
+            <div className="rounded-[24px] overflow-hidden border border-[#F8CDD6] bg-black shadow-xl aspect-video">
               <video
                 src="/assets/n8n/asset-084.mp4"
                 autoPlay
@@ -512,7 +515,7 @@ export const HomePage: React.FC = () => {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-white p-4 shadow-lg">
+            <div className="rounded-[24px] overflow-hidden border border-[#F8CDD6] bg-white p-4 shadow-lg">
               <img
                 src="/assets/n8n/asset-085.svg"
                 alt="Observability Trace"
@@ -524,7 +527,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 7. BUILT BY YOU + READABLE BY ANYONE */}
-      <section className="w-full px-6 py-24 bg-[#F0F0F0]/50 border-t border-[#E5E5E5]">
+      <section className="w-full px-6 py-24 bg-[#FFE4E9]/50 border-t border-[#F8CDD6]">
         <div className="max-w-[1392px] mx-auto">
           <div className="text-center max-w-[800px] mx-auto mb-16 space-y-4">
             <span className="badge-token">Visual Clarity</span>
@@ -537,7 +540,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
+            <div className="card-agentflow p-8 bg-white border border-[#F8CDD6] space-y-4">
               <div className="w-10 h-10 rounded-full bg-[#FFBCCA] flex items-center justify-center font-bold text-xs">
                 DOC
               </div>
@@ -547,8 +550,8 @@ export const HomePage: React.FC = () => {
               </p>
             </div>
 
-            <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
-              <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+            <div className="card-agentflow p-8 bg-white border border-[#F8CDD6] space-y-4">
+              <div className="w-10 h-10 rounded-full bg-[#FFE4E9] flex items-center justify-center font-bold text-xs">
                 FIX
               </div>
               <h3 className="text-xl font-medium text-[#161616]">Recover in one step</h3>
@@ -557,8 +560,8 @@ export const HomePage: React.FC = () => {
               </p>
             </div>
 
-            <div className="card-agentflow p-8 bg-white border border-[#E5E5E5] space-y-4">
-              <div className="w-10 h-10 rounded-full bg-[#F0F0F0] flex items-center justify-center font-bold text-xs">
+            <div className="card-agentflow p-8 bg-white border border-[#F8CDD6] space-y-4">
+              <div className="w-10 h-10 rounded-full bg-[#FFE4E9] flex items-center justify-center font-bold text-xs">
                 GIT
               </div>
               <h3 className="text-xl font-medium text-[#161616]">Every change, tracked</h3>
@@ -570,7 +573,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-white p-4 shadow-lg">
+              <div className="rounded-[24px] overflow-hidden border border-[#F8CDD6] bg-white p-4 shadow-lg">
                 <img
                   src="/assets/n8n/asset-087.svg"
                   alt="Workflow Flowchart"
@@ -579,7 +582,7 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="lg:col-span-7 order-1 lg:order-2">
-              <div className="rounded-[24px] overflow-hidden border border-[#E5E5E5] bg-black shadow-xl aspect-video">
+              <div className="rounded-[24px] overflow-hidden border border-[#F8CDD6] bg-black shadow-xl aspect-video">
                 <video
                   src="/assets/n8n/asset-086.mp4"
                   autoPlay
@@ -606,11 +609,11 @@ export const HomePage: React.FC = () => {
               Shipped months ago. Still in control. Feels good, doesn't it?
             </p>
             <div className="space-y-4 text-sm text-[#303030]">
-              <div className="p-4 rounded-[16px] bg-white border border-[#E5E5E5] space-y-1">
+              <div className="p-4 rounded-[16px] bg-white border border-[#F8CDD6] space-y-1">
                 <h4 className="font-semibold text-[#161616]">Move Fast</h4>
                 <p>Replay a past run or mock the data. Skip waiting on slow third-party staging systems.</p>
               </div>
-              <div className="p-4 rounded-[16px] bg-white border border-[#E5E5E5] space-y-1">
+              <div className="p-4 rounded-[16px] bg-white border border-[#F8CDD6] space-y-1">
                 <h4 className="font-semibold text-[#161616]">Break Nothing</h4>
                 <p>See exactly what happened in the execution traces. No grep excavation required.</p>
               </div>
@@ -624,7 +627,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="card-agentflow bg-white border border-[#E5E5E5] p-4 shadow-xl space-y-4">
+            <div className="card-agentflow bg-white border border-[#F8CDD6] p-4 shadow-xl space-y-4">
               <img
                 src="/assets/n8n/asset-088.svg"
                 alt="Multi-step execution graph"
@@ -647,7 +650,7 @@ export const HomePage: React.FC = () => {
             <span className="badge-token bg-[#303030] text-[#FFBCCA] border-white/10">
               Enterprise Grade
             </span>
-            <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#FAFAFA] font-display">
+            <h2 className="text-3xl md:text-[40px] font-medium leading-[1.15] text-[#FFF0F3] font-display">
               Enterprise-ready for teams of any size
             </h2>
             <p className="text-slate-300 text-[16px] leading-[26px]">
@@ -713,7 +716,7 @@ export const HomePage: React.FC = () => {
       <section id="stories" className="w-full px-6 py-24 max-w-[1392px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Card 1: Huel */}
-          <div className="card-agentflow bg-white border border-[#E5E5E5] p-8 md:p-10 shadow-lg flex flex-col justify-between space-y-8">
+          <div className="card-agentflow bg-white border border-[#F8CDD6] p-8 md:p-10 shadow-lg flex flex-col justify-between space-y-8">
             <div className="space-y-4">
               <span className="badge-token">Case Study</span>
               <h3 className="text-2xl md:text-3xl font-medium text-[#161616] font-display">
@@ -724,11 +727,11 @@ export const HomePage: React.FC = () => {
               </blockquote>
             </div>
 
-            <div className="flex items-center gap-4 pt-4 border-t border-[#F0F0F0]">
+            <div className="flex items-center gap-4 pt-4 border-t border-[#FFE4E9]">
               <img
                 src="/assets/n8n/asset-097.png"
                 alt="Oliver Scheers"
-                className="w-12 h-12 rounded-full object-cover border border-[#E5E5E5]"
+                className="w-12 h-12 rounded-full object-cover border border-[#F8CDD6]"
               />
               <div>
                 <div className="font-semibold text-sm text-[#161616]">Oliver Scheers</div>
@@ -738,7 +741,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           {/* Card 2: Vodafone */}
-          <div className="card-agentflow bg-white border border-[#E5E5E5] p-8 md:p-10 shadow-lg flex flex-col justify-between space-y-8">
+          <div className="card-agentflow bg-white border border-[#F8CDD6] p-8 md:p-10 shadow-lg flex flex-col justify-between space-y-8">
             <div className="space-y-4">
               <span className="badge-token">Case Study</span>
               <h3 className="text-2xl md:text-3xl font-medium text-[#161616] font-display">
@@ -749,11 +752,11 @@ export const HomePage: React.FC = () => {
               </blockquote>
             </div>
 
-            <div className="flex items-center gap-4 pt-4 border-t border-[#F0F0F0]">
+            <div className="flex items-center gap-4 pt-4 border-t border-[#FFE4E9]">
               <img
                 src="/assets/n8n/asset-098.jpg"
                 alt="Claire Van Hinsbergh"
-                className="w-12 h-12 rounded-full object-cover border border-[#E5E5E5]"
+                className="w-12 h-12 rounded-full object-cover border border-[#F8CDD6]"
               />
               <div>
                 <div className="font-semibold text-sm text-[#161616]">Claire Van Hinsbergh</div>
@@ -765,7 +768,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 11. WALL OF LOVE / TESTIMONIALS */}
-      <section className="w-full px-6 py-20 bg-[#F0F0F0]/50 border-y border-[#E5E5E5]">
+      <section className="w-full px-6 py-20 bg-[#FFE4E9]/50 border-y border-[#F8CDD6]">
         <div className="max-w-[1392px] mx-auto">
           <div className="text-center max-w-[700px] mx-auto mb-14 space-y-3">
             <span className="badge-token">Community Voices</span>
@@ -775,11 +778,11 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+            <div className="card-agentflow bg-white p-6 border border-[#F8CDD6] space-y-4">
               <p className="text-sm text-[#303030] italic">
                 "I have found the holy grail of automation. Visual flow plus Python scripts whenever needed."
               </p>
-              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+              <div className="flex items-center gap-3 pt-2 border-t border-[#FFE4E9]">
                 <img src="/assets/n8n/asset-099.webp" alt="Luisa" className="w-9 h-9 rounded-full object-cover" />
                 <div>
                   <div className="text-xs font-semibold text-[#161616]">Luisa Vidal</div>
@@ -788,11 +791,11 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+            <div className="card-agentflow bg-white p-6 border border-[#F8CDD6] space-y-4">
               <p className="text-sm text-[#303030] italic">
                 "AgentFlow's integration with third-party services is absolutely mind-blowing. Swiss army knife for AI."
               </p>
-              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+              <div className="flex items-center gap-3 pt-2 border-t border-[#FFE4E9]">
                 <img src="/assets/n8n/asset-100.webp" alt="Felix" className="w-9 h-9 rounded-full object-cover" />
                 <div>
                   <div className="text-xs font-semibold text-[#161616]">Felix Leber</div>
@@ -801,11 +804,11 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+            <div className="card-agentflow bg-white p-6 border border-[#F8CDD6] space-y-4">
               <p className="text-sm text-[#303030] italic">
                 "Anything is possible with AgentFlow. The local Ollama integration paired with cloud models is unparalleled."
               </p>
-              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+              <div className="flex items-center gap-3 pt-2 border-t border-[#FFE4E9]">
                 <img src="/assets/n8n/asset-101.webp" alt="Robyn" className="w-9 h-9 rounded-full object-cover" />
                 <div>
                   <div className="text-xs font-semibold text-[#161616]">Robyn Tindall</div>
@@ -814,11 +817,11 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            <div className="card-agentflow bg-white p-6 border border-[#E5E5E5] space-y-4">
+            <div className="card-agentflow bg-white p-6 border border-[#F8CDD6] space-y-4">
               <p className="text-sm text-[#303030] italic">
                 "Thank you to the community. I did the beginner tutorial and promptly built an automation way beyond my skill level."
               </p>
-              <div className="flex items-center gap-3 pt-2 border-t border-[#F0F0F0]">
+              <div className="flex items-center gap-3 pt-2 border-t border-[#FFE4E9]">
                 <img src="/assets/n8n/asset-102.webp" alt="Charley" className="w-9 h-9 rounded-full object-cover" />
                 <div>
                   <div className="text-xs font-semibold text-[#161616]">Charley Mann</div>
@@ -832,7 +835,7 @@ export const HomePage: React.FC = () => {
 
       {/* 12. FINAL CALL TO ACTION (WITH WOMAN LAPTOP ASSET) */}
       <section className="w-full px-6 py-28 max-w-[1392px] mx-auto">
-        <div className="card-agentflow bg-white border border-[#E5E5E5] p-8 md:p-14 shadow-2xl relative overflow-hidden">
+        <div className="card-agentflow bg-white border border-[#F8CDD6] p-8 md:p-14 shadow-2xl relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
             <div className="lg:col-span-7 space-y-6">
               <div className="badge-token">Get Started Today</div>
@@ -866,7 +869,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative rounded-[24px] overflow-hidden border border-[#E5E5E5] shadow-lg max-w-[420px]">
+              <div className="relative rounded-[24px] overflow-hidden border border-[#F8CDD6] shadow-lg max-w-[420px]">
                 <img
                   src="/assets/n8n/asset-103.webp"
                   alt="Engineer building with AgentFlow"
@@ -879,8 +882,8 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 13. COMPREHENSIVE FOOTER */}
-      <footer className="border-t border-[#E5E5E5] bg-white px-6 py-16 text-xs text-[#8F8F8F]">
-        <div className="max-w-[1392px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-10 pb-12 border-b border-[#F0F0F0]">
+      <footer className="border-t border-[#F8CDD6] bg-white px-6 py-16 text-xs text-[#8F8F8F]">
+        <div className="max-w-[1392px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-10 pb-12 border-b border-[#FFE4E9]">
           {/* Brand Info */}
           <div className="col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">

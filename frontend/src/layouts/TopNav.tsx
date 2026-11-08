@@ -24,34 +24,34 @@ export const TopNav: React.FC<TopNavProps> = ({ onToggleSidebar, onOpenCreateWor
   }
 
   return (
-    <header className="h-14 bg-white border-b border-[#E5E5E5] px-4 flex items-center justify-between shrink-0 z-20">
+    <header className="h-14 bg-white/95 backdrop-blur-sm border-b border-[#F8CDD6] px-4 flex items-center justify-between shrink-0 z-20">
       <div className="flex items-center gap-3">
         <button
           onClick={onToggleSidebar}
-          className="p-1.5 rounded-full text-[#303030] hover:text-[#161616] hover:bg-[#F0F0F0] transition-colors cursor-pointer"
+          className="p-1.5 rounded-full text-[#423035] hover:text-[#1A1114] hover:bg-[#FFE4E9] transition-colors cursor-pointer"
           title="Toggle Navigation Menu"
         >
           <PanelLeft className="w-4 h-4" />
         </button>
 
         <div className="flex items-center gap-2 text-sm">
-          <span className="font-semibold text-[#161616]">{getPageTitle()}</span>
-          <span className="text-[#D9D9D9]">/</span>
-          <span className="text-xs text-[#8F8F8F] font-mono uppercase">AgentFlow</span>
+          <span className="font-semibold text-[#1A1114]">{getPageTitle()}</span>
+          <span className="text-[#F0AEC0]">/</span>
+          <span className="text-xs text-[#8E7A81] font-mono uppercase">AgentFlow</span>
         </div>
       </div>
 
       <div className="flex items-center gap-3">
         <div className="relative hidden md:flex items-center">
-          <Search className="w-3.5 h-3.5 text-[#8F8F8F] absolute left-3 pointer-events-none" />
+          <Search className="w-3.5 h-3.5 text-[#8E7A81] absolute left-3 pointer-events-none" />
           <input
             type="text"
             placeholder="Search workflows, nodes, tools..."
-            className="w-64 pl-8 pr-3 py-1.5 text-xs bg-[#FAFAFA] border border-[#E5E5E5] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] focus:bg-white transition-colors"
+            className="w-64 pl-8 pr-3 py-1.5 text-xs bg-[#FFF0F3] border border-[#F8CDD6] rounded-full focus:outline-none focus:ring-2 focus:ring-[#FF91AC]/30 focus:border-[#FF91AC] focus:bg-white transition-colors"
           />
         </div>
 
-        <Link to="/" className="text-xs font-mono uppercase text-[#303030] hover:text-[#161616] px-2.5 py-1 rounded-full hover:bg-[#F0F0F0] hidden sm:inline-block">
+        <Link to="/" className="text-xs font-mono uppercase text-[#423035] hover:text-[#1A1114] px-2.5 py-1 rounded-full hover:bg-[#FFE4E9] hidden sm:inline-block">
           Home
         </Link>
 
@@ -68,7 +68,7 @@ export const TopNav: React.FC<TopNavProps> = ({ onToggleSidebar, onOpenCreateWor
           href="https://github.com"
           target="_blank"
           rel="noreferrer"
-          className="p-1.5 text-[#8F8F8F] hover:text-[#161616] hover:bg-[#F0F0F0] rounded-full transition-colors hidden sm:inline-flex"
+          className="p-1.5 text-[#8F8F8F] hover:text-[#161616] hover:bg-[#FFE4E9] rounded-full transition-colors hidden sm:inline-flex"
           title="Documentation"
         >
           <ExternalLink className="w-4 h-4" />
