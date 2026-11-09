@@ -41,6 +41,13 @@ export const WorkflowEditorPage: React.FC = () => {
     if (!current && workflows.length > 0) {
       current = workflows[0]
     }
+    if (!current) {
+      current = workflowService.createWorkflow({
+        name: 'Default Agent Flow',
+        description: 'Visual cognitive agent pipeline with DAG orchestration',
+        tags: ['Default Flow', 'LangGraph'],
+      })
+    }
 
     if (current) {
       setWorkflow(current)

@@ -18,11 +18,12 @@ export const TemplatesPage: React.FC = () => {
       ? templates
       : templates.filter((t) => t.category === selectedCategory)
 
-  const handleUseTemplate = (templateName: string, tags: string[]) => {
+  const handleUseTemplate = (template: typeof templates[0]) => {
     const created = workflowService.createWorkflow({
-      name: `${templateName} (Copy)`,
-      description: `Cloned from AgentFlow template: ${templateName}`,
-      tags: [...tags, 'Template'],
+      name: `${template.name} (Copy)`,
+      description: `Cloned from AgentFlow template: ${template.name}`,
+      tags: [...template.tags, 'Template'],
+      templateId: template.id,
     })
     navigate(`/editor/${created.id}`)
   }
@@ -105,7 +106,7 @@ export const TemplatesPage: React.FC = () => {
               <Button
                 variant="primary"
                 size="sm"
-                onClick={() => handleUseTemplate(template.name, template.tags)}
+                onClick={() => handleUseTemplate(template)}
                 rightIcon={<ArrowRight className="w-3 h-3" />}
               >
                 USE TEMPLATE

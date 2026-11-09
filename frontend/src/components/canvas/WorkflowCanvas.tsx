@@ -90,6 +90,38 @@ export const WorkflowCanvasInner: React.FC<WorkflowCanvasProps> = ({
     }
   }, [initialWorkflow, history.length])
 
+  // Sync live execution states to node data on the canvas
+  useEffect(() => {
+    if (isRunning) {
+      setNodes((currentNodes) =>
+        currentNodes.map((n) => ({
+          ...n,
+          data: {
+            ...n.data,
+            executionStatus: 'running',
+          },
+        }))
+      )
+    } else if (execution && execution.node_states) {
+      setNodes((currentNodes) =>
+        currentNodes.map((n) => {
+          const state = execution.node_states[n.id]
+          if (state) {
+            return {
+              ...n,
+              data: {
+                ...n.data,
+                executionStatus: state.status,
+                executionError: state.error,
+              },
+            }
+          }
+          return n
+        })
+      )
+    }
+  }, [execution, isRunning, setNodes])
+
   // Handle connecting edges
   const onConnect = useCallback(
     (params: Connection) => {

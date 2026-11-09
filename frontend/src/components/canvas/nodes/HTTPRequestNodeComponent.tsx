@@ -20,6 +20,7 @@ export const HTTPRequestNodeComponent: React.FC<NodeProps> = ({ id: _id, data, s
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'HTTP Request'}
       subtitle={url}

@@ -13,6 +13,7 @@ export const PythonToolNodeComponent: React.FC<NodeProps> = ({ id: _id, data, se
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'Python Tool'}
       subtitle={`def ${fnName}(args):`}

@@ -13,6 +13,7 @@ export const InputNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selecte
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'User Input'}
       subtitle={`Var: {${variableName}}`}

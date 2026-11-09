@@ -13,6 +13,7 @@ export const OutputNodeComponent: React.FC<NodeProps> = ({ id: _id, data, select
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'Workflow Output'}
       subtitle={`Response key: ${key}`}

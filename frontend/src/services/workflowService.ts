@@ -8,6 +8,323 @@ const STORAGE_KEYS = {
   FLOW_PREFIX: 'agentflow_flow_',
 }
 
+export function createTemplateFlow(id: string, name: string, templateId?: string): WorkflowDefinition {
+  if (templateId === 'tpl-2') {
+    const inputNodeId = 'input_1'
+    const agentNodeId = 'agent_1'
+    const pythonNodeId = 'python_1'
+    const llmNodeId = 'llm_1'
+    const outputNodeId = 'output_1'
+
+    const nodes: AgentFlowNode[] = [
+      {
+        id: inputNodeId,
+        type: 'inputNode',
+        position: { x: 80, y: 180 },
+        data: {
+          label: 'Research Objective',
+          nodeType: 'inputNode',
+          description: 'Topic or problem statement for autonomous agent deep-dive.',
+          isValid: true,
+          config: {
+            variableName: 'objective',
+            inputType: 'text',
+            defaultValue: 'Explain topological sorting in AI pipeline orchestration.',
+            required: true,
+          },
+        },
+      },
+      {
+        id: agentNodeId,
+        type: 'agentNode',
+        position: { x: 420, y: 150 },
+        data: {
+          label: 'Autonomous Researcher',
+          nodeType: 'agentNode',
+          description: '4-Role cognitive agent loop: Plan, Execute, Verify, Generate.',
+          isValid: true,
+          config: {
+            role: 'Senior Systems Architect & Researcher',
+            goal: 'Perform multi-step technical analysis and formulate engineering conclusions.',
+            maxIterations: 5,
+            model: 'gemini-2.0-flash',
+            allowDelegation: false,
+            architecture: 'flow',
+            toolsEnabled: ['wikipedia_search', 'python_sandbox'],
+          },
+        },
+      },
+      {
+        id: pythonNodeId,
+        type: 'pythonToolNode',
+        position: { x: 780, y: 150 },
+        data: {
+          label: 'Data Formatter',
+          nodeType: 'pythonToolNode',
+          description: 'Subprocess-isolated Python sandbox data transformer.',
+          isValid: true,
+          config: {
+            functionName: 'format_findings',
+            code: 'def format_findings(args):\n    return {"summary": str(args), "status": "verified"}',
+            timeoutSeconds: 8,
+          },
+        },
+      },
+      {
+        id: llmNodeId,
+        type: 'llmNode',
+        position: { x: 1120, y: 150 },
+        data: {
+          label: 'Synthesis Engine',
+          nodeType: 'llmNode',
+          description: 'Synthesizes verified findings into executive briefing.',
+          isValid: true,
+          config: {
+            provider: 'ollama',
+            model: 'qwen2.5:7b',
+            temperature: 0.6,
+            maxTokens: 2048,
+            systemPrompt: 'You are an executive technology analyst. Summarize research findings into an actionable briefing.',
+          },
+        },
+      },
+      {
+        id: outputNodeId,
+        type: 'outputNode',
+        position: { x: 1460, y: 180 },
+        data: {
+          label: 'Executive Briefing',
+          nodeType: 'outputNode',
+          description: 'Renders the final formatted research output.',
+          isValid: true,
+          config: {
+            outputFormat: 'markdown',
+            responseKey: 'briefing',
+          },
+        },
+      },
+    ]
+
+    const edges: Edge[] = [
+      {
+        id: 'e_input_agent',
+        source: inputNodeId,
+        target: agentNodeId,
+        sourceHandle: 'output',
+        targetHandle: 'goal',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#4f46e5' },
+        style: { stroke: '#4f46e5', strokeWidth: 2 },
+      },
+      {
+        id: 'e_agent_python',
+        source: agentNodeId,
+        target: pythonNodeId,
+        sourceHandle: 'result',
+        targetHandle: 'args',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#4f46e5' },
+        style: { stroke: '#4f46e5', strokeWidth: 2 },
+      },
+      {
+        id: 'e_python_llm',
+        source: pythonNodeId,
+        target: llmNodeId,
+        sourceHandle: 'result',
+        targetHandle: 'prompt',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#4f46e5' },
+        style: { stroke: '#4f46e5', strokeWidth: 2 },
+      },
+      {
+        id: 'e_llm_output',
+        source: llmNodeId,
+        target: outputNodeId,
+        sourceHandle: 'response',
+        targetHandle: 'input',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#4f46e5' },
+        style: { stroke: '#4f46e5', strokeWidth: 2 },
+      },
+    ]
+
+    return {
+      id,
+      name,
+      description: 'Autonomous Research & Synthesis Pipeline',
+      version: '1.0.0',
+      status: 'draft',
+      nodes,
+      edges,
+      metadata: {
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        tags: ['Autonomous Agent', 'Research', 'Python Sandbox'],
+      },
+    }
+  }
+
+  if (templateId === 'tpl-3') {
+    const inputNodeId = 'input_1'
+    const condNodeId = 'cond_1'
+    const httpNodeId = 'http_1'
+    const pythonNodeId = 'python_1'
+    const outputNodeId = 'output_1'
+
+    const nodes: AgentFlowNode[] = [
+      {
+        id: inputNodeId,
+        type: 'inputNode',
+        position: { x: 80, y: 180 },
+        data: {
+          label: 'Webhook Payload',
+          nodeType: 'inputNode',
+          description: 'Accepts triggering event or JSON message payload.',
+          isValid: true,
+          config: {
+            variableName: 'event_type',
+            inputType: 'text',
+            defaultValue: 'deploy_production',
+            required: true,
+          },
+        },
+      },
+      {
+        id: condNodeId,
+        type: 'conditionalNode',
+        position: { x: 420, y: 150 },
+        data: {
+          label: 'Environment Gatekeeper',
+          nodeType: 'conditionalNode',
+          description: 'Routes execution based on condition evaluation.',
+          isValid: true,
+          config: {
+            field: 'event_type',
+            operator: 'equals',
+            value: 'deploy_production',
+          },
+        },
+      },
+      {
+        id: httpNodeId,
+        type: 'httpRequestNode',
+        position: { x: 780, y: 100 },
+        data: {
+          label: 'Dispatch CI Webhook',
+          nodeType: 'httpRequestNode',
+          description: 'Fires webhook endpoint upon condition match.',
+          isValid: true,
+          config: {
+            method: 'POST',
+            url: 'https://httpbin.org/post',
+            headers: '{"Content-Type": "application/json"}',
+            bodyTemplate: '{"event": "production_deploy"}',
+          },
+        },
+      },
+      {
+        id: pythonNodeId,
+        type: 'pythonToolNode',
+        position: { x: 780, y: 300 },
+        data: {
+          label: 'Fallback Logger',
+          nodeType: 'pythonToolNode',
+          description: 'Subprocess sandbox handling non-matching conditions.',
+          isValid: true,
+          config: {
+            functionName: 'log_event',
+            code: 'def log_event(args):\n    return {"action": "skipped", "args": str(args)}',
+            timeoutSeconds: 5,
+          },
+        },
+      },
+      {
+        id: outputNodeId,
+        type: 'outputNode',
+        position: { x: 1140, y: 180 },
+        data: {
+          label: 'Dispatch Status',
+          nodeType: 'outputNode',
+          description: 'Final execution status output.',
+          isValid: true,
+          config: {
+            outputFormat: 'json',
+            responseKey: 'dispatch_status',
+          },
+        },
+      },
+    ]
+
+    const edges: Edge[] = [
+      {
+        id: 'e_input_cond',
+        source: inputNodeId,
+        target: condNodeId,
+        sourceHandle: 'output',
+        targetHandle: 'input',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#4f46e5' },
+        style: { stroke: '#4f46e5', strokeWidth: 2 },
+      },
+      {
+        id: 'e_cond_http',
+        source: condNodeId,
+        target: httpNodeId,
+        sourceHandle: 'true_branch',
+        targetHandle: 'payload',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#10b981' },
+        style: { stroke: '#10b981', strokeWidth: 2 },
+      },
+      {
+        id: 'e_cond_python',
+        source: condNodeId,
+        target: pythonNodeId,
+        sourceHandle: 'false_branch',
+        targetHandle: 'args',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#ef4444' },
+        style: { stroke: '#ef4444', strokeWidth: 2 },
+      },
+      {
+        id: 'e_http_output',
+        source: httpNodeId,
+        target: outputNodeId,
+        sourceHandle: 'response',
+        targetHandle: 'input',
+        type: 'smoothstep',
+        animated: true,
+        markerEnd: { type: MarkerType.ArrowClosed, color: '#4f46e5' },
+        style: { stroke: '#4f46e5', strokeWidth: 2 },
+      },
+    ]
+
+    return {
+      id,
+      name,
+      description: 'Conditional Webhook & Tool Execution Pipeline',
+      version: '1.0.0',
+      status: 'draft',
+      nodes,
+      edges,
+      metadata: {
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        tags: ['HTTP Tool', 'Router', 'Conditional'],
+      },
+    }
+  }
+
+  return createDefaultFlow(id, name)
+}
+
 export function createDefaultFlow(id: string, name: string): WorkflowDefinition {
   const inputNodeId = 'input_1'
   const promptNodeId = 'prompt_1'
@@ -306,13 +623,14 @@ export const workflowService = {
     description: string
     projectId?: string
     tags?: string[]
+    templateId?: string
   }): Workflow {
     const workflows = this.getWorkflows()
     const projects = this.getProjects()
     const project = projects.find((p) => p.id === payload.projectId)
 
     const id = `wf-${Date.now()}`
-    const initialFlow = createDefaultFlow(id, payload.name.trim())
+    const initialFlow = createTemplateFlow(id, payload.name.trim(), payload.templateId)
 
     const newWorkflow: Workflow = {
       id,

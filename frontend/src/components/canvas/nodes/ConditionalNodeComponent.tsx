@@ -14,6 +14,7 @@ export const ConditionalNodeComponent: React.FC<NodeProps> = ({ id: _id, data, s
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'Conditional Router'}
       subtitle={`If ${field} ${operator}`}

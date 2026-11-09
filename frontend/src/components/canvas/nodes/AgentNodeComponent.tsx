@@ -15,6 +15,7 @@ export const AgentNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selecte
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'Autonomous Agent'}
       subtitle={`Role: ${role}`}

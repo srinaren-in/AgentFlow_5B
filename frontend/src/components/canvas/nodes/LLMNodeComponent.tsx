@@ -14,6 +14,7 @@ export const LLMNodeComponent: React.FC<NodeProps> = ({ id: _id, data, selected 
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'LLM Engine'}
       subtitle={`${provider.toUpperCase()} • ${model}`}

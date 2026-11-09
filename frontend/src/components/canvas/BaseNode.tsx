@@ -20,6 +20,7 @@ export interface BaseNodeProps {
   badge?: string
   isValid?: boolean
   validationMessage?: string
+  executionStatus?: 'pending' | 'running' | 'completed' | 'failed' | 'skipped'
   inputs?: HandleDefinition[]
   outputs?: HandleDefinition[]
   children?: React.ReactNode
@@ -35,17 +36,26 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
   badge,
   isValid = true,
   validationMessage,
+  executionStatus,
   inputs = [],
   outputs = [],
   children,
 }) => {
+  const getExecutionRing = () => {
+    if (executionStatus === 'completed') return 'border-emerald-500 ring-2 ring-emerald-500/40 shadow-sm'
+    if (executionStatus === 'failed') return 'border-rose-500 ring-2 ring-rose-500/40 shadow-sm'
+    if (executionStatus === 'running') return 'border-[#FF91AC] ring-2 ring-[#FFBCCA] animate-pulse shadow-md'
+    if (executionStatus === 'skipped') return 'opacity-60 border-slate-300'
+    return selected
+      ? 'border-[#FF91AC] ring-2 ring-[#FFBCCA]/50 shadow-md'
+      : 'border-[#F8CDD6] hover:border-[#F0AEC0] hover:shadow-sm'
+  }
+
   return (
     <div
       className={cn(
         'w-64 bg-white rounded-[20px] border text-left shadow-xs transition-all duration-150 relative select-none font-sans',
-        selected
-          ? 'border-[#FF91AC] ring-2 ring-[#FFBCCA]/50 shadow-md'
-          : 'border-[#F8CDD6] hover:border-[#F0AEC0] hover:shadow-sm'
+        getExecutionRing()
       )}
     >
       {/* Target (Input) Handles */}
@@ -85,6 +95,15 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
         </div>
 
         <div className="flex items-center gap-1.5 shrink-0">
+          {executionStatus === 'completed' && (
+            <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-xs" title="Step completed successfully" />
+          )}
+          {executionStatus === 'failed' && (
+            <span className="w-2 h-2 rounded-full bg-rose-500" title="Step execution failed" />
+          )}
+          {executionStatus === 'running' && (
+            <span className="w-2 h-2 rounded-full bg-[#FF91AC] animate-ping" title="Step executing..." />
+          )}
           {!isValid && (
             <span title={validationMessage || 'Configuration incomplete'}>
               <AlertCircle className="w-3.5 h-3.5 text-amber-500" />

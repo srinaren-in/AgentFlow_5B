@@ -18,6 +18,7 @@ export const PromptTemplateNodeComponent: React.FC<NodeProps> = ({ id: _id, data
 
   return (
     <BaseNode
+      executionStatus={nodeData.executionStatus}
       selected={selected}
       title={nodeData.label || 'Prompt Template'}
       subtitle={`${inputVariables.length} variable${inputVariables.length === 1 ? '' : 's'}`}
